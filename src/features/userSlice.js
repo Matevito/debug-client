@@ -2,6 +2,7 @@ import  { createSlice } from "@reduxjs/toolkit";
 
 /* User object structure
 user:{
+    loggedIn: 'boolean',
     user: {
         username,
         email,
@@ -16,6 +17,7 @@ user:{
         id,
         title
     }],
+    todo on it's own slice:?
     notifications: [array of id's] // under development*
 }
 */
