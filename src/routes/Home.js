@@ -10,12 +10,14 @@ export const Home = () => {
     if (!user) {
         return(
             <div>
+                <h1>Home</h1>
                 not loged-in
             </div>
         )
     } else {
         return( 
             <div>
+                <h1>Home</h1>
                 Loged-in home page
             </div>
         );
