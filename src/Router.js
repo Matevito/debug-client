@@ -1,9 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
+
 
 // routes components
 import { Home } from "./routes/Home";
@@ -16,8 +18,8 @@ export const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route exact path="/" element={<Home />}/>
-                <Route path="/log-in" element={<Login />}/>
-                <Route path="/sign-in" element={<Signin />}/>
+                <Route path="/log-in" element={user ? <Navigate to="/" /> : <Login />} /> 
+                <Route path="/sign-in" element={user ? <Navigate to="/" /> : <Signin />}/>
             </Routes>
         </BrowserRouter>
     )
