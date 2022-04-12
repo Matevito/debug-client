@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { Link } from 'react-router-dom';
 import LoginSharpIcon from '@mui/icons-material/LoginSharp';
 import MenuIcon from '@mui/icons-material/Menu';
 import { 
@@ -10,7 +10,8 @@ import {
     Typography,
     IconButton,
     Menu,
-    MenuItem
+    MenuItem,
+    Stack
     } from "@mui/material";
 
 // redux state management
@@ -19,8 +20,9 @@ import { selectUser } from "./features/userSlice";
 
 // Using Inline Styling
 
+const title = "Issue tracker"
 
-export const Header = ({ title }) => {
+export const Header = () => {
     const user = useSelector(selectUser);
 
     const [anchorNav, setAnchorNav] = useState(null)
@@ -37,10 +39,12 @@ export const Header = ({ title }) => {
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        {title}
+                        <Link to="/" style={{ color: "inherit", textDecoration: 'none' }}>
+                            {title}
+                        </Link>
                     </Typography>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0 }} >
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -68,14 +72,24 @@ export const Header = ({ title }) => {
                             onClose={handleCloseMenu}
                         >
                             <MenuItem onClick={handleCloseMenu}>
-                                <Typography textAlign="center">
-                                    <LoginSharpIcon color="success"/>Log in    
-                                </Typography>
+                                <Link to="/log-in" style={{ color: "inherit", textDecoration: 'none' }}>
+                                    <Stack direction="row" alignItems="center" gap={1}>
+                                        <LoginSharpIcon color="success"/>    
+                                        <Typography textAlign="center">
+                                            Log in
+                                        </Typography>
+                                    </Stack>
+                                </Link>  
                             </MenuItem>
                             <MenuItem onClick={handleCloseMenu}>
-                                <Typography textAlign="center">
-                                    <LoginSharpIcon color="success"/>Sign in    
-                                </Typography>
+                                <Link to="/sign-in" style={{ color: "inherit", textDecoration: 'none' }}>
+                                    <Stack direction="row" alignItems="center" gap={1}>
+                                        <LoginSharpIcon color="success"/>    
+                                        <Typography textAlign="center">
+                                            Sign in
+                                        </Typography>
+                                    </Stack>
+                                </Link>
                             </MenuItem>
                         </Menu>
                     </Box >

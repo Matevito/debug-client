@@ -8,6 +8,8 @@ import { selectUser } from "./features/userSlice";
 
 
 // routes components
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
 import { Signin } from "./routes/Signin";
@@ -16,11 +18,13 @@ export const Router = () => {
     const user = useSelector(selectUser);
     return (
         <BrowserRouter>
+            <Header />
             <Routes>
                 <Route exact path="/" element={<Home />}/>
                 <Route path="/log-in" element={user ? <Navigate to="/" /> : <Login />} /> 
                 <Route path="/sign-in" element={user ? <Navigate to="/" /> : <Signin />}/>
             </Routes>
+            <Footer />
         </BrowserRouter>
     )
 }
