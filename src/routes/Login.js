@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+// redux comp
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
+// mui comp
 import KeyIcon from '@mui/icons-material/Key';
 import {
     Grid,
@@ -18,11 +21,14 @@ import api from "../features/api";
 import get_userInfo from "../features/get_userInfo";
 
 export const Login = () => {
-    let navigate = useNavigate();
     const [username, setusername] = useState("");
     const [password, setpassword] = useState("");
     //const [error, seterror] = useState(null);
 
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    // component functions
     const handleUsername = (e) => {
         setusername(e.target.value);
     };
@@ -36,13 +42,18 @@ export const Login = () => {
         navigate("/");
     };
     const handleDemo = async(url) => {
-        
         try {
             const demoAccess = await api.post(url);
             const token = demoAccess.data.token;
             const userData = await get_userInfo(token);
-            console.log(userData)
-
+            
+            // if the res of api was 200
+            if (userData) {
+                // store token browser
+                // store userData on app
+                localStorage.setItem("deb-token", token);
+                dispatch(login(userData))
+            }
         } catch (error) {
             console.log(error)
         }
