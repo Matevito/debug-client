@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+
 import KeyIcon from '@mui/icons-material/Key';
 import {
     Grid,
     Box,
     Typography,
-    LoginError,
     TextField,
     Button
 } from "@mui/material"
 
 //components
 import { DemoLinks } from "../components/DemoLinks"
+
+//rest api axios
+import api from "../features/api";
 
 export const Login = () => {
     let navigate = useNavigate();
@@ -31,9 +34,15 @@ export const Login = () => {
         //todo...
         navigate("/");
     };
-    const handleDemo = async (url) => {
-        console.log(url)
-        navigate("/log-in")
+    const handleDemo = async(url) => {
+        
+        try {
+            const demoAccess = await api.post(url);
+            const token = demoAccess.data.token;
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <Grid container justifyContent="center">

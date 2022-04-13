@@ -17,8 +17,9 @@ export const DemoLinks= ({ handleDemo }) => {
     }
     return (
         <>
-        <Typography component="h5" variant="h5" align="center">
-            Demo links
+        <p></p>
+        <Typography component="h5" variant="h5" align="center" >
+            Demo preview
         </Typography>
         <Button 
             variant="contained"
