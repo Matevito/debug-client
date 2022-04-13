@@ -3,6 +3,7 @@ import  { createSlice } from "@reduxjs/toolkit";
 /* User object structure
 user:{
     loggedIn: 'boolean',
+    token: auth-token,
     user: {
         username,
         email,

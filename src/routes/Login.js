@@ -15,6 +15,7 @@ import { DemoLinks } from "../components/DemoLinks"
 
 //rest api axios
 import api from "../features/api";
+import get_userInfo from "../features/get_userInfo";
 
 export const Login = () => {
     let navigate = useNavigate();
@@ -39,7 +40,9 @@ export const Login = () => {
         try {
             const demoAccess = await api.post(url);
             const token = demoAccess.data.token;
-            
+            const userData = await get_userInfo(token);
+            console.log(userData)
+
         } catch (error) {
             console.log(error)
         }
