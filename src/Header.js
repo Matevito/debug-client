@@ -12,7 +12,7 @@ import {
     Menu,
     MenuItem,
     Stack
-    } from "@mui/material";
+} from "@mui/material";
 
 // redux state management
 import { useSelector } from "react-redux";
