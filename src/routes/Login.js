@@ -23,9 +23,8 @@ import get_userInfo from "../features/get_userInfo";
 export const Login = () => {
     const [username, setusername] = useState("");
     const [password, setpassword] = useState("");
-    //const [error, seterror] = useState(null);
+    const [error, seterror] = useState(null);
 
-    let navigate = useNavigate();
     const dispatch = useDispatch();
     
     // component functions
@@ -38,6 +37,7 @@ export const Login = () => {
     const cleanForm = () => {
         setusername("");
         setpassword("");
+        // set error to null
     };
 
     // auth functions
@@ -49,10 +49,23 @@ export const Login = () => {
         };
         const url = '/log-in';
         // calling the rest-api
-        //todo...
-        const apiRes = await api.post(url, reqBody);
-        console.log(apiRes.status)
         
+        try {
+            const apiRes = await api.post(url, reqBody);
+            const token = apiRes.data.token;
+            const userData = await get_userInfo(token);
+
+            if (userData) {
+                cleanForm();
+
+                // store user
+                localStorage.setItem("deb-token", token);
+                dispatch(login(userData));
+            }
+        } catch (err) {
+            seterror(err.response.data)
+            console.log(err.response.data)
+        }
     };
     const handleDemo = async(url) => {
         try {
