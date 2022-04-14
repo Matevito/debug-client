@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+// mui components
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import {
+    Grid,
+    Box,
+    Typography,
+    TextField,
+    Button
+} from "@mui/material"
+
 //rest api axios
 import api from "../features/api";
-import get_userInfo from "../features/get_userInfo";
 
 export const Signin = () => {
     const [username, setusername] = useState("");
@@ -56,8 +65,38 @@ export const Signin = () => {
         }
     }
     return (
-        <div>
-            signin
-        </div>
+        <Grid container justifyContent="center">
+            <Grid item xs={6}>
+                <Box
+                    sx={{
+                        marginTop: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center"
+                    }}
+                >
+                    <AppRegistrationIcon />
+                    <Typography component="h1" variant="h5">
+                        Sign-in
+                    </Typography>
+                    <p></p>
+                    <form action="#" onSubmit={handleRegister}>
+                        <TextField fullWidth label="Username" defaultValue={username} onChange={handleUsername}></TextField>
+                        <TextField fullWidth label="email" defaultValue={email} onChange={handleEmail}></TextField>
+                        <TextField fullWidth label="Password"  type="password" defaultValue={password} onChange={handlePassword}></TextField>
+                        <TextField fullWidth label="Repeat Password" type="password" defaultValue={repPassword} onChange={handleRepPassword}></TextField>
+                        
+                        <Button
+                            variant= "contained"
+                            type="submit"
+                            fullWidth
+                            color="success"
+                        >
+                            Submit
+                        </Button>
+                    </form>
+                </Box>
+            </Grid>
+        </Grid>
     )
 }
