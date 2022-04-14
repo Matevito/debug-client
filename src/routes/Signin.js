@@ -11,6 +11,9 @@ import {
     Button
 } from "@mui/material"
 
+// components
+import { AuthError } from "../components/AuthError";
+
 //rest api axios
 import api from "../features/api";
 
@@ -56,11 +59,13 @@ export const Signin = () => {
         };
         const url  = '/sign-in';
         
+        // handle api-rest call
         try {
             const apiRes = await api.post(url, reqBody);
-            console.log(apiRes.response.data);
+            cleanForm();
+            navigate("/");
         } catch (err) {
-            seterror(err.response.data);
+            seterror(err.response.data.error);
             console.log(err.response.data);
         }
     }
@@ -79,8 +84,12 @@ export const Signin = () => {
                     <Typography component="h1" variant="h5">
                         Sign-in
                     </Typography>
+
+                    
+                    
                     <p></p>
                     <form action="#" onSubmit={handleRegister}>
+                        <AuthError error={error} />
                         <TextField fullWidth label="Username" defaultValue={username} onChange={handleUsername}></TextField>
                         <TextField fullWidth label="email" defaultValue={email} onChange={handleEmail}></TextField>
                         <TextField fullWidth label="Password"  type="password" defaultValue={password} onChange={handlePassword}></TextField>

@@ -63,7 +63,7 @@ export const Login = () => {
                 dispatch(login(userData));
             }
         } catch (err) {
-            seterror(err.response.data)
+            seterror(err.response.data.error)
             console.log(err.response.data)
         }
     };
