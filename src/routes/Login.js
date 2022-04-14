@@ -62,6 +62,7 @@ export const Login = () => {
 
             // if the res of api was 200
             if (userData) {
+                cleanForm();
                 // store token browser
                 // store userData on app
                 localStorage.setItem("deb-token", token);
