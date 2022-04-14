@@ -26,7 +26,18 @@ export const AuthError = ({ error }) => {
             </>
         )
     }
-    else {
+    else if (!Array.isArray(error)) {
+        return (
+            <>
+            <Stack sx={{ width: '100%'}} >
+                    <Alert severity="error">
+                        {error}
+                    </Alert>
+            </Stack>
+            <p></p>
+            </>
+        )
+    } else {
         return (
             <>
             {error.map((msg, i) => {
