@@ -15,6 +15,7 @@ import {
 
 //components
 import { DemoLinks } from "../components/DemoLinks"
+import { AuthError } from "../components/AuthError";
 
 //rest api axios
 import api from "../features/api";
@@ -104,6 +105,7 @@ export const Login = () => {
                     </Typography>
                     <p></p>
                     <form action="#" onSubmit={(e) => { e.preventDefault()}}>
+                        <AuthError error={error} />
                         <TextField fullWidth label="Username" defaultValue={username} onChange={handleUsername}></TextField>
                         <TextField fullWidth label="Password" type="password" value={password} onChange={handlePassword}/>
                         
