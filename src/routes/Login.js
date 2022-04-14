@@ -35,18 +35,31 @@ export const Login = () => {
     const handlePassword = (e) => {
         setpassword(e.target.value)
     };
+    const cleanForm = () => {
+        setusername("");
+        setpassword("");
+    };
 
+    // auth functions
     const handleLogin = async (e) => {
         e.preventDefault();
+        const reqBody = {
+            username: username,
+            password: password,
+        };
+        const url = '/log-in';
+        // calling the rest-api
         //todo...
-        navigate("/");
+        const apiRes = await api.post(url, reqBody);
+        console.log(apiRes.status)
+        
     };
     const handleDemo = async(url) => {
         try {
             const demoAccess = await api.post(url);
             const token = demoAccess.data.token;
             const userData = await get_userInfo(token);
-            
+
             // if the res of api was 200
             if (userData) {
                 // store token browser
@@ -58,6 +71,8 @@ export const Login = () => {
             console.log(error)
         }
     }
+
+    // render obj
     return (
         <Grid container justifyContent="center">
             <Grid item xs={6}>

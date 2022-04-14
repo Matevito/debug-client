@@ -43,8 +43,7 @@ export const Header = () => {
 
     const handleLogout = (e) => {
         handleCloseMenu();
-        // erase token
-        // set to null redux user value
+        // erase token & set to null redux user value
         localStorage.removeItem("deb-token");
         dispatch(logout());
     }
@@ -154,7 +153,7 @@ export const Header = () => {
                                     <Stack direction="row" alignItems="center" gap={1}>
                                         <LogoutSharpIcon color="success"/>    
                                         <Typography textAlign="center">
-                                            Log-out
+                                            Log out
                                         </Typography>
                                     </Stack>
                             </MenuItem>
