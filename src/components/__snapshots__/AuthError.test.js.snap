@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthError component handles no prop errors 1`] = `<div />`;
