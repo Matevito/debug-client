@@ -27,6 +27,7 @@ export const DemoLinks= ({ handleDemo }) => {
             fullWidth
             color="warning"
             onClick={handleDev}
+            data-testid="developer"
         >
             <PersonIcon />
             Developer demo
@@ -38,6 +39,7 @@ export const DemoLinks= ({ handleDemo }) => {
             fullWidth
             color="warning"
             onClick={handleTeamL}
+            data-testid="team_l"
         >
             <PersonIcon />
             Team Leader demo
@@ -49,6 +51,7 @@ export const DemoLinks= ({ handleDemo }) => {
             fullWidth
             color="warning"
             onClick={handleAdmin}
+            data-testid="admin_demo"
         >
             <PersonIcon />
             Admin Demo
