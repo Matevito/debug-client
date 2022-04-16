@@ -92,8 +92,8 @@ export const Signin = () => {
                         <AuthError error={error} />
                         <TextField fullWidth label="Username" defaultValue={username} onChange={handleUsername}></TextField>
                         <TextField fullWidth label="email" defaultValue={email} onChange={handleEmail}></TextField>
-                        <TextField fullWidth label="Password"  type="password" defaultValue={password} onChange={handlePassword}></TextField>
-                        <TextField fullWidth label="Repeat Password" type="password" defaultValue={repPassword} onChange={handleRepPassword}></TextField>
+                        <TextField fullWidth label="Password"  type="password" defaultValue={password} onChange={handlePassword} data-testid="password"></TextField>
+                        <TextField fullWidth label="Repeat Password" type="password" defaultValue={repPassword} onChange={handleRepPassword} data-testid="repPassword"></TextField>
                         
                         <Button
                             variant= "contained"
