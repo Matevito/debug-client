@@ -3,7 +3,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 //testing comp
 import '@testing-library/jest-dom'
-import userEvent from "@testing-library/user-event";
 
 //tested comp
 import { DemoLinks } from "./DemoLinks";
