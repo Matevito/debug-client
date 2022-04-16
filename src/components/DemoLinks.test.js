@@ -26,7 +26,7 @@ describe("DemoLinks componen", () => {
         const adminBtn = screen.getByTestId("admin_demo")
         fireEvent.click(adminBtn);
         expect(mockFunction).toHaveBeenCalledTimes(1)
-        expect(mockFunction.mock.lastCall[0]).toBe("/demo/developer");
+        expect(mockFunction.mock.lastCall[0]).toBe("/demo/admin");
 
         //team leader btn
         const teamBtn = screen.getByTestId("team_l");

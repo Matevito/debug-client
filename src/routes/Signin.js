@@ -62,6 +62,7 @@ export const Signin = () => {
         // handle api-rest call
         try {
             const apiRes = await api.post(url, reqBody);
+            console.log(apiRes)
             cleanForm();
             navigate("/");
         } catch (err) {

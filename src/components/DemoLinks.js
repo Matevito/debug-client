@@ -12,7 +12,7 @@ export const DemoLinks= ({ handleDemo }) => {
         handleDemo(url);
     };
     const handleAdmin = () => {
-        const url = '/demo/developer';
+        const url = '/demo/admin';
         handleDemo(url);
     }
     return (
