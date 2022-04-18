@@ -4,8 +4,14 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 
+// mui comp
+import {
+    Grid
+} from "@mui/material";
+
 // Home components
 import { Welcome } from "../components/Welcome";
+import { NavBar } from '../components/NavBar';
 
 export const Home = () => {
     const user = useSelector(selectUser);
@@ -16,7 +22,15 @@ export const Home = () => {
         )
     } else {
         return( 
-            <div>{user.user.role}</div>
+            
+            <Grid container spacing={2} >
+                <Grid item xs={3}>
+                    <NavBar user={user}/>
+                </Grid>
+                <Grid item xs={8}>
+                    <span>todo...</span>
+                </Grid>
+            </Grid>
         );
     }
 }

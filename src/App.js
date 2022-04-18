@@ -27,12 +27,11 @@ function App() {
         }
       }
     };
+    
     fetchAPI();
   })
   return (
-      <Container maxWidth="lg">
         <Router />
-      </Container>
   );
 }
 
