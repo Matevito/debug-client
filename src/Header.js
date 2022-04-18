@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // mui
 import LoginSharpIcon from '@mui/icons-material/LoginSharp';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { 
     Container,
     Box,
@@ -29,8 +30,8 @@ const title = "Issue tracker"
 
 export const Header = () => {
     const user = useSelector(selectUser);
-
     const [anchorNav, setAnchorNav] = useState(null)
+    let navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -149,6 +150,14 @@ export const Header = () => {
                             open={Boolean(anchorNav)}
                             onClose={handleCloseMenu}
                         >
+                            <MenuItem onClick={() => {navigate("/user/info")}}>
+                                    <Stack direction="row" alignItems="center" gap={1}>
+                                        <AccountCircleSharpIcon />
+                                        <Typography textAlign="center">
+                                            {user.user.username} info
+                                        </Typography>
+                                    </Stack>
+                            </MenuItem>
                             <MenuItem onClick={handleLogout}>
                                     <Stack direction="row" alignItems="center" gap={1}>
                                         <LogoutSharpIcon color="success"/>    

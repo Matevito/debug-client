@@ -12,7 +12,6 @@ import { Grid, Box } from "@mui/material";
 // routes components
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { NavBar } from "./components/NavBar"
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
 import { Signin } from "./routes/Signin";

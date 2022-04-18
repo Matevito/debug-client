@@ -7,12 +7,12 @@ import { selectUser } from "../features/userSlice";
 // mui comp
 import {
     Grid,
-    Box
+    Box,
+    Button
 } from "@mui/material";
 
 // Home components
 import { Welcome } from "../components/Welcome";
-import { NavBar } from '../components/NavBar';
 
 const CreateProjectLink = () => {
     return (
@@ -22,7 +22,6 @@ const CreateProjectLink = () => {
 
 export const Home = () => {
     const user = useSelector(selectUser);
-
     if (!user) {
         return(
             <Welcome />
