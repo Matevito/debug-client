@@ -75,6 +75,7 @@ exports.getData = () => {
         if (i === 0) {
             return mockStore(user)
         }
+        
         return mockStore({user: {
             user: {
                 user

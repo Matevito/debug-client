@@ -49,5 +49,9 @@ describe("ProjectCreate component", () => {
         expect(teamContainer).toMatchSnapshot();
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
     })
-    test.todo("renders complete form");
+    test("renders form", () => {
+        // console.log(adminStore.getState().user.user.user)
+        render(<Provider store={adminStore}><ProjectCreate /></Provider>, {wrapper: MemoryRouter})
+        
+    });
 }) 
