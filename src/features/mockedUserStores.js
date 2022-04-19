@@ -70,8 +70,11 @@ const usersStoreValues = [
 ];
 
 exports.getData = () => {
-    const mockedUsers = usersStoreValues.map((user) => {
+    const mockedUsers = usersStoreValues.map((user, i) => {
         const mockStore = configureStore([]);
+        if (i === 0) {
+            return mockStore(user)
+        }
         return mockStore({user: {
             user: {
                 user

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectCreate component handles developer user 1`] = `undefined`;
+
+exports[`ProjectCreate component handles no admin user 1`] = `undefined`;
+
+exports[`ProjectCreate component handles no logged user 1`] = `<div />`;
+
+exports[`ProjectCreate component handles team leader user 1`] = `undefined`;

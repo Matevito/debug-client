@@ -33,9 +33,21 @@ describe("ProjectCreate component", () => {
         adminStore = usersData[3];
     })
     test("handles no logged user", () => {
-        render(<Provider store={noLoggedUser}><ProjectCreate /></Provider>, {wrapper: MemoryRouter});
-        
+        const { container } = render(<Provider store={noLoggedUser}><ProjectCreate /></Provider>, {wrapper: MemoryRouter});
+        // does no renders anything;
+        expect(container).toMatchSnapshot();
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/");
     })
-    test.todo("handles no admin user");
+    test("handles developer user", () => {
+        // developer user
+        const { devContainer } = render(<Provider store={devStore}><ProjectCreate /></Provider>, {wrapper: MemoryRouter});
+        expect(devContainer).toMatchSnapshot();
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
+    });
+    test("handles team leader user", () => {
+        const { teamContainer } = render(<Provider store={teamLstore}><ProjectCreate /></Provider>, {wrapper: MemoryRouter});
+        expect(teamContainer).toMatchSnapshot();
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
+    })
     test.todo("renders complete form");
 }) 
