@@ -47,6 +47,10 @@ export const Header = () => {
         // erase token & set to null redux user value
         localStorage.removeItem("deb-token");
         dispatch(logout());
+    };
+    const handleUserInfo = (e) => {
+        handleCloseMenu();
+        navigate("/user/info");
     }
     if (!user) {
         return(
@@ -150,7 +154,7 @@ export const Header = () => {
                             open={Boolean(anchorNav)}
                             onClose={handleCloseMenu}
                         >
-                            <MenuItem onClick={() => {navigate("/user/info")}}>
+                            <MenuItem onClick={handleUserInfo}>
                                     <Stack direction="row" alignItems="center" gap={1}>
                                         <AccountCircleSharpIcon />
                                         <Typography textAlign="center">
