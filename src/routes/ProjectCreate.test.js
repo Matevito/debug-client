@@ -2,11 +2,11 @@ import React from "react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 
-//testing com
+// testing com
 import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
-// test comp
+// test component
 import { ProjectCreate } from "./ProjectCreate";
 
 // mock functs

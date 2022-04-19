@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-export const ProjectForm = ({ usersList, project, handleSubmit }) => {
+export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
     // form state values;
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [team, setTeam] = useState([]);
     const [teamLeader, setTeamLeader] = useState("");
-    const [usersDB, setusersDB] = useState(usersList)
     
+
     useEffect(() => {
         if (project) {
             setTitle(project.title);
@@ -20,6 +20,9 @@ export const ProjectForm = ({ usersList, project, handleSubmit }) => {
     return (
         <div>
             project form
+            {usersList.map((user, i) => {
+                return <div key={i}>{user.username}</div>
+            })}
         </div>
     )
 }

@@ -13,23 +13,29 @@ import api from "../features/api";
 export const ProjectCreate = () => {
     const user = useSelector(selectUser);
     let navigate = useNavigate();
+
     const [usersList, setUsersList] = useState([]);
+    const [fetchData, setFetchData] = useState(false)
+    const [errors, setErrors] = useState(null)
+
     useEffect(() => {
         async function getUsersList(){
-            if(user && user.user.role === "Admin") {
+            if(user.user.role === "Admin") {
                 const config = {
                     headers: {
                         "auth-token": user.token
                     }
                 };
+                
                 const apiRes = await api.get("/user/list", config);
                 if (apiRes.status === 200) {
                     setUsersList(apiRes.data.data)
+                    
                 }
             }
         };
-        getUsersList();
-    }, []);
+        getUsersList()
+    },[user]);
 
     const handleSubmit = (form) => {
         //test.todo:
@@ -46,6 +52,7 @@ export const ProjectCreate = () => {
             <div>
                 <ProjectForm  
                     usersList={usersList}
+                    errors={errors}
                     handleSubmit={handleSubmit}
                 />
             </div>
