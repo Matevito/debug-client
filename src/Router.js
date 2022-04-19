@@ -12,9 +12,12 @@ import { Grid, Box } from "@mui/material";
 // routes components
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { Protected } from "./routes/Protected";
+
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
 import { Signin } from "./routes/Signin";
+import { ProjectCreate } from "./routes/ProjectCreate";
 
 export const Router = () => {
     const user = useSelector(selectUser);
@@ -25,6 +28,9 @@ export const Router = () => {
                 <Route exact path="/" element={<Home />}/>
                 <Route path="/log-in" element={user ? <Navigate to="/" /> : <Login />} /> 
                 <Route path="/sign-in" element={user ? <Navigate to="/" /> : <Signin />}/>
+                <Route path="/project/create" element={<ProjectCreate />}/>
+            
+                <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
             </Routes>
             <Footer />
         </BrowserRouter>
