@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 // redux state management
 import { useSelector } from "react-redux";
@@ -16,7 +17,11 @@ import { Welcome } from "../components/Welcome";
 
 const CreateProjectLink = () => {
     return (
-        <div>create project</div>
+        <Link to="project/create" style={{ color: "inherit", textDecoration: 'none' }}>
+            <Button color="warning">
+                    Create project
+            </Button>
+        </Link>
     )
 };
 
@@ -26,9 +31,16 @@ export const Home = () => {
         return(
             <Welcome />
         )
-    } else {
-        return( 
+    } else if (user.user.role === "Admin"){
+        return(
+            <>
             <span> loged as{user.user.role}</span>
+            <CreateProjectLink />
+            </>
         );
+    } else {
+        return (
+            <span>no admin</span>
+        )
     }
 }
