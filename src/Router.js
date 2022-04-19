@@ -6,9 +6,6 @@ import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
 
-// mui  comp
-import { Grid, Box } from "@mui/material";
-
 // routes components
 import { Header } from "./Header";
 import { Footer } from "./Footer";
