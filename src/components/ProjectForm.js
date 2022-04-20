@@ -7,7 +7,9 @@ import {
     FormGroup,
     FormControlLabel,
     Checkbox,
-    Typography
+    Typography,
+    Select,
+    MenuItem
 } from "@mui/material"
 
 // app components
@@ -21,7 +23,6 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
     
     // chekBox states
     const [teamState, setTeamState] = useState([]);
-    const [LeaderBoxesState, set] = useState([]);
     
     // set teamState values
     useEffect(() => {
@@ -78,6 +79,22 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
                 setTeam(newTeam);
             }
         }
+        // if theres no team a leader cannot be selected
+        if (team.length === 0) {
+            setTeamLeader("");
+        };
+        // if a user is removed from the team and is a leader, is removed it's value there too
+        if (selectedUser.value === false && teamLeader === selectedUser.user.id){
+            setTeamLeader("");
+        }
+    }
+    const handleMultipleSelect = (e) => {
+        const selectedUserId = e.target.value
+        if (!team.includes(selectedUserId)){
+            setTeamLeader("")
+        } else {
+            setTeamLeader(e.target.value);
+        }
     }
     const handleForm = (e) => {
         e.preventDefault();
@@ -133,16 +150,28 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
                     })}
                 </FormGroup>
                 <Typography >
-                        Team Leader
+                    Team Leader
                 </Typography>
-                <FormGroup
-                row={true}
+                
+                <Select
+                    onChange={handleMultipleSelect}
+                    fullWidth
+                    value={teamLeader}
                 >
-                    {team.map((id, index) => {
-                        const userData = usersList.find((user) => user.id === id);
-                        return <div key={index}>{userData.username}</div>
-                    })}
-                </FormGroup>
+                    {
+                        team.map((id, index) => {
+                            const userData = usersList.find((user) => user.id === id);
+                            return (
+                                <MenuItem
+                                    key={id}
+                                    value={id}
+                                >
+                                    {userData.username}
+                                </MenuItem>
+                            )
+                        })
+                    }
+                </Select>
                 <Button
                     variant="contained"
                     type="sybmit"
