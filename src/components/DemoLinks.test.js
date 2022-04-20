@@ -10,7 +10,6 @@ import { DemoLinks } from "./DemoLinks";
 describe("DemoLinks componen", () => {
     test("It renders 3 btns", () => {
         render(<DemoLinks />)
-
         expect(screen.getAllByRole("button").length).toBe(3)
         expect(screen.getByText("Demo preview")).toBeInTheDocument();
         expect(screen.getByText("Developer demo")).toBeInTheDocument();

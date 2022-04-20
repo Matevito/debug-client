@@ -7,7 +7,6 @@ import { selectUser } from "../features/userSlice";
 
 // mui components
 import {
-    Grid,
     Box,
     Typography
 } from "@mui/material"
