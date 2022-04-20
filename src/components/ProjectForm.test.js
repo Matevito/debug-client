@@ -1,7 +1,7 @@
 import React from "react";
 
 // testing utilities
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 // test component
@@ -48,8 +48,8 @@ describe("ProjectForm component", () => {
         expect(screen.getByText("Submit")).toBeInTheDocument();
         expect(screen.getByText("Team Leader")).toBeInTheDocument();
     });
-    test.todo("renders form with a project value");
-    test.todo("renders parsed errors")
+    //test.todo("renders form with a project value");
+    //test.todo("renders parsed errors");
     test("component handles submit", () => {
         const mockSubmit = jest.fn();
         render(
@@ -58,5 +58,17 @@ describe("ProjectForm component", () => {
                 handleSubmit={mockSubmit}
             />
         ); 
+
+        // 1. test
+        const btn = screen.getByText("Submit");
+        fireEvent.click(btn);
+        const formRes = mockSubmit.mock.lastCall[0];
+        expect(formRes.title).toBe("");
+        expect(formRes.description).toBe("");
+        expect(formRes.team).toEqual([]);
+        expect(formRes.teamLeader).toBe("")
+
+        // 2. test
+        // todo: handles some input
     });
 })
