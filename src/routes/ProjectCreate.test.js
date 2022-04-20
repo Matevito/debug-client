@@ -11,6 +11,7 @@ import { ProjectCreate } from "./ProjectCreate";
 
 // mock functs
 import { getData } from "../features/mockedUserStores";
+import mockAxios from "jest-mock-axios";
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
@@ -18,7 +19,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedUsedNavigate,
 }));
 
-import mockAxios from "jest-mock-axios";
+
 
 describe("ProjectCreate component", () => {
     let noLoggedUser;

@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
+
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+
+// mui components
+import {
+    Grid,
+    Box,
+    Typography
+} from "@mui/material"
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 // app components
 import { ProjectForm } from "../components/ProjectForm";
@@ -38,7 +47,7 @@ export const ProjectCreate = () => {
     },[user]);
 
     const handleSubmit = (form) => {
-        //test.todo:
+        /* if it fails set errors, if succed navigate to '/' */
         console.log(form);
     }
     if (!user) {
@@ -50,13 +59,26 @@ export const ProjectCreate = () => {
         navigate("/protected-route")
     } else {
         return (
-            <div>
+            <Box
+                sx={{
+                    marginTop: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: 'center',
+                }}
+                fullWidth
+            >
+                <AssignmentIcon />
+                <Typography component="h1" variant="h5">
+                    Create Project
+                </Typography>
+                <p></p>
                 <ProjectForm  
                     usersList={usersList}
                     errors={errors}
                     handleSubmit={handleSubmit}
                 />
-            </div>
+            </Box>
         )
 }
 }
