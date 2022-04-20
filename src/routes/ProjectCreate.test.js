@@ -18,12 +18,14 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedUsedNavigate,
 }));
 
+import mockAxios from "jest-mock-axios";
+
 describe("ProjectCreate component", () => {
     let noLoggedUser;
     let devStore;
     let teamLstore;
     let adminStore;
-
+    let resUsers;
     beforeEach(() => {
         const usersData = getData();
 
@@ -31,8 +33,29 @@ describe("ProjectCreate component", () => {
         devStore = usersData[1];
         teamLstore = usersData[2];
         adminStore = usersData[3];
+
+        resUsers = {
+            data: {
+                data:  [
+                    {
+                        username: "developer",
+                        id: "1"
+                    },
+                    {
+                        username: "teaml",
+                        id: "2"
+                    },
+                    {
+                        username: "admin",
+                        id: "3"
+                    }
+                ]
+            }
+        }
+        mockAxios.reset();
     })
     test("handles no logged user", () => {
+        
         const { container } = render(<Provider store={noLoggedUser}><ProjectCreate /></Provider>, {wrapper: MemoryRouter});
         // does no renders anything;
         expect(container).toMatchSnapshot();
@@ -51,7 +74,9 @@ describe("ProjectCreate component", () => {
     })
     test("renders form", () => {
         // console.log(adminStore.getState().user.user.user)
+        // mockAxios.get.mockResolvedValueOnce(resUsers)
         render(<Provider store={adminStore}><ProjectCreate /></Provider>, {wrapper: MemoryRouter})
         
+        //todo:
     });
 }) 

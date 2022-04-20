@@ -15,7 +15,6 @@ export const ProjectCreate = () => {
     let navigate = useNavigate();
 
     const [usersList, setUsersList] = useState([]);
-    const [fetchData, setFetchData] = useState(false)
     const [errors, setErrors] = useState(null)
 
     useEffect(() => {
@@ -30,11 +29,12 @@ export const ProjectCreate = () => {
                 const apiRes = await api.get("/user/list", config);
                 if (apiRes.status === 200) {
                     setUsersList(apiRes.data.data)
-                    
                 }
             }
         };
-        getUsersList()
+        if (user) {
+            getUsersList()
+        }
     },[user]);
 
     const handleSubmit = (form) => {
@@ -44,6 +44,7 @@ export const ProjectCreate = () => {
     if (!user) {
         // nvigate to /home
         navigate("/")
+        return(<></>)
     } else if (user.user.role !== "Admin") {
         //navigate to "/protected-route"
         navigate("/protected-route")
