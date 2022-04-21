@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const IssueForm = () => {
+export const IssueFormCreate = () => {
     return (
         <div>
             issue form

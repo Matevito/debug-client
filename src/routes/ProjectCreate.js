@@ -74,7 +74,6 @@ export const ProjectCreate = () => {
     if (!user) {
         // nvigate to /home
         navigate("/")
-        return(<></>)
     } else if (user.user.role !== "Admin") {
         //navigate to "/protected-route"
         navigate("/protected-route")
