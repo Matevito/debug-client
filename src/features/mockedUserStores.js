@@ -16,8 +16,15 @@ const usersStoreValues = [
                 id: "1"
             },
             projects: {
-                number: 0,
-                list: []
+                number: 2,
+                list: [
+                    {
+                        _id: "testProject1"
+                    },
+                    {
+                        _id: "testProject2"
+                    }
+                ]
             },
             issues: {
                 number: 0,
@@ -37,8 +44,15 @@ const usersStoreValues = [
                 id: "2"
             },
             projects: {
-                number: 0,
-                list: []
+                number: 2,
+                list: [
+                    {
+                        _id: "testProject1"
+                    },
+                    {
+                        _id: "testProject2"
+                    }
+                ]
             },
             issues: {
                 number: 0,
@@ -66,7 +80,34 @@ const usersStoreValues = [
                 list: []
             }
         }
-    }
+    },
+    {
+        user: {
+            loggedIn: true,
+            token : "dev-outside proj",
+            user: {
+                username: "outsideDeveloper",
+                email:"outside@email.com",
+                role: "Developer",
+                id: "4"
+            },
+            projects: {
+                number: 2,
+                list: [
+                    {
+                        _id: "testProject3"
+                    },
+                    {
+                        _id: "testProject4"
+                    }
+                ]
+            },
+            issues: {
+                number: 0,
+                list: []
+            }
+        }
+    },
 ];
 
 exports.getData = () => {
