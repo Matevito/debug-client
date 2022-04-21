@@ -177,7 +177,6 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
                     type="sybmit"
                     fullWidth
                     color="success"
-                    onClick={handleSubmit}
                 >
                     Submit
                 </Button>
