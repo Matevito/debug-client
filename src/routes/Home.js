@@ -34,11 +34,35 @@ export const Home = () => {
             <>
             <span> loged as{user.user.role}</span>
             <CreateProjectLink />
+            {user.projects.list.map((proj, i) => {
+                return (
+                    <div key={i}>
+                    <Link to={`/project/${proj._id}/issue/create`} style={{ color: "inherit", textDecoration: 'none' }}>
+                        <Button>
+                            Create issue on: {proj.title}
+                        </Button>
+                    </Link>
+                    </div>
+                )
+            })}
             </>
         );
     } else {
         return (
+            <>
             <span>no admin</span>
+            {user.projects.list.map((proj, i) => {
+                return (
+                    <div key={i}>
+                    <Link to={`/project/${proj._id}/issue/create`} style={{ color: "inherit", textDecoration: 'none' }}>
+                        <Button>
+                            Create issue on: {proj.title}
+                        </Button>
+                    </Link>
+                    </div>
+                )
+            })}
+            </>
         )
     }
 }

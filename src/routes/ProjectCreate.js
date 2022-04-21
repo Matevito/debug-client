@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 // mui components
 import {
@@ -17,10 +19,12 @@ import { ProjectForm } from "../components/ProjectForm";
 
 // api comp
 import api from "../features/api";
+import get_userInfo from "../features/get_userInfo";
 
 export const ProjectCreate = () => {
     const user = useSelector(selectUser);
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState(null)
@@ -45,9 +49,27 @@ export const ProjectCreate = () => {
         }
     },[user]);
 
-    const handleSubmit = (form) => {
+    const handleSubmit = async (form) => {
         /* if it fails set errors, if succed navigate to '/' */
         console.log(form);
+        const url = '/project/';
+        const config = {
+            headers: {
+                "auth-token": user.token
+            }
+        }
+        console.log(config)
+        try {
+            const apiRes = await api.post(url, form, config);
+            
+            // if the req succeds, refresh user data and navigate to '/'
+            const userData = await get_userInfo(user.token);
+            dispatch(login(userData));
+            navigate("/");
+        } catch (err) {
+            setErrors(err.response.data.error)
+            console.log(err.response.data)
+        }
     }
     if (!user) {
         // nvigate to /home

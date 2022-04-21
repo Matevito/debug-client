@@ -18,7 +18,6 @@ const get_userInfo = async (token) => {
         return false;
     };
 
-    // todo: notifications res
     const userNotifications = [];
 
     // structure res and send it

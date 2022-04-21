@@ -73,11 +73,5 @@ describe("ProjectCreate component", () => {
         expect(teamContainer).toMatchSnapshot();
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
     })
-    test("renders form", () => {
-        // console.log(adminStore.getState().user.user.user)
-        // mockAxios.get.mockResolvedValueOnce(resUsers)
-        render(<Provider store={adminStore}><ProjectCreate /></Provider>, {wrapper: MemoryRouter})
-        
-        //todo:
-    });
+    test.todo("renders form")
 }) 
