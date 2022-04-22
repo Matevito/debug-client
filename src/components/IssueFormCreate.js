@@ -27,8 +27,13 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
 
     // comp funct
     const handleFileUploader = (file) => {
-        
         setScreenshots([...screenshots, file])
+    };
+    const handleFileDeleter = (fileIndex) => {
+        const newScreenshots = screenshots.filter((file, index) => {
+            return index !== fileIndex
+        });
+        setScreenshots(newScreenshots);
     }
     const handleForm = (e) => {
         e.preventDefault()
@@ -108,6 +113,8 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
             </Typography>
             <FileUploader 
                 fileHandler={handleFileUploader}
+                screenshots={screenshots}
+                deleteFile={handleFileDeleter}
             />
             <Button
                     variant="contained"
