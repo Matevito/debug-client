@@ -51,7 +51,6 @@ export const ProjectCreate = () => {
 
     const handleSubmit = async (form) => {
         /* if it fails set errors, if succed navigate to '/' */
-        console.log(form);
         const url = '/project/';
         const config = {
             headers: {

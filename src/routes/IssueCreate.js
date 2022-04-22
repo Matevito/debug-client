@@ -48,6 +48,17 @@ export const IssueCreate = () => {
         }
     }, [user]);
 
+    const handleSubmit = async (form) => {
+        console.log(form)
+        const url = `/project/${projectId}/issue`;
+        const config = {
+            headers: {
+                "auth-token": user.token
+            }
+        };
+
+    };
+
     if (!user) {
         navigate("/")
     } else if (authorized === false) {
@@ -70,6 +81,8 @@ export const IssueCreate = () => {
                 <p></p>
                 <IssueFormCreate
                     errors={errors}
+                    projectId={projectId}
+                    handleSubmit={handleSubmit}
                 />
             </Box>
         )

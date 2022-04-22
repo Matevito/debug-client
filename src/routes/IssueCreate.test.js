@@ -45,7 +45,8 @@ describe("IssueCreate component", () => {
         userOutsideTeam = usersData[4];
         adminStore = usersData[3];
         devStore = usersData[1];
-    })
+    });
+    
     test("handles no logged user", () => {
         const url = '/project/testProject1/issue/create'
 
@@ -56,7 +57,7 @@ describe("IssueCreate component", () => {
     test("handles user not part of the project team", () => {
         const url = '/project/testProject1/issue/create'
         renderComponent(url, userOutsideTeam)
-        
+
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
     });
     test("handles admin user", () => {
