@@ -8,8 +8,10 @@ import {
     Select,
     MenuItem
 } from "@mui/material"
+
 // app components
 import { AuthError } from "./AuthError";
+import { FileUploader } from "./FileUploader";
 
 export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
     // comp state values
@@ -24,6 +26,10 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
     const typeValues = ["bugg-error", "feature req", "documentation req"];
 
     // comp funct
+    const handleFileUploader = (file) => {
+        
+        setScreenshots([...screenshots, file])
+    }
     const handleForm = (e) => {
         e.preventDefault()
         const formObject = {
@@ -63,7 +69,7 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
             <Select
                 value={priority}
                 fullWidth
-                onChange={(e) => {setPriority(e.target.value)}}
+                onChange={(e) => setPriority(e.target.value)}
             >
                 {priorityValues.map((value, index) => {
                         return(
@@ -97,6 +103,10 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
                     })
                 }
             </Select>
+            <div>screenshots</div>
+            <FileUploader 
+                fileHandler={handleFileUploader}
+            />
             <Button
                     variant="contained"
                     type="sybmit"
