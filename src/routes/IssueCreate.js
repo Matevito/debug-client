@@ -38,7 +38,7 @@ export const IssueCreate = () => {
                 setAuthorized(true)
             } else {
                 // check if the user is part of the project
-                const userProjects = user.projects.list.map((proj) => proj._id);
+                let userProjects = user.projects.list.map((proj) => proj._id);
                 if (userProjects.includes(projectId)) {
                     setAuthorized(true)
                 } else {

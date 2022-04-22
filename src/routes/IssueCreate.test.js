@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route, Routes, BrowserRouter } from "react-router-dom";
 
 // testing com
 import { render, screen } from "@testing-library/react";
@@ -18,7 +18,20 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedUsedNavigate,
 }));
 
-
+const renderComponent = (url, store) => {
+    render(
+        <Provider store={store}>
+                <MemoryRouter initialEntries={[url]}>
+                    <Routes>
+                        <Route 
+                            path="/project/:id/issue/create"
+                            element={<IssueCreate />}
+                        />
+                    </Routes>
+                </MemoryRouter>
+        </Provider>
+    )
+}
 describe("IssueCreate component", () => {
     let noLoggedUser;
     let userOutsideTeam;
@@ -34,17 +47,28 @@ describe("IssueCreate component", () => {
         devStore = usersData[1];
     })
     test("handles no logged user", () => {
-        render(
-            <Provider store={noLoggedUser}>
-                <IssueCreate />
-            </Provider>,
-            {wrapper: MemoryRouter}
-        );
+        const url = '/project/testProject1/issue/create'
 
+        renderComponent(url, noLoggedUser)
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/");
 
     });
-    test.todo("handles user not part of the project team");
-    test.todo("handles admin user")
-    test.todo("handles user part of the project team")
+    test("handles user not part of the project team", () => {
+        const url = '/project/testProject1/issue/create'
+        renderComponent(url, userOutsideTeam)
+        
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
+    });
+    test("handles admin user", () => {
+        const url = '/project/testProject1/issue/create'
+        renderComponent(url, adminStore)
+
+        expect(screen.getByText("Create Issue-Ticket")).toBeInTheDocument()
+    })
+    test("handles user part of the project team", () => {
+        const url = '/project/testProject1/issue/create'
+        renderComponent(url, devStore)
+        
+        expect(screen.getByText("Create Issue-Ticket")).toBeInTheDocument()
+    })
 })

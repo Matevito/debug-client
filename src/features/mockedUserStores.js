@@ -117,11 +117,7 @@ exports.getData = () => {
             return mockStore(user)
         }
         
-        return mockStore({user: {
-            user: {
-                user
-            }
-        }})
+        return mockStore({user})
     });
 
     return mockedUsers;
