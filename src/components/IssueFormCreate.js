@@ -103,7 +103,9 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
                     })
                 }
             </Select>
-            <div>screenshots</div>
+            <Typography>
+                Screenshots
+            </Typography>
             <FileUploader 
                 fileHandler={handleFileUploader}
             />
