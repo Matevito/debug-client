@@ -59,7 +59,7 @@ export const ProjectCreate = () => {
         }
         console.log(config)
         try {
-            const apiRes = await api.post(url, form, config);
+            await api.post(url, form, config);
             
             // if the req succeds, refresh user data and navigate to '/'
             const userData = await get_userInfo(user.token);
