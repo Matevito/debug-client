@@ -37,15 +37,19 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
     }
     const handleForm = (e) => {
         e.preventDefault()
-        const formObject = {
-            title,
-            description,
-            priority,
-            type,
-            screenshots,
-            project: projectId
-        };
-        handleSubmit(formObject)
+        const formData = new FormData();
+
+        formData.append("title", title);
+        formData.append("description", description)
+        formData.append("priority", priority)
+        formData.append("type", type)
+        formData.append("project", projectId)
+        screenshots.forEach((image) => {
+            formData.append("screenshots", image)
+        })
+        
+        
+        handleSubmit(formData)
     }
     return (
         <>

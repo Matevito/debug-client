@@ -25,7 +25,6 @@ export const FileUploader = ({ screenshots, fileHandler, deleteFile }) => {
                         key={index}
                     >
                         <Chip
-                        
                         label={image.name}
                         variant="outlined"
                         value={index}

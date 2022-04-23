@@ -49,14 +49,23 @@ export const IssueCreate = () => {
     }, [user]);
 
     const handleSubmit = async (form) => {
-        console.log(form)
         const url = `/project/${projectId}/issue`;
         const config = {
             headers: {
-                "auth-token": user.token
+                'Content-Type': 'multipart/form-data', //  application/x-www-form-urlencoded'
+                "auth-token": user.token,
             }
         };
+        // attemp to call api
+        try {
 
+            const apiRes = await api.post(url, form, config);
+            console.log(apiRes)
+            // todo when everything else is fine
+        } catch(err) {
+            console.log(err.response.data.error)
+            setErrors(err.response.data.error)
+        }
     };
 
     if (!user) {
