@@ -12,6 +12,8 @@ import {
     Typography,
     Button 
 } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 // app components
 import { IssuesTable } from "../components/IssuesTable";
@@ -19,6 +21,32 @@ import { ProjectInfo } from "../components/ProjectInfo";
 
 // api comp
 import api from "../features/api";
+
+const AdminButtons = ({handleEdit, handleDelete, role}) => {
+    if (role === "Admin") {
+        return (
+            <Box sx={{marginBottom: "5px"}}>
+                <Button
+                    variant="contained"
+                    color="warning"
+                    size="small"
+                >
+                    <EditIcon />
+                </Button>
+                <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                >
+                    <DeleteIcon />
+                    
+                </Button>
+            </Box>
+        )
+    } else {
+        return(<></>)
+    }
+}
 
 export const ProjectGet = () => {
     const projectId = useParams().id;
@@ -69,9 +97,12 @@ export const ProjectGet = () => {
             }}
             fullWidth
             >
-                <Typography component="h1" variant="h5" sx={{marginBottom: "10px"}}>
+                <Typography component="h1" variant="h5" sx={{marginBottom: "5px"}}>
                 Project <i>{projectInfo.data.title}</i>
                 </Typography>
+                <AdminButtons
+                    role={user.user.role}
+                />
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
                         <ProjectInfo project={projectInfo}/>

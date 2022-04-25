@@ -124,5 +124,5 @@ describe("ProjectGet component", () => {
         expect(screen.getByText("Create new issue!")).toBeInTheDocument()
     });
 
-    test.todo("renders erase button if user is an admin")
+    test.todo("erase-edit btns if user is an admin")
 })
