@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 // testing com
-import { findByText, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
-import { IssueCreate, ProjectGet } from "./ProjectGet";
+import { ProjectGet } from "./ProjectGet";
 
 // mock Functs;
 import { getData } from "../features/mockedUserStores";
@@ -92,6 +92,4 @@ describe("ProjectGet component", () => {
         const projTitle = screen.getByText("test title");
         expect(projTitle).toBeInTheDocument()
     });
-    
-    test.todo("renders project correct route-info");
 })

@@ -32,8 +32,7 @@ export const Router = () => {
                 <Route path="/project/create" element={<ProjectCreate />}/>
                 
                 <Route path="/project/:id" element={<ProjectGet />} />
-                <Route path ="/project/:id/issue/create" element={<IssueCreate />} />
-
+                <Route path="/project/:id/issue/create" element={<IssueCreate />} />
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
             </Routes>
             <Footer />
