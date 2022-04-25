@@ -45,7 +45,16 @@ export const Home = () => {
                     </div>
                 )
             })}
-            <h1>Projects on db</h1>
+            <h1>Projects on db(todo this)</h1>
+            {user.projects.list.map((proj, i) => {
+                return(
+                    <div key={i}>
+                        <Link to={`project/${proj._id}`}>
+                            {proj.title}
+                        </Link>
+                    </div>
+                )
+            })}
             </>
         );
     } else {
