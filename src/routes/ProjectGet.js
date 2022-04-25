@@ -19,7 +19,8 @@ export const ProjectGet = () => {
 
     const [authorized, setAuthorized] = useState(null);
     const [projectInfo, setProjectInfo] = useState({});
-
+    // data: {projectinfo}; issues: [array proj issues];
+    
     useEffect(() => {
         async function getProjectInfo() {
             // get project info...
