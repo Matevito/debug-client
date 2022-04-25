@@ -45,14 +45,12 @@ export const ProjectGet = () => {
     if (!user) {
         navigate("/");
     } else if (authorized === null) {
-        // loading page...
         return (
-            <div>Loading ...</div>
+            <>loading...</>
         )
-    } else if (authorized === false ) {
+    }  else if (authorized === false ) {
         navigate("/protected-route");
     } else {
-
         return (
             <div>  {projectInfo.data.title}</div>
         )
