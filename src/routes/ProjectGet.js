@@ -69,7 +69,7 @@ export const ProjectGet = () => {
             }}
             fullWidth
             >
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5" sx={{marginBottom: "10px"}}>
                 Project <i>{projectInfo.data.title}</i>
                 </Typography>
                 <Grid container spacing={2}>
@@ -84,7 +84,7 @@ export const ProjectGet = () => {
                 <Button 
                     variant="contained"
                     color="success"
-                    sx={{"margin-top": "10px"}}
+                    sx={{marginTop: "10px"}}
                 >
                     <Link 
                     to={`/project/${projectId}/issue/create`} 

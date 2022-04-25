@@ -20,9 +20,37 @@ const server = setupServer(
         return res(ctx.status(200), ctx.json({
             
                 data:{
-                    title: "test title"
+                    _id: "testProject1",
+                    title: "test title",
+                    description: "a description",
+                    team: [
+                        {_id: "one", username:"user1"},
+                        {_id:"two", username:"user2"}
+                    ],
+                    teamLeader: {
+                        _id: "one", username:"user1"
+                    }
                 },
-                issues: []
+                issues: [
+                    {
+                        _id: "1",
+                        title: "issue1",
+                        description:" a simple description",
+                        handlingTeam: [],
+                        status: "open",
+                        date: "2022-04-23T22:56:09.627Z",
+                        screenshots: []
+                    },
+                    {
+                        _id: "2",
+                        title: "issue2",
+                        description: "a more complicated descirption",
+                        handlingTeam: [{_id:"two", username:"user2"}],
+                        status: "in progress",
+                        date: "2022-04-23T22:56:09.627Z",
+                        screenshots: []
+                    }
+                ]
             
         }))
     })
@@ -88,8 +116,13 @@ describe("ProjectGet component", () => {
     test("handles user part of the project", async () => {
         const url = "/project/testProject1";
         renderComponent(url, devStore);
+
         await waitFor(() => screen.getByText("test title"))
+
         const projTitle = screen.getByText("test title");
         expect(projTitle).toBeInTheDocument()
+        expect(screen.getByText("Create new issue!")).toBeInTheDocument()
     });
+
+    test.todo("renders erase button if user is an admin")
 })
