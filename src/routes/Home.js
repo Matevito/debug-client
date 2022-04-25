@@ -45,6 +45,7 @@ export const Home = () => {
                     </div>
                 )
             })}
+            <h1>Projects on db</h1>
             </>
         );
     } else {
@@ -59,6 +60,16 @@ export const Home = () => {
                             Create issue on: {proj.title}
                         </Button>
                     </Link>
+                    </div>
+                )
+            })}
+            <h1>Projects</h1>
+            {user.projects.list.map((proj, i) => {
+                return(
+                    <div key={i}>
+                        <Link to={`project/${proj._id}`}>
+                            {proj.title}
+                        </Link>
                     </div>
                 )
             })}
