@@ -22,7 +22,7 @@ import { ProjectInfo } from "../components/ProjectInfo";
 // api comp
 import api from "../features/api";
 
-const AdminButtons = ({handleEdit, handleDelete, role}) => {
+const AdminButtons = ({ handleDelete, role, projectId}) => {
     if (role === "Admin") {
         return (
             <Box sx={{marginBottom: "5px"}}>
@@ -31,7 +31,12 @@ const AdminButtons = ({handleEdit, handleDelete, role}) => {
                     color="warning"
                     size="small"
                 >
-                    <EditIcon />
+                    <Link 
+                    to={`/project/${projectId}/edit`}
+                    style={{ color: "inherit", textDecoration: 'none' }}
+                    >
+                        <EditIcon />
+                    </Link>
                 </Button>
                 <Button
                     variant="contained"
@@ -40,6 +45,23 @@ const AdminButtons = ({handleEdit, handleDelete, role}) => {
                 >
                     <DeleteIcon />
                     
+                </Button>
+            </Box>
+        )
+    } else if (role === "Team leader") {
+        return (
+            <Box sx={{marginBottom: "5px"}}>
+                <Button
+                    variant="contained"
+                    color="warning"
+                    size="small"
+                >
+                    <Link 
+                    to={`/project/${projectId}/edit`}
+                    style={{ color: "inherit", textDecoration: 'none' }}
+                    >
+                        <EditIcon />
+                    </Link>
                 </Button>
             </Box>
         )
@@ -102,6 +124,7 @@ export const ProjectGet = () => {
                 </Typography>
                 <AdminButtons
                     role={user.user.role}
+                    projectId={projectId}
                 />
                 <Grid container spacing={2}>
                     <Grid item xs={4}>

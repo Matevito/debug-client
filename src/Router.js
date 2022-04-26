@@ -29,10 +29,14 @@ export const Router = () => {
                 <Route exact path="/" element={<Home />}/>
                 <Route path="/log-in" element={user ? <Navigate to="/" /> : <Login />} /> 
                 <Route path="/sign-in" element={user ? <Navigate to="/" /> : <Signin />}/>
+
                 <Route path="/project/create" element={<ProjectCreate />}/>
-                
                 <Route path="/project/:id" element={<ProjectGet />} />
+                <Route path="/project/:id/edit" element={<>edit project...todo</>} />
+                
                 <Route path="/project/:id/issue/create" element={<IssueCreate />} />
+                
+
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
             </Routes>
             <Footer />

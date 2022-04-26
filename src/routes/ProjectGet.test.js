@@ -123,6 +123,6 @@ describe("ProjectGet component", () => {
         expect(projTitle).toBeInTheDocument()
         expect(screen.getByText("Create new issue!")).toBeInTheDocument()
     });
-
+    test.todo("edit btn if user is team leader");
     test.todo("erase-edit btns if user is an admin")
 })
