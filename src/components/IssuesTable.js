@@ -67,55 +67,58 @@ const Row = ({issue}) => {
             </TableCell>
         </TableRow>
         <TableRow>
-            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <Box sx={{ m: 1}}>
                         <Typography variant="h6" gutterBottom component="div">
                             <i>{issue.title.toUpperCase()}</i>
                         </Typography>
+
                         <Table size="small">
-                            <TableRow>
-                                <TableCell><b>Date of Creation</b></TableCell>
-                                <TableCell>{issue.date}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><b>Handling Team</b></TableCell>
-                                {issue.handlingTeam.length <= 0 ? 
-                                    <TableCell> No users assigned</TableCell> :
-                                    issue.handlingTeam.map((issue) => {
-                                        return <TableCell key={issue._id}>{issue.username}</TableCell>
-                                    })
-                                }
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><b>Screenshots</b></TableCell>
-                                <TableCell align="left">
-                                    {issue.screenshots.length > 0 ? 
-                                    <>Yes</>:
-                                    <>No</>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell><b>Date of Creation</b></TableCell>
+                                    <TableCell>{issue.date}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell><b>Handling Team</b></TableCell>
+                                    {issue.handlingTeam.length <= 0 ? 
+                                        <TableCell> No users assigned</TableCell> :
+                                        issue.handlingTeam.map((issue) => {
+                                            return <TableCell key={issue._id}>{issue.username}</TableCell>
+                                        })
                                     }
-                                </TableCell>
-                            </TableRow>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell><b>Screenshots</b></TableCell>
+                                    <TableCell align="left">
+                                        {issue.screenshots.length > 0 ? 
+                                        <>Yes</>:
+                                        <>No</>
+                                        }
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
                         </Table>
-                        <Box>
-                            <Button
-                                variant="contained"
-                                color="warning"
-                                size="small"
-                                component={Link}
-                                to={`/issue/${issue._id}/edit`}
-                            >
-                                <EditIcon /> edit ticket
-                            </Button>
-                            <Button
-                                variant="contained"
-                                size="small"
-                                component={Link}
-                                to={`/issue/${issue._id}`}
-                            >
-                                <LibraryBooksIcon/> ticket details
-                            </Button>
-                        </Box>
+                        
+                        <Button
+                            variant="contained"
+                            color="warning"
+                            size="small"
+                            component={Link}
+                            to={`/issue/${issue._id}/edit`}
+                        >
+                            <EditIcon /> edit ticket
+                        </Button>
+                        <Button
+                            variant="contained"
+                            size="small"
+                            component={Link}
+                            to={`/issue/${issue._id}`}
+                        >
+                            <LibraryBooksIcon/> ticket details
+                        </Button>
+                        
                     </Box>
                 </Collapse>
             </TableCell>
