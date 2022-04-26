@@ -100,8 +100,8 @@ export const ProjectGet = () => {
         const config = {
             headers: {"auth-token": user.token}
         };
-        console.log(config)
         //todo: delete call to rest-api
+        navigate("/")
     };
 
     if (!user) {
@@ -136,7 +136,7 @@ export const ProjectGet = () => {
                         <ProjectInfo project={projectInfo}/>
                     </Grid>
                     <Grid item xs={8}>
-                        <IssuesTable issues={projectInfo.issues}/>
+                        <IssuesTable issues={projectInfo.issues} />
                     </Grid>
                 </Grid>
                 

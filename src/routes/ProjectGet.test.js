@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 // testing com
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
@@ -18,7 +18,6 @@ const server = setupServer(
     rest.get("https://pure-falls-26749.herokuapp.com/apiv1/project/testProject1",
     (req, res, ctx) => {
         return res(ctx.status(200), ctx.json({
-            
                 data:{
                     _id: "testProject1",
                     title: "test title",
@@ -144,7 +143,7 @@ describe("ProjectGet component", () => {
         expect(screen.getByTestId("DeleteIcon")).toBeInTheDocument();
 
         const deleteBtn = screen.getByTestId("DeleteIcon");
-        //todo:: makes delete call
-
+        fireEvent.click(deleteBtn)
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/")
     })
 })

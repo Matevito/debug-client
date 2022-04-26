@@ -63,7 +63,7 @@ export const IssueCreate = () => {
             // if req succeds, refresh user data and navigate to home
             const userData = await get_userInfo(user.token);
             dispatch(login(userData));
-            navigate("/");
+            navigate(`/project/${projectId}`);
 
         } catch(err) {
             console.log(err.response.data.error)
