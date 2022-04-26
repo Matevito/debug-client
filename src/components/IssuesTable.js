@@ -9,17 +9,32 @@ import {
     TableRow,
     TableCell,
     IconButton,
-    Collapse
+    Collapse,
+    Typography
 } from "@mui/material"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Row = ({issue}) => {
-    const [open, setOpen] = useState(false);
+// css color variables
+const colorBlue = "#a3baf2";
+const colorOrange = "#fedca5";
+const colorHigh = "#cf6d5b";
+const colorMid = "#dad473";
+const colorLow = "#befb8f";
 
+const Row = ({issue}) => {
+    const [open, setOpen] = useState(false)
+    let issueColor;
+    if (issue.priority === "low"){
+        issueColor = colorLow
+    } else if (issue.priority === "mid"){
+        issueColor = colorMid
+    } else if (issue.priority === "high"){
+        issueColor = colorHigh
+    }
     return(
         <>
-        <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableRow sx={{ '& > *': { borderBottom: 'unset'}, }}  >
             <TableCell>
                 <IconButton
                     aria-label="expand row"
@@ -29,14 +44,21 @@ const Row = ({issue}) => {
                     {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IconButton>
             </TableCell>
-            <TableCell component="th" scope="row">{issue.title}</TableCell>
+            <TableCell component="th" scope="row">
+                <Typography>{issue.title}</Typography>
+            </TableCell>
             <TableCell
                 align="left"
+                sx={{backgroundColor: issueColor}}
             >
                 {issue.priority}
             </TableCell>
-            <TableCell align="left" >{issue.status}</TableCell>
-            <TableCell align="left" >{issue.type}</TableCell>
+            <TableCell align="left" sx={{backgroundColor: issue.status === "open" ? colorBlue : colorOrange}}>
+                <Typography>{issue.status}</Typography>
+            </TableCell>
+            <TableCell align="left" >
+                <Typography>{issue.type}</Typography>
+            </TableCell>
         </TableRow>
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -50,12 +72,12 @@ const Row = ({issue}) => {
 }
 
 export const IssuesTable = ({ issues }) => {
-
+    
     return(
         <>
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
+        <TableContainer component={Paper} > 
+            <Table >
+                <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
                     <TableRow>
                         <TableCell align="center" colSpan={5}>
                             Project Issues
@@ -70,7 +92,7 @@ export const IssuesTable = ({ issues }) => {
                     </TableRow>
                     
                 </TableHead>
-                <TableBody>
+                <TableBody sx={{backgroundColor: "#d2d2d2"}}>
                     {issues.map((issue) => {
                         return <Row key={issue._id} issue={issue} />
                     })}
