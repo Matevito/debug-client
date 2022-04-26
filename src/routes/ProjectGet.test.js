@@ -34,6 +34,7 @@ const server = setupServer(
                     {
                         _id: "1",
                         title: "issue1",
+                        priority: "low",
                         description:" a simple description",
                         handlingTeam: [],
                         status: "open",
@@ -43,6 +44,7 @@ const server = setupServer(
                     {
                         _id: "2",
                         title: "issue2",
+                        priority: "low",
                         description: "a more complicated descirption",
                         handlingTeam: [{_id:"two", username:"user2"}],
                         status: "in progress",

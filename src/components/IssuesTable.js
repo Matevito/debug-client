@@ -126,32 +126,49 @@ const Row = ({issue}) => {
 
 export const IssuesTable = ({ issues }) => {
     
-    return(
-        <>
-        <TableContainer component={Paper} > 
-            <Table >
-                <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
-                    <TableRow>
-                        <TableCell align="center" colSpan={5}>
-                            PROJECT ISSUES
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell />
-                        <TableCell align="left">TITLE</TableCell>
-                        <TableCell align="left">PRIORITY</TableCell>
-                        <TableCell align="left">STATUS</TableCell>
-                        <TableCell align="left">TYPE</TableCell>
-                    </TableRow>
-                    
-                </TableHead>
-                <TableBody sx={{backgroundColor: "#d2d2d2"}}>
-                    {issues.map((issue) => {
-                        return <Row key={issue._id} issue={issue} />
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
-        </>
-    )
+    if (!issues.length) {
+        return (
+            <>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}
+                >
+                    <Typography variant="h5"> No issues yet!</Typography>
+                </Box>
+            </>
+        )
+    } else {
+        return(
+            <>
+            <TableContainer component={Paper} > 
+                <Table >
+                    <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
+                        <TableRow>
+                            <TableCell align="center" colSpan={5}>
+                                PROJECT ISSUES
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell />
+                            <TableCell align="left">TITLE</TableCell>
+                            <TableCell align="left">PRIORITY</TableCell>
+                            <TableCell align="left">STATUS</TableCell>
+                            <TableCell align="left">TYPE</TableCell>
+                        </TableRow>
+                        
+                    </TableHead>
+                    <TableBody sx={{backgroundColor: "#d2d2d2"}}>
+                        {issues.map((issue) => {
+                            return <Row key={issue._id} issue={issue} />
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            </>
+        )
+    }
 }
