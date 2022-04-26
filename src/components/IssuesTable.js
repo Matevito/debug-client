@@ -21,12 +21,16 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import EditIcon from '@mui/icons-material/Edit';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
+// app comp
+import { simpleDate, detailedDate } from "../features/dateFormatter";
+
 // css color variables
 const colorBlue = "#a3baf2";
 const colorOrange = "#fedca5";
 const colorHigh = "#cf6d5b";
 const colorMid = "#dad473";
 const colorLow = "#befb8f";
+
 
 const Row = ({issue}) => {
     const [open, setOpen] = useState(false)
@@ -78,7 +82,7 @@ const Row = ({issue}) => {
                             <TableBody>
                                 <TableRow>
                                     <TableCell><b>Date of Creation</b></TableCell>
-                                    <TableCell>{issue.date}</TableCell>
+                                    <TableCell>{simpleDate(issue.date)}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell><b>Handling Team</b></TableCell>
