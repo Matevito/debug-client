@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 
+import { Link } from "react-router-dom"
 import {
     TableHead,
+    Box,
     TableContainer,
     Table,
     Paper,
@@ -10,10 +12,14 @@ import {
     TableCell,
     IconButton,
     Collapse,
-    Typography
+    Typography,
+    Button
 } from "@mui/material"
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import EditIcon from '@mui/icons-material/Edit';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 // css color variables
 const colorBlue = "#a3baf2";
@@ -51,10 +57,10 @@ const Row = ({issue}) => {
                 align="left"
                 sx={{backgroundColor: issueColor}}
             >
-                {issue.priority}
+                <Typography>{issue.priority.toUpperCase()}</Typography>
             </TableCell>
             <TableCell align="left" sx={{backgroundColor: issue.status === "open" ? colorBlue : colorOrange}}>
-                <Typography>{issue.status}</Typography>
+                <Typography>{issue.status.toUpperCase()}</Typography>
             </TableCell>
             <TableCell align="left" >
                 <Typography>{issue.type}</Typography>
@@ -63,7 +69,54 @@ const Row = ({issue}) => {
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
-                    <div>todo...</div>
+                    <Box sx={{ m: 1}}>
+                        <Typography variant="h6" gutterBottom component="div">
+                            <i>{issue.title.toUpperCase()}</i>
+                        </Typography>
+                        <Table size="small">
+                            <TableRow>
+                                <TableCell><b>Date of Creation</b></TableCell>
+                                <TableCell>{issue.date}</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell><b>Handling Team</b></TableCell>
+                                {issue.handlingTeam.length <= 0 ? 
+                                    <TableCell> No users assigned</TableCell> :
+                                    issue.handlingTeam.map((issue) => {
+                                        return <TableCell key={issue._id}>{issue.username}</TableCell>
+                                    })
+                                }
+                            </TableRow>
+                            <TableRow>
+                                <TableCell><b>Screenshots</b></TableCell>
+                                <TableCell align="left">
+                                    {issue.screenshots.length > 0 ? 
+                                    <>Yes</>:
+                                    <>No</>
+                                    }
+                                </TableCell>
+                            </TableRow>
+                        </Table>
+                        <Box>
+                            <Button
+                                variant="contained"
+                                color="warning"
+                                size="small"
+                                component={Link}
+                                to={`/issue/${issue._id}/edit`}
+                            >
+                                <EditIcon /> edit ticket
+                            </Button>
+                            <Button
+                                variant="contained"
+                                size="small"
+                                component={Link}
+                                to={`/issue/${issue._id}`}
+                            >
+                                <LibraryBooksIcon/> ticket details
+                            </Button>
+                        </Box>
+                    </Box>
                 </Collapse>
             </TableCell>
         </TableRow>   
@@ -80,15 +133,15 @@ export const IssuesTable = ({ issues }) => {
                 <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
                     <TableRow>
                         <TableCell align="center" colSpan={5}>
-                            Project Issues
+                            PROJECT ISSUES
                         </TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell />
-                        <TableCell align="left">Title</TableCell>
-                        <TableCell align="left">Priority</TableCell>
-                        <TableCell align="left">Status</TableCell>
-                        <TableCell align="left">Type</TableCell>
+                        <TableCell align="left">TITLE</TableCell>
+                        <TableCell align="left">PRIORITY</TableCell>
+                        <TableCell align="left">STATUS</TableCell>
+                        <TableCell align="left">TYPE</TableCell>
                     </TableRow>
                     
                 </TableHead>
