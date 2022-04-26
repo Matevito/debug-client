@@ -80,6 +80,8 @@ describe("ProjectGet component", () => {
     let noLoggedUser;
     let userOutsideTeam;
     let devStore;
+    let adminStore;
+    let teamLeaderStore;
 
     // test config data
     beforeEach(() => {
@@ -88,7 +90,8 @@ describe("ProjectGet component", () => {
         noLoggedUser = usersData[0];
         userOutsideTeam = usersData[4];
         devStore = usersData[1];
-        
+        adminStore = usersData[3];
+        teamLeaderStore =usersData[2];
     })
     beforeAll(() => server.listen())
     afterEach(() => server.resetHandlers());
@@ -123,6 +126,25 @@ describe("ProjectGet component", () => {
         expect(projTitle).toBeInTheDocument()
         expect(screen.getByText("Create new issue!")).toBeInTheDocument()
     });
-    test.todo("edit btn if user is team leader");
-    test.todo("erase-edit btns if user is an admin")
+    test("edit btn if user is team leader", async() => {
+        const url = "/project/testProject1";
+        renderComponent(url, teamLeaderStore);
+
+        await waitFor(() => screen.getByText("test title"));
+
+        const editBtn = screen.getByTestId("EditIcon")
+        expect(editBtn).toBeInTheDocument()
+    });
+    test("erase-edit btns if user is an admin", async() =>{ 
+        const url = "/project/testProject1";
+        renderComponent(url, adminStore);
+        await waitFor(() => screen.getByText("test title"));
+        
+        expect(screen.getByTestId("EditIcon")).toBeInTheDocument();
+        expect(screen.getByTestId("DeleteIcon")).toBeInTheDocument();
+
+        const deleteBtn = screen.getByTestId("DeleteIcon");
+        //todo:: makes delete call
+
+    })
 })

@@ -30,18 +30,16 @@ const AdminButtons = ({ handleDelete, role, projectId}) => {
                     variant="contained"
                     color="warning"
                     size="small"
-                >
-                    <Link 
+                    component={Link}
                     to={`/project/${projectId}/edit`}
-                    style={{ color: "inherit", textDecoration: 'none' }}
-                    >
+                >
                         <EditIcon />
-                    </Link>
                 </Button>
                 <Button
                     variant="contained"
                     color="error"
                     size="small"
+                    onClick={handleDelete}
                 >
                     <DeleteIcon />
                     
@@ -55,13 +53,10 @@ const AdminButtons = ({ handleDelete, role, projectId}) => {
                     variant="contained"
                     color="warning"
                     size="small"
-                >
-                    <Link 
+                    component={Link}
                     to={`/project/${projectId}/edit`}
-                    style={{ color: "inherit", textDecoration: 'none' }}
-                    >
-                        <EditIcon />
-                    </Link>
+                >
+                    <EditIcon />
                 </Button>
             </Box>
         )
@@ -100,6 +95,15 @@ export const ProjectGet = () => {
             getProjectInfo();
         }
     }, [user, projectId])
+
+    const handleDelete = async() => {
+        const config = {
+            headers: {"auth-token": user.token}
+        };
+        console.log(config)
+        //todo: delete call to rest-api
+    };
+
     if (!user) {
         navigate("/");
     } else if (authorized === null) {
@@ -125,6 +129,7 @@ export const ProjectGet = () => {
                 <AdminButtons
                     role={user.user.role}
                     projectId={projectId}
+                    handleDelete={handleDelete}
                 />
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
