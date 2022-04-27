@@ -57,7 +57,6 @@ export const ProjectCreate = () => {
                 "auth-token": user.token
             }
         }
-        console.log(config)
         try {
             await api.post(url, form, config);
             

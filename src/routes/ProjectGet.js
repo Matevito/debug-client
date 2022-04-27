@@ -4,6 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 // mui components
 import {
@@ -21,6 +23,7 @@ import { ProjectInfo } from "../components/ProjectInfo";
 
 // api comp
 import api from "../features/api";
+import get_userInfo from '../features/get_userInfo';
 
 const AdminButtons = ({ handleDelete, role, projectId}) => {
     if (role === "Admin") {
@@ -46,6 +49,7 @@ const AdminButtons = ({ handleDelete, role, projectId}) => {
                     color="error"
                     size="small"
                     onClick={handleDelete}
+                    data-testid="deleteBtn"
                 >
                     <DeleteIcon />
                     
@@ -81,6 +85,7 @@ export const ProjectGet = () => {
     const projectId = useParams().id;
     const user = useSelector(selectUser);
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [authorized, setAuthorized] = useState(null);
     const [projectInfo, setProjectInfo] = useState({});
@@ -109,14 +114,21 @@ export const ProjectGet = () => {
     }, [user, projectId])
 
     const handleDelete = async() => {
-        /*
+        const url = `/project/${projectId}`
         const config = {
             headers: {"auth-token": user.token}
         };
-        */
-        // mock delete resp
-        //todo: delete call to rest-api
-        navigate("/")
+        try {
+            // delete proj and update user dta
+            await api.delete(url, config);
+            const userData = await get_userInfo(user.token);
+            dispatch(login(userData))
+            // navigate home
+            navigate("/")
+
+        } catch(err) {
+            console.log(err)
+        }
     };
 
     if (!user) {
