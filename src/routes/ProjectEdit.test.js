@@ -13,8 +13,21 @@ import { getData } from "../features/mockedUserStores";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
+const rootAPI = "https://pure-falls-26749.herokuapp.com/apiv1";
 const server = setupServer(
-    rest.get("https://pure-falls-26749.herokuapp.com/apiv1/project/testProject1",
+    rest.get(`${rootAPI}/user/list`, 
+    (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json({
+            data: [
+                {username: "developer", id: "1"},
+                {username: "teaml", id: "2"},
+                {username: "admin", id: "3"}
+            ]
+        }))
+    }
+    ),
+
+    rest.get(`${rootAPI}/project/testProject1`,
     (req, res, ctx) => {
         return res(ctx.status(200), ctx.json({
                 data:{
@@ -110,15 +123,22 @@ describe("ProjectEdit component", () => {
     });
     test("handles if project does not exist", async() => {
         server.use(
-            rest.get("https://pure-falls-26749.herokuapp.com/apiv1/project/testProject1", (req, res, ctx) => {
+            rest.get(`${rootAPI}/project/testProject1`, (req, res, ctx) => {
                 return res(ctx.status(401))
             })
         );
         renderComponent(componentUrl, adminStore);
         await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
     });
-
+    test("handles if userListRes is false", async() => {
+        server.use(
+            rest.get(`${rootAPI}/user/list`, (req, res, ctx) => {
+                return(ctx.status(401), ctx.json({ error: true}))
+            })
+        );
+        renderComponent(componentUrl, adminStore)
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
+    })
     test.todo("handles if user role is Team Leader");
-    test.todo("handles if project does not exist");
-    test.todo("renders form comp");
+    test.todo("renders if user role is Admin");
 });

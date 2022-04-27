@@ -8,12 +8,19 @@ import { selectUser } from "../features/userSlice";
 //import { login } from "../features/userSlice";
 
 // mui components
+import {
+    Box,
+    Typography
+} from "@mui/material"
+import EditIcon from '@mui/icons-material/Edit';
 
 // app components
 import { ProjectForm } from '../components/ProjectForm';
 
 // api comp
 import api from "../features/api";
+import getUsersData from "../features/getUsersData";
+
 // import get_userInfo from "../features/get_userInfo";
 
 export const ProjectEdit = () => {
@@ -21,6 +28,7 @@ export const ProjectEdit = () => {
     const projectId = useParams().id;
     let navigate = useNavigate();
 
+    const [usersList, setUsersList] = useState([])
     const [projectInfo, setProjectInfo] = useState(null)
     const [authorized, setAuthorized] = useState(null)
     //const [erros, setErrors] = useState(null);
@@ -34,14 +42,24 @@ export const ProjectEdit = () => {
                     headers: { "auth-token": user.token}
                 }
                 try {
+                    // set project info
                     const projectRes = await api.get(`/project/${projectId}`, config);
                     setProjectInfo(projectRes.data);
-                    setAuthorized(true)
+
+                    // set userlist info
+                    const userListRes = await getUsersData(user.token);
+                    if (userListRes) {
+                        setUsersList(userListRes)
+                        // render the comp
+                        setAuthorized(true)
+                    } else {
+                        navigate("/404")
+                    }
                 } catch (err) {
                     navigate("/404")
                 }
             }
-        }
+        };
         if (user) {
             getProjectInfo();
         };
@@ -56,7 +74,21 @@ export const ProjectEdit = () => {
         navigate("/protected-route")
     } else if (authorized === true) {
         return (
-            <>todo... project edit {projectId}</>
+            <Box
+                sx={{
+                    marginTop: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center"
+                }}
+                fullWidth
+            >
+                <EditIcon fontSize="large"/>
+                <Typography component="h1" variant="h5">
+                    Edit Project: <i>{projectInfo.data.title}</i>
+                </Typography>
+                <p></p>
+            </Box>
         )
     }
 }
