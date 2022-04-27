@@ -108,7 +108,15 @@ describe("ProjectEdit component", () => {
         renderComponent(componentUrl, devStore);
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
     });
-    test.todo("handles if project does not exist");
+    test("handles if project does not exist", async() => {
+        server.use(
+            rest.get("https://pure-falls-26749.herokuapp.com/apiv1/project/testProject1", (req, res, ctx) => {
+                return res(ctx.status(401))
+            })
+        );
+        renderComponent(componentUrl, adminStore);
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
+    });
 
     test.todo("handles if user role is Team Leader");
     test.todo("handles if project does not exist");

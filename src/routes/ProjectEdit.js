@@ -38,7 +38,7 @@ export const ProjectEdit = () => {
                     setProjectInfo(projectRes.data);
                     setAuthorized(true)
                 } catch (err) {
-                    console.log(err)
+                    navigate("/404")
                 }
             }
         }
