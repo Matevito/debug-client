@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import { VictoryPie, VictoryTheme } from "victory"
 
 // mui comp
 import {
@@ -23,13 +24,14 @@ export const ProjectInfo = ({ projectData }) => {
             const progressTicket =  projectData.issues.filter((issue) => issue.status === "in progress");
             const underReTicket =  projectData.issues.filter((issue) => issue.status === "under review");
             const solvedTicket = projectData.issues.filter((issue) => issue.status === "solved");
-            const dataPrototype = [
-                {type: "open", tickets: openTicket.length},
-                {type: "info needed", tickets: infoNedTicket.length},
-                {type: "in pŕogress", tickets: progressTicket.length},
-                {type: "under review", tickets: underReTicket.length},
-                {type: "solved", tickets: solvedTicket.length},
+            let dataPrototype = [
+                {label: "open", x: 1, y:openTicket.length},
+                {label: "info needed", x: 2, y:infoNedTicket.length},
+                {label: "in pŕogress", x: 3, y:progressTicket.length},
+                {label: "under review", x: 4, y:underReTicket.length},
+                {label: "solved", x: 5, y:solvedTicket.length},
             ]
+            dataPrototype = dataPrototype.filter((data) => data.y > 0)
             setData(dataPrototype)
         }
     }, [projectData])
@@ -40,20 +42,21 @@ export const ProjectInfo = ({ projectData }) => {
         )
     } else  {
         return (
+            
             <>
-            <Box
-            padding={2}
+<Box
             sx={{
+                marginLeft: "5px",
                 display: "flex",
                 flexDirection: "column",
                 
             }}
             >
-                <Typography variant="h6"><b>Project description</b></Typography>
-                <Typography variant="div">{project.description}</Typography>
+                <Typography variant="h6" ><b>Project description</b></Typography>
+                <Typography component={'span'}>{project.description}</Typography>
 
                 <Typography variant="h6"><b>Team Leader</b></Typography>
-                <Typography >
+                <Typography  component={'span'}>
                     <Link to={`/user/${project.teamLeader._id}}`} style={{ color: "inherit"}} >
                         <Stack direction="row" alignItems="center" gap={1}>
                             <PersonIcon color="error"/>
@@ -65,7 +68,7 @@ export const ProjectInfo = ({ projectData }) => {
                 <Typography variant="h6"><b>Team members</b></Typography>
                 {project.team.map((user) => {
                     return(
-                        <Typography key={user._id}>
+                        <Typography key={user._id} component={'span'}>
                             <Link to={`/user/${user._id}`} style={{ color: "inherit"}}>
                                 <Stack direction="row" alignItems="center" gap={1}>
                                     <PersonIcon color="success"/>
@@ -75,8 +78,16 @@ export const ProjectInfo = ({ projectData }) => {
                         </Typography>
                     )
                 })}
+                <Typography variant="h6"><b>Total tickets: </b>{issues.length}</Typography>
+                {issues.length ? 
+                    <VictoryPie 
+                        data={data}
+                        innerRadius={50}
+                        theme={VictoryTheme.material}
+                    /> : 
+                    <></>
+                }
             </Box>
-            
             </>
         )
     }
