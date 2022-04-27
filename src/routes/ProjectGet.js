@@ -97,9 +97,11 @@ export const ProjectGet = () => {
     }, [user, projectId])
 
     const handleDelete = async() => {
+        /*
         const config = {
             headers: {"auth-token": user.token}
         };
+        */
         //todo: delete call to rest-api
         navigate("/")
     };
@@ -133,7 +135,7 @@ export const ProjectGet = () => {
                 />
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
-                        <ProjectInfo project={projectInfo}/>
+                        <ProjectInfo projectData={projectInfo}/>
                     </Grid>
                     <Grid item xs={8}>
                         <IssuesTable issues={projectInfo.issues} />
