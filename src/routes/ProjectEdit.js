@@ -27,7 +27,7 @@ export const ProjectEdit = () => {
 
     useEffect(() => {
         async function getProjectInfo() {
-            if (user.user.role !== "Admin") {
+            if (user.user.role === "Developer") {
                 setAuthorized(false)
             } else {
                 const config = {
