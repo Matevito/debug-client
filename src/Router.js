@@ -16,6 +16,7 @@ import { Login } from "./routes/Login";
 import { Signin } from "./routes/Signin";
 import { ProjectCreate } from "./routes/ProjectCreate";
 import { ProjectGet } from "./routes/ProjectGet";
+import { ProjectEdit } from "./routes/ProjectEdit";
 
 import { IssueCreate } from "./routes/IssueCreate";
 
@@ -32,7 +33,7 @@ export const Router = () => {
 
                 <Route path="/project/create" element={<ProjectCreate />}/>
                 <Route path="/project/:id" element={<ProjectGet />} />
-                <Route path="/project/:id/edit" element={<>edit project...todo</>} />
+                <Route path="/project/:id/edit" element={<ProjectEdit />} />
                 
                 <Route path="/project/:id/issue/create" element={<IssueCreate />} />
                 

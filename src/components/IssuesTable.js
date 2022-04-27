@@ -22,7 +22,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 // app comp
-import { simpleDate, detailedDate } from "../features/dateFormatter";
+import { simpleDate } from "../features/dateFormatter";
 
 // css color variables
 const colorBlue = "#a3baf2";
