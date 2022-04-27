@@ -136,7 +136,13 @@ describe("ProjectGet component", () => {
         const editBtn = screen.getByTestId("EditIcon")
         expect(editBtn).toBeInTheDocument()
     });
-    test("erase-edit btns if user is an admin", async() =>{ 
+    test("erase-edit btns if user is an admin", async() =>{
+        const deleteUrl = "*";
+        server.use(
+            rest.delete(deleteUrl, (req, res, ctx) => {
+                return res(ctx.status(200), ctx.json({error:null}))
+            })
+        )
         const url = "/project/testProject1";
         renderComponent(url, adminStore);
         await waitFor(() => screen.getByText("test title"));

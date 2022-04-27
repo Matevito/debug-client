@@ -114,6 +114,7 @@ export const ProjectGet = () => {
             headers: {"auth-token": user.token}
         };
         */
+        // mock delete resp
         //todo: delete call to rest-api
         navigate("/")
     };
