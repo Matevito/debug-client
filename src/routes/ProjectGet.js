@@ -25,7 +25,13 @@ import api from "../features/api";
 const AdminButtons = ({ handleDelete, role, projectId}) => {
     if (role === "Admin") {
         return (
-            <Box sx={{marginBottom: "5px"}}>
+            <Box 
+            sx={{marginBottom: "5px" ,
+                display: "flex",
+                flexDirection: "row",
+                marginLeft: "auto"
+                }}
+            >
                 <Button
                     variant="contained"
                     color="warning"
@@ -48,7 +54,13 @@ const AdminButtons = ({ handleDelete, role, projectId}) => {
         )
     } else if (role === "Team leader") {
         return (
-            <Box sx={{marginBottom: "5px"}}>
+            <Box
+                sx={{marginBottom: "5px" ,
+                    display: "flex",
+                    flexDirection: "row",
+                    marginLeft: "auto"
+                    }}
+            >
                 <Button
                     variant="contained"
                     color="warning"
@@ -125,9 +137,7 @@ export const ProjectGet = () => {
             }}
             fullWidth
             >
-                <Typography component="h1" variant="h5" sx={{marginBottom: "5px"}}>
-                Project <i>{projectInfo.data.title}</i>
-                </Typography>
+                
                 <AdminButtons
                     role={user.user.role}
                     projectId={projectId}

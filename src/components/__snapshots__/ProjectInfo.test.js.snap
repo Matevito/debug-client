@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectInfo component handles no props 1`] = `<div />`;
+
+exports[`ProjectInfo component renders basic proj components 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-1hug7b0"
+  >
+    <h4
+      class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+    >
+      <b>
+        test title
+      </b>
+    </h4>
+    <h6
+      class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+    >
+      <b>
+        Description
+      </b>
+    </h6>
+    <span
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      a description
+    </span>
+    <h6
+      class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+    >
+      <b>
+        Team Leader
+      </b>
+    </h6>
+    <span
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      <a
+        href="/user/one}"
+      >
+        <div
+          class="css-1rlitzi-MuiStack-root"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-colorError MuiSvgIcon-fontSizeMedium css-1wxstni-MuiSvgIcon-root"
+            data-testid="PersonIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+            />
+          </svg>
+          user1
+        </div>
+      </a>
+    </span>
+    <h6
+      class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+    >
+      <b>
+        Team members
+      </b>
+    </h6>
+    <span
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      <a
+        href="/user/one"
+      >
+        <div
+          class="css-1rlitzi-MuiStack-root"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-colorSuccess MuiSvgIcon-fontSizeMedium css-4b67si-MuiSvgIcon-root"
+            data-testid="PersonIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+            />
+          </svg>
+          user1
+        </div>
+      </a>
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      <a
+        href="/user/two"
+      >
+        <div
+          class="css-1rlitzi-MuiStack-root"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-colorSuccess MuiSvgIcon-fontSizeMedium css-4b67si-MuiSvgIcon-root"
+            data-testid="PersonIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+            />
+          </svg>
+          user2
+        </div>
+      </a>
+    </span>
+    <h6
+      class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+    >
+      <b>
+        Total tickets: 
+      </b>
+      2
+    </h6>
+    <div
+      class="VictoryContainer"
+      style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+    >
+      <svg
+        height="350"
+        role="img"
+        style="pointer-events: all; width: 100%; height: 100%;"
+        viewBox="0 0 350 350"
+        width="350"
+      >
+        <g>
+          <path
+            d="M7.654042494670958e-15,-125A125,125,0,1,1,7.654042494670958e-15,125L3.061616997868383e-15,50A50,50,0,1,0,3.061616997868383e-15,-50Z"
+            role="presentation"
+            shape-rendering="auto"
+            style="fill: #F4511E; padding: 8px; stroke: #ECEFF1; stroke-width: 1;"
+            transform="translate(175, 175)"
+          />
+          <path
+            d="M7.654042494670958e-15,125A125,125,0,1,1,-2.2962127484012872e-14,-125L-9.184850993605149e-15,-50A50,50,0,1,0,3.061616997868383e-15,50Z"
+            role="presentation"
+            shape-rendering="auto"
+            style="fill: #FFF59D; padding: 8px; stroke: #ECEFF1; stroke-width: 1;"
+            transform="translate(175, 175)"
+          />
+          <text
+            direction="inherit"
+            dx="0"
+            id="pie-labels-0"
+            x="320"
+            y="179.26"
+          >
+            <tspan
+              dx="0"
+              dy="0"
+              style="padding: 20px; font-family: 'Helvetica Neue', 'Helvetica', sans-serif; font-size: 12px; letter-spacing: normal; fill: #455A64; stroke: transparent; stroke-width: 0;"
+              text-anchor="start"
+              x="320"
+            >
+              open
+            </tspan>
+          </text>
+          <text
+            direction="inherit"
+            dx="0"
+            id="pie-labels-1"
+            x="30"
+            y="179.26"
+          >
+            <tspan
+              dx="0"
+              dy="0"
+              style="padding: 20px; font-family: 'Helvetica Neue', 'Helvetica', sans-serif; font-size: 12px; letter-spacing: normal; fill: #455A64; stroke: transparent; stroke-width: 0;"
+              text-anchor="end"
+              x="30"
+            >
+              in progress
+            </tspan>
+          </text>
+        </g>
+      </svg>
+      <div
+        style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+      >
+        <svg
+          height="350"
+          style="overflow: visible; width: 100%; height: 100%;"
+          viewBox="0 0 350 350"
+          width="350"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -27,7 +27,7 @@ export const ProjectInfo = ({ projectData }) => {
             let dataPrototype = [
                 {label: "open", x: 1, y:openTicket.length},
                 {label: "info needed", x: 2, y:infoNedTicket.length},
-                {label: "in pŕogress", x: 3, y:progressTicket.length},
+                {label: "in progress", x: 3, y:progressTicket.length},
                 {label: "under review", x: 4, y:underReTicket.length},
                 {label: "solved", x: 5, y:solvedTicket.length},
             ]
@@ -44,7 +44,7 @@ export const ProjectInfo = ({ projectData }) => {
         return (
             
             <>
-<Box
+            <Box
             sx={{
                 marginLeft: "5px",
                 display: "flex",
@@ -52,7 +52,8 @@ export const ProjectInfo = ({ projectData }) => {
                 
             }}
             >
-                <Typography variant="h6" ><b>Project description</b></Typography>
+                <Typography variant="h4"><b>{project.title}</b></Typography>
+                <Typography variant="h6" ><b>Description</b></Typography>
                 <Typography component={'span'}>{project.description}</Typography>
 
                 <Typography variant="h6"><b>Team Leader</b></Typography>
