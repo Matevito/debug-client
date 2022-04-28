@@ -28,12 +28,13 @@ import { simpleDate } from "../features/dateFormatter";
 const colorBlue = "#a3baf2";
 const colorOrange = "#fedca5";
 const colorHigh = "#cf6d5b";
-const colorMid = "#dad473";
-const colorLow = "#befb8f";
-
+const colorMid = " #ffc15c";
+const colorLow = " #b8f8e7";
+const colorSolved = " #8ad94c"
 
 const Row = ({issue}) => {
     const [open, setOpen] = useState(false)
+    // issue color
     let issueColor;
     if (issue.priority === "low"){
         issueColor = colorLow
@@ -41,6 +42,16 @@ const Row = ({issue}) => {
         issueColor = colorMid
     } else if (issue.priority === "high"){
         issueColor = colorHigh
+    };
+
+    // status color
+    let statusColor;
+    if (issue.status === "open") {
+        statusColor = colorBlue;
+    } else if (issue.status === "solved") {
+        statusColor = colorSolved
+    } else {
+        statusColor = colorOrange
     }
     return(
         <>
@@ -63,7 +74,7 @@ const Row = ({issue}) => {
             >
                 <Typography>{issue.priority.toUpperCase()}</Typography>
             </TableCell>
-            <TableCell align="left" sx={{backgroundColor: issue.status === "open" ? colorBlue : colorOrange}}>
+            <TableCell align="left" sx={{backgroundColor: statusColor}}>
                 <Typography>{issue.status.toUpperCase()}</Typography>
             </TableCell>
             <TableCell align="left" >
