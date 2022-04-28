@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom"
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
-//import { useDispatch } from "react-redux";
-//import { login } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 // mui components
 import {
@@ -20,13 +20,13 @@ import { ProjectEditForm } from '../components/ProjectEditForm';
 // api comp
 import api from "../features/api";
 import getUsersData from "../features/getUsersData";
-
-// import get_userInfo from "../features/get_userInfo";
+import get_userInfo from "../features/get_userInfo";
 
 export const ProjectEdit = () => {
     const user = useSelector(selectUser);
     const projectId = useParams().id;
     let navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const [usersList, setUsersList] = useState([])
     const [projectInfo, setProjectInfo] = useState(null)
@@ -65,8 +65,21 @@ export const ProjectEdit = () => {
         };
     }, [user, projectId])
 
-    const handleEdit = (form) => {
-        console.log(form)
+    const handleEdit = async(form) => {
+        const url = `/project/${projectId}`
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+        try {
+            await api.put(url, form, config);
+            
+            const userData = await get_userInfo(user.token);
+            dispatch(login(userData))
+            navigate(`/project/${projectId}`)
+        } catch (err) {
+            setErrors(err.response.data.error);
+            console.log(err.response.data)
+        }
     }
     if (!user) {
         navigate("/")

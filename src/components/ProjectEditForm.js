@@ -108,7 +108,6 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
             description,
             team,
             teamLeader,
-            _id: project.data._id
         };
         handleSubmit(formObject);
     }
