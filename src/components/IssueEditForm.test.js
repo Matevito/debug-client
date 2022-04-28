@@ -29,5 +29,21 @@ describe("IssueEditForm component" , () => {
         )
         expect(container).toMatchSnapshot();
     })
-    test.todo("handles submit")
+    test("handles submit", () => {
+        const mockSubmit = jest.fn();
+        render(
+            <IssueEditForm 
+                issue={issueInfo}
+                handleSubmit={mockSubmit}
+            />
+        );
+
+        const btn = screen.getByText("Edit ticket!");
+        fireEvent.click(btn)
+        const formRes = mockSubmit.mock.lastCall[0];
+        
+        expect(formRes.description).toBe("a test description");
+        expect(formRes.status).toBe("under review");
+        expect(formRes.type).toBe("feature req")
+    })
 })
