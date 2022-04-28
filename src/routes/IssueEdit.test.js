@@ -82,8 +82,27 @@ describe("IssueEdit component", () => {
         renderComponent(componentURL, noLoggedUser);
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/")
     })
-    test.todo("user in not part of the project-issue");
-    test.todo("issue does not exist on db");
+    test("user in not part of the project-issue(401)", async() => {
+        server.use(
+            rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
+                return res(ctx.status(401))
+            })
+        );
+        renderComponent(componentURL, devStore);
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
+
+    });
+    test("issue does not exist on db(400)", async() => {
+        server.use(
+            rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
+                return res(ctx.status(400))
+            })
+        );
+        renderComponent(componentURL, devStore);
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/404")
+    });
 
     // funct tests
     test.todo("renders route if api-res is successfull")

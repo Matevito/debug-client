@@ -35,7 +35,7 @@ export const IssueEdit = () => {
                 setIssueInfo(issueRes.data.data)
                 setAuthorized(true)
             } catch (err) {
-                if (err.status === 401) {
+                if (err.response.status === 401) {
                     navigate("/protected-route")
                 } else {
                     navigate("/404")

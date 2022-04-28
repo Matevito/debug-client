@@ -107,7 +107,8 @@ describe("ProjectEdit component", () => {
             })
         );
         renderComponent(componentUrl, adminStore);
-        await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0])
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/404")
     });
     test("handles if userListRes is false", async() => {
         server.use(
@@ -116,7 +117,8 @@ describe("ProjectEdit component", () => {
             })
         );
         renderComponent(componentUrl, adminStore)
-        await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0])
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/404")
     });
     test("handles if user role is Team Leader", async () => {
         const {container} = renderComponent(componentUrl, teamLeaderStore);
