@@ -64,13 +64,13 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
                 margin="dense"
             />
             <TextField 
-                    fullWidth
-                    label="Description"
-                    defaultValue={description}
-                    onChange={(e) => { setDescription(e.target.value)}}
-                    variant="standard"
-                    multiline
-                    margin="dense"
+                fullWidth
+                label="Description"
+                defaultValue={description}
+                onChange={(e) => { setDescription(e.target.value)}}
+                variant="standard"
+                multiline
+                margin="dense"
             />
             <Typography >
                 Priority
@@ -122,7 +122,7 @@ export const IssueFormCreate = ({ errors, projectId, handleSubmit }) => {
             />
             <Button
                     variant="contained"
-                    type="sybmit"
+                    type="submit"
                     fullWidth
                     color="success"
             >
