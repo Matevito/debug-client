@@ -13,6 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 // app components
 import { IssueEditForm } from "../components/IssueEditForm";
+import { LoadingPage } from "../components/LoadingPage";
 
 // api comp
 import api from "../features/api";
@@ -70,7 +71,7 @@ export const IssueEdit = () => {
         navigate("/");
     } else if (authorized === null) {
         return (
-            <>loading...</>
+            <LoadingPage />
         )
     } else if (authorized === true) {
         return(
