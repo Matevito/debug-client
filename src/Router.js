@@ -22,6 +22,7 @@ import { ProjectGet } from "./routes/ProjectGet";
 import { ProjectEdit } from "./routes/ProjectEdit";
 
 import { IssueCreate } from "./routes/IssueCreate";
+import { IssueGet } from "./routes/IssueGet";
 import { IssueEdit } from "./routes/IssueEdit";
 
 export const Router = () => {
@@ -40,7 +41,7 @@ export const Router = () => {
                 <Route path="/project/:id/edit" element={<ProjectEdit />} />
                 
                 <Route path="/project/:id/issue/create" element={<IssueCreate />} />
-                <Route path="/issue/:id" element={<>todo issue get</>} />
+                <Route path="/issue/:id" element={<IssueGet />} />
                 <Route path="/issue/:id/edit" element={<IssueEdit />} />
 
                 <Route path="/404" element={user ? <Code404 /> : <Navigate to="/" />} />
