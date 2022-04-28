@@ -28,9 +28,9 @@ export const ProjectEdit = () => {
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
+    const [authorized, setAuthorized] = useState(null)
     const [usersList, setUsersList] = useState([])
     const [projectInfo, setProjectInfo] = useState(null)
-    const [authorized, setAuthorized] = useState(null)
     const [errors, setErrors] = useState(null);
 
     useEffect(() => {
