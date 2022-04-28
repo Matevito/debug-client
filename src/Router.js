@@ -45,6 +45,7 @@ export const Router = () => {
 
                 <Route path="/404" element={user ? <Code404 /> : <Navigate to="/" />} />
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
+                <Route path="*" element={<Code404 />} />
             </Routes>
             <Footer />
         </BrowserRouter>
