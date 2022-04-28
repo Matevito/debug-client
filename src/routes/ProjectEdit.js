@@ -63,7 +63,7 @@ export const ProjectEdit = () => {
         if (user) {
             getProjectInfo();
         };
-    }, [user, projectId])
+    }, [user, projectId, navigate])
 
     const handleEdit = async(form) => {
         const url = `/project/${projectId}`
@@ -78,7 +78,6 @@ export const ProjectEdit = () => {
             navigate(`/project/${projectId}`)
         } catch (err) {
             setErrors(err.response.data.error);
-            console.log(err.response.data)
         }
     }
     if (!user) {
