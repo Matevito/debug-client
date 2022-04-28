@@ -15,7 +15,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 
 // app components
-import { ProjectForm } from '../components/ProjectForm';
+import { ProjectEditForm } from '../components/ProjectEditForm';
 
 // api comp
 import api from "../features/api";
@@ -31,7 +31,7 @@ export const ProjectEdit = () => {
     const [usersList, setUsersList] = useState([])
     const [projectInfo, setProjectInfo] = useState(null)
     const [authorized, setAuthorized] = useState(null)
-    //const [erros, setErrors] = useState(null);
+    const [errors, setErrors] = useState(null);
 
     useEffect(() => {
         async function getProjectInfo() {
@@ -64,6 +64,10 @@ export const ProjectEdit = () => {
             getProjectInfo();
         };
     }, [user, projectId])
+
+    const handleEdit = (form) => {
+        console.log(form)
+    }
     if (!user) {
         navigate("/")
     } else if (authorized === null) {
@@ -88,6 +92,12 @@ export const ProjectEdit = () => {
                     Edit Project: <i>{projectInfo.data.title}</i>
                 </Typography>
                 <p></p>
+                <ProjectEditForm
+                    usersList={usersList}
+                    errors={errors}
+                    handleSubmit={handleEdit}
+                    project={projectInfo}
+                />
             </Box>
         )
     }

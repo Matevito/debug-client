@@ -138,7 +138,7 @@ describe("ProjectEdit component", () => {
         );
         renderComponent(componentUrl, adminStore)
         await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
-    })
+    });
     test.todo("handles if user role is Team Leader");
     test.todo("renders if user role is Admin");
 });
