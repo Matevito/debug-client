@@ -73,7 +73,11 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
             } else {
                 // remove user from team
                 const newTeam = team.filter((id) => {
-                    if (id !== selectedUser.user.id) return id
+                    if (id !== selectedUser.user.id) {
+                        return id
+                    } else {
+                        return false
+                    }
                 });
                 setTeam(newTeam);
             }
@@ -103,7 +107,8 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
             title,
             description,
             team,
-            teamLeader
+            teamLeader,
+            _id: project.data._id
         };
         handleSubmit(formObject);
     }
@@ -158,7 +163,7 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
                     value={teamLeader}
                 >
                     {team.map((id, index) => {
-                        const userData = usersList.find((user) => user.id == id);
+                        const userData = usersList.find((user) => user.id === id);
                         return (
                             <MenuItem
                                 key={id}
