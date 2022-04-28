@@ -42,28 +42,7 @@ const server = setupServer(
                         _id: "one", username:"user1"
                     }
                 },
-                issues: [
-                    {
-                        _id: "1",
-                        title: "issue1",
-                        priority: "low",
-                        description:" a simple description",
-                        handlingTeam: [],
-                        status: "open",
-                        date: "2022-04-23T22:56:09.627Z",
-                        screenshots: []
-                    },
-                    {
-                        _id: "2",
-                        title: "issue2",
-                        priority: "low",
-                        description: "a more complicated descirption",
-                        handlingTeam: [{_id:"two", username:"user2"}],
-                        status: "in progress",
-                        date: "2022-04-23T22:56:09.627Z",
-                        screenshots: []
-                    }
-                ]
+                issues: []
             
         }))
     })
@@ -77,7 +56,7 @@ jest.mock('react-router-dom', () => ({
 
 
 const renderComponent = (url, store) => {
-    render(
+    return render(
         <Provider store={store}>
             <MemoryRouter initialEntries={[url]}>
                 <Routes>
@@ -139,6 +118,14 @@ describe("ProjectEdit component", () => {
         renderComponent(componentUrl, adminStore)
         await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/404")
     });
-    test.todo("handles if user role is Team Leader");
-    test.todo("renders if user role is Admin");
+    test("handles if user role is Team Leader", async () => {
+        const {container} = renderComponent(componentUrl, teamLeaderStore);
+        await screen.findByText("Edit project!")
+        expect(container).toMatchSnapshot()
+    });
+    test("renders if user role is Admin", async() => {
+        const {container} = renderComponent(componentUrl, adminStore);
+        await screen.findByText("Edit project!")
+        expect(container).toMatchSnapshot()
+    });
 });

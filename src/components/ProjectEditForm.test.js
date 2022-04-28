@@ -55,6 +55,5 @@ describe("ProjectEditForm component", () => {
         expect(formRes.description).toBe(projectData.data.description);
         expect(formRes.team).toEqual(["one", "two"]);
         expect(formRes.teamLeader).toBe(projectData.data.teamLeader._id);
-        expect(formRes._id).toBe(projectData.data._id)
     });
 })
