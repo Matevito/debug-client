@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom"
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
-//import { useDispatch } from "react-redux";
-//import { login } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 // mui components
 import { Box, Typography } from "@mui/material";
@@ -16,13 +16,13 @@ import { IssueEditForm } from "../components/IssueEditForm";
 
 // api comp
 import api from "../features/api";
-//import get_userInfo from "../features/get_userInfo";
+import get_userInfo from "../features/get_userInfo";
 
 export const IssueEdit = () => {
     const user = useSelector(selectUser);
     const issueId = useParams().id;
     let navigate = useNavigate();
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const [authorized, setAuthorized] = useState(null);
     const [issueInfo, setIssueInfo] = useState(null);
@@ -48,15 +48,23 @@ export const IssueEdit = () => {
         if (user) {
             getIssueInfo()
         }
-    }, [user, issueId]);
+    }, [user, issueId, navigate]);
 
-    const handleSubmit = async (form) => {
+    const handleEdit = async (form) => {
         const url = `/issue/${issueId}`;
         const config = {
             headers: { "auth-token" : user.token }
         };
 
-        console.log(form)
+        try {
+            await api.put(url, form, config);
+            
+            const userData = await get_userInfo(user.token);
+            dispatch(login(userData))
+            navigate(`/issue/${issueId}`)
+        } catch(err) {
+            setErrors(err.response.data.error);
+        }
     }
     if (!user) {
         navigate("/");
@@ -83,7 +91,7 @@ export const IssueEdit = () => {
                 <form></form>
                 <IssueEditForm
                     issue={issueInfo}
-                    handleSubmit={handleSubmit}
+                    handleSubmit={handleEdit}
                     errors={errors}
                 />
             </Box>
