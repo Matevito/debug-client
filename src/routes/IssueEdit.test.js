@@ -110,5 +110,10 @@ describe("IssueEdit component", () => {
         await screen.findByText("Edit Issue-Ticket")
         expect(screen.getByTestId("EditIcon")).toBeInTheDocument()
     })
-    test.todo("renders form-component")
+    test("renders form-component", async() => {
+        renderComponent(componentURL, adminStore);
+        await screen.findByText("Edit Issue-Ticket")
+        expect(screen.getByText("Edit ticket!")).toBeInTheDocument()
+    })
+
 })
