@@ -9,7 +9,9 @@ import { selectUser } from "./features/userSlice";
 // routes components
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+
 import { Protected } from "./routes/Protected";
+import { Code404 } from "./routes/Code404"
 
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
@@ -41,6 +43,7 @@ export const Router = () => {
                 <Route path="/issue/:id" element={<>todo issue get</>} />
                 <Route path="/issue/:id/edit" element={<IssueEdit />} />
 
+                <Route path="/404" element={user ? <Code404 /> : <Navigate to="/" />} />
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
             </Routes>
             <Footer />
