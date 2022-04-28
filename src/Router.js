@@ -14,12 +14,13 @@ import { Protected } from "./routes/Protected";
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
 import { Signin } from "./routes/Signin";
+
 import { ProjectCreate } from "./routes/ProjectCreate";
 import { ProjectGet } from "./routes/ProjectGet";
 import { ProjectEdit } from "./routes/ProjectEdit";
 
 import { IssueCreate } from "./routes/IssueCreate";
-
+import { IssueEdit } from "./routes/IssueEdit";
 
 export const Router = () => {
     const user = useSelector(selectUser);
@@ -28,6 +29,7 @@ export const Router = () => {
             <Header />
             <Routes>
                 <Route exact path="/" element={<Home />}/>
+
                 <Route path="/log-in" element={user ? <Navigate to="/" /> : <Login />} /> 
                 <Route path="/sign-in" element={user ? <Navigate to="/" /> : <Signin />}/>
 
@@ -36,7 +38,8 @@ export const Router = () => {
                 <Route path="/project/:id/edit" element={<ProjectEdit />} />
                 
                 <Route path="/project/:id/issue/create" element={<IssueCreate />} />
-                
+                <Route path="/issue/:id" element={<>todo issue get</>} />
+                <Route path="/issue/:id/edit" element={<IssueEdit />} />
 
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
             </Routes>
