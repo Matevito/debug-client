@@ -126,7 +126,11 @@ export const ProjectGet = () => {
             navigate("/")
 
         } catch(err) {
-            console.log(err)
+            if (err.response.status === 401 || err.status === 401) {
+                setAuthorized(false)
+            } else {
+                navigate("/protected-route")
+            }
         }
     };
 
@@ -137,7 +141,7 @@ export const ProjectGet = () => {
             <>loading...</>
         )
     }  else if (authorized === false ) {
-        navigate("/protected-route");
+        navigate("/404");
     } else {
         return (
             <Box
@@ -161,20 +165,20 @@ export const ProjectGet = () => {
                     </Grid>
                     <Grid item xs={8}>
                         <IssuesTable issues={projectInfo.issues} />
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            color="success"
+                            sx={{marginTop: "10px", marginBottom: "10px"}}
+                        >
+                            <Link 
+                            to={`/project/${projectId}/issue/create`} 
+                            style={{ color: "inherit", textDecoration: 'none' }}>
+                                Create new issue!
+                            </Link>
+                        </Button>
                     </Grid>
                 </Grid>
-                
-                <Button 
-                    variant="contained"
-                    color="success"
-                    sx={{marginTop: "10px"}}
-                >
-                    <Link 
-                    to={`/project/${projectId}/issue/create`} 
-                    style={{ color: "inherit", textDecoration: 'none' }}>
-                        Create new issue!
-                    </Link>
-                </Button>
             </Box>
 
         )

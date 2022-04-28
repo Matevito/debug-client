@@ -114,7 +114,7 @@ describe("ProjectGet component", () => {
         const url = "/project/testProject1";
         renderComponent(url, userOutsideTeam);
         await waitFor(() => mockedUsedNavigate.mock.lastCall[0] === "/protected-route");
-        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/404")
     });
 
     test("handles user part of the project", async () => {

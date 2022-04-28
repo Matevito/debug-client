@@ -22,7 +22,7 @@ export const Code404 = () => {
             <ReportGmailerrorredRoundedIcon fontSize="large"/>
             <Typography variant="h1">404 ERROR!</Typography>
             <Typography variant="span">
-                The page you are searching does not exist! If you think it should, comunicate with an admin.
+                The page you are searching does not exist! If you think it should, comunicate with an admin or refresh the page.
             </Typography>
         </Box>
     )
