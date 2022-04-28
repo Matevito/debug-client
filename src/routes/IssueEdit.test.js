@@ -15,7 +15,7 @@ import { setupServer } from "msw/node";
 
 const rootAPI = "https://pure-falls-26749.herokuapp.com/apiv1";
 const issueResponse = {
-    data: { data: {
+    data: { issue: {
         _id: "issueTestId",
         title:" issue ticket",
         description: "here goes a long and detailed description...",
@@ -30,7 +30,7 @@ const issueResponse = {
     }}
 }
 const server = setupServer(
-    rest.get(`${rootAPI}/user/issueTestId`,
+    rest.get(`${rootAPI}/issue/issueTestId`,
     (req,res, ctx) => {
         return res(ctx.status(200), ctx.json(issueResponse))
     })
@@ -105,6 +105,10 @@ describe("IssueEdit component", () => {
     });
 
     // funct tests
-    test.todo("renders route if api-res is successfull")
+    test("renders route if api-res is successfull", async() => {
+        renderComponent(componentURL, devStore);
+        await screen.findByText("Edit Issue-Ticket")
+        expect(screen.getByTestId("EditIcon")).toBeInTheDocument()
+    })
     test.todo("renders form-component")
 })

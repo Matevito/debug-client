@@ -8,8 +8,11 @@ import { selectUser } from "../features/userSlice";
 //import { login } from "../features/userSlice";
 
 // mui components
+import { Box, Typography } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
 
 // app components
+import { IssueEditForm } from "../components/IssueEditForm";
 
 // api comp
 import api from "../features/api";
@@ -47,6 +50,14 @@ export const IssueEdit = () => {
         }
     }, [user, issueId]);
 
+    const handleSubmit = async (form) => {
+        const url = `/issue/${issueId}`;
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+
+        console.log(form)
+    }
     if (!user) {
         navigate("/");
     } else if (authorized === null) {
@@ -55,9 +66,27 @@ export const IssueEdit = () => {
         )
     } else if (authorized === true) {
         return(
-            <>
-                issue {issueId} edit
-            </>
+            <Box
+                sx={{
+                    marginTop: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: 'center',
+                }}
+                fullWidth
+            >
+                <EditIcon fontSize="large"/>
+                <Typography component="h1" variant="h5">
+                    Edit Issue-Ticket
+                </Typography>
+                <p></p>
+                <form></form>
+                <IssueEditForm
+                    issue={issueInfo}
+                    handleSubmit={handleSubmit}
+                    errors={errors}
+                />
+            </Box>
         )
     }
 }

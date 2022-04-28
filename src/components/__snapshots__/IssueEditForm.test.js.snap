@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueEditForm component renders correct form 1`] = `
+<div>
+  <form
+    action="#"
+  >
+    <div
+      class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+    >
+      <label
+        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-root MuiFormLabel-colorPrimary Mui-disabled MuiFormLabel-filled css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        data-shrink="true"
+        for=":r0:"
+        id=":r0:-label"
+      >
+        Title
+      </label>
+      <div
+        class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl css-ghsjzk-MuiInputBase-root-MuiInput-root"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInput-input MuiInputBase-input Mui-disabled css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          disabled=""
+          id=":r0:"
+          type="text"
+          value="test title"
+        />
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+    >
+      <label
+        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        data-shrink="true"
+        for=":r1:"
+        id=":r1:-label"
+      >
+        Description
+      </label>
+      <div
+        class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-68u1dt-MuiInputBase-root-MuiInput-root"
+      >
+        <textarea
+          aria-invalid="false"
+          class="MuiInput-input MuiInputBase-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+          id=":r1:"
+          style="height: 0px; overflow: hidden;"
+        >
+          a test description
+        </textarea>
+        <textarea
+          aria-hidden="true"
+          class="MuiInput-input MuiInputBase-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+          readonly=""
+          style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+          tabindex="-1"
+        />
+      </div>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-12ifk54-MuiTypography-root"
+    >
+      Status
+    </p>
+    <div
+      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth  css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+    >
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+        role="button"
+        tabindex="0"
+      >
+        under review
+      </div>
+      <input
+        aria-hidden="true"
+        class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+        tabindex="-1"
+        value="under review"
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+        data-testid="ArrowDropDownIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+      >
+        <legend
+          class="css-hdw1oc"
+        >
+          <span
+            class="notranslate"
+          >
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-12ifk54-MuiTypography-root"
+    >
+      Priority
+    </p>
+    <div
+      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth  css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+    >
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+        role="button"
+        tabindex="0"
+      >
+        low
+      </div>
+      <input
+        aria-hidden="true"
+        class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+        tabindex="-1"
+        value="low"
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+        data-testid="ArrowDropDownIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+      >
+        <legend
+          class="css-hdw1oc"
+        >
+          <span
+            class="notranslate"
+          >
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-12ifk54-MuiTypography-root"
+    >
+      Type
+    </p>
+    <div
+      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth  css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+    >
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+        role="button"
+        tabindex="0"
+      >
+        feature req
+      </div>
+      <input
+        aria-hidden="true"
+        class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+        tabindex="-1"
+        value="feature req"
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+        data-testid="ArrowDropDownIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+      >
+        <legend
+          class="css-hdw1oc"
+        >
+          <span
+            class="notranslate"
+          >
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+    <button
+      class="MuiButton-root MuiButton-contained MuiButton-containedSuccess MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-b8wypl-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="submit"
+    >
+      Edit ticket!
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </form>
+</div>
+`;

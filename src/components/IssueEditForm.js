@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 
 // app components
+import { AuthError } from "./AuthError";
+
 
 export const IssueEditForm = ({ issue, handleSubmit, errors }) => {
     const [description, setDescription] = useState("");
@@ -32,11 +34,20 @@ export const IssueEditForm = ({ issue, handleSubmit, errors }) => {
     }, [issue])
     const handleForm = (e) =>{
         e.preventDefault()
+
+        const formData = {
+            description,
+            status,
+            priority,
+            type
+        };
+
+        handleSubmit(formData)
     }
     return (
         <>
         <form action="#" onSubmit={handleForm} >
-
+            <AuthError error={errors} />
             <TextField
                 fullWidth
                 label="Title"
