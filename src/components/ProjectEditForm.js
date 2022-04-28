@@ -37,7 +37,6 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
             setTeamState(
                 usersList.map((user) => {
                     const userId = user.id;
-                    console.log(userId)
                     if (teamIds.includes(userId)){
                         return true
                     } else {
@@ -91,7 +90,12 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
         }
     };
     const handleMultipleSelect = (e) => {
-
+        const selectedUserId = e.target.value;
+        if (!team.includes(selectedUserId)){
+            setTeamLeader("")
+        } else {
+            setTeamLeader(e.target.value)
+        }
     };
     const handleForm = (e) => {
         e.preventDefault();
@@ -148,6 +152,32 @@ export const ProjectEditForm = ({usersList, handleSubmit, project, errors}) => {
                             />
                         )
                     })}
+                <Select
+                    onChange={handleMultipleSelect}
+                    fullWidth
+                    value={teamLeader}
+                >
+                    {team.map((id, index) => {
+                        const userData = usersList.find((user) => user.id == id);
+                        return (
+                            <MenuItem
+                                key={id}
+                                value={id}
+                            >
+                            {userData.username}
+                            </MenuItem>
+                        )
+                    })}
+                </Select>
+                <Button
+                    sx={{marginTop: 2}}
+                    variant="contained"
+                    type="submit"
+                    fullWidth
+                    color="success"
+                >
+                    Edit project!
+                </Button>
                 </FormGroup>
             </form>
         </>

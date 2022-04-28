@@ -174,7 +174,7 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
                 </Select>
                 <Button
                     variant="contained"
-                    type="sybmit"
+                    type="submit"
                     fullWidth
                     color="success"
                 >
