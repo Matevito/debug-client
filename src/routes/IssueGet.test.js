@@ -83,8 +83,27 @@ describe("IssueGet component", () => {
         renderComponent(componentURL, noLoggedUser);
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/")
     });
-    test.todo("handles if a user does not have access to the page");
-    test.todo("the issue called does not exist");
+    test("handles if a user does not have access to the page", async() => {
+        server.use(
+            rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
+                return res(ctx.status(401))
+            })
+        );
+        renderComponent(componentURL, userNotPartOfIssue);
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
+
+    });
+    test("the issue called does not exist", async() => {
+        server.use(
+            rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
+                return res(ctx.status(400))
+            })
+        );
+        renderComponent(componentURL, devStore);
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/404")
+    });
 
     //render tests
     test.todo("render component tests")
