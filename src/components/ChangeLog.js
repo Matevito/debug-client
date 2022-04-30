@@ -1,9 +1,13 @@
+import { Card } from '@mui/material'
 import React from 'react'
 
 export const ChangeLog = ({ changeLog }) => {
     return (
-        <div>
-            changelog
-        </div>
+        <Card
+            raised={true}
+            sx={{ marginTop: "10px"}}
+        >
+            ChangeLog
+        </Card>
     )
 }

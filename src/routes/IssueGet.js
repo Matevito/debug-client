@@ -64,23 +64,19 @@ export const IssueGet = () => {
         return (
             <Box
                 sx={{
-                    marginTop: 2,
                     display: "flex",
                     flexDirection: "column",
                     height: "100vh",
                 }}
             >
                 <Grid container spacing={2}>
-                    <Grid item xs={7} 
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                >
-                        <IssueInfo issue={issueInfo.issue}/>
-                        <ChangeLog changeLog={issueInfo.changeLog}/>
+                    <Grid item xs={7}>
+                        <Box sx={{m:2}}>
+                            <IssueInfo issue={issueInfo.issue}/>
+                            <ChangeLog changeLog={issueInfo.changeLog}/>
+                        </Box>
                     </Grid>
-                    <Grid item xs={5} sx={{ backgroundColor: "orange"}}>
+                    <Grid item xs={5}>
                         <IssueComments comments={issueInfo.comments}/>
                     </Grid>
                 </Grid>
