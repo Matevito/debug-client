@@ -6,7 +6,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
-import { ProjectInfo } from "./ProjectInfo"
+import { ProjectInfo } from "../ProjectInfo"
 
 describe("ProjectInfo component", () => {
     test("handles no props", () => {

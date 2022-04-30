@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 // test component
-import { ProjectForm } from "./ProjectForm";
+import { ProjectForm } from "../ProjectForm";
 
 
 describe("ProjectForm component", () => {

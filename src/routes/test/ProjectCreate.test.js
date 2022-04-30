@@ -7,10 +7,10 @@ import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test component
-import { ProjectCreate } from "./ProjectCreate";
+import { ProjectCreate } from "../ProjectCreate";
 
 // mock functs
-import { getData } from "../features/mockedUserStores";
+import { getData } from "../../features/mockedUserStores";
 import mockAxios from "jest-mock-axios";
 
 const mockedUsedNavigate = jest.fn();
@@ -25,7 +25,6 @@ describe("ProjectCreate component", () => {
     let noLoggedUser;
     let devStore;
     let teamLstore;
-    let adminStore;
     let resUsers;
     beforeEach(() => {
         const usersData = getData();
@@ -33,7 +32,6 @@ describe("ProjectCreate component", () => {
         noLoggedUser = usersData[0];
         devStore = usersData[1];
         teamLstore = usersData[2];
-        adminStore = usersData[3];
 
         resUsers = {
             data: {
@@ -73,5 +71,4 @@ describe("ProjectCreate component", () => {
         expect(teamContainer).toMatchSnapshot();
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route");
     })
-    test.todo("renders form")
 }) 

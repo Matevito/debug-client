@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 //tested comp
-import { DemoLinks } from "./DemoLinks";
+import { DemoLinks } from "../DemoLinks";
 
 describe("DemoLinks componen", () => {
     test("It renders 3 btns", () => {

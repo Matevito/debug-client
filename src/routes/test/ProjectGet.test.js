@@ -7,10 +7,10 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
-import { ProjectGet } from "./ProjectGet";
+import { ProjectGet } from "../ProjectGet";
 
 // mock Functs;
-import { getData } from "../features/mockedUserStores";
+import { getData } from "../../features/mockedUserStores";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 

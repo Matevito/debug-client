@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 // test comp
-import { IssueEditForm } from "./IssueEditForm";
+import { IssueEditForm } from "../IssueEditForm";
 
 describe("IssueEditForm component" , () => {
         let issueInfo;

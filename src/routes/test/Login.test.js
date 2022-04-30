@@ -8,7 +8,7 @@ import '@testing-library/jest-dom'
 import configureStore from "redux-mock-store";
 
 // test comp
-import { Login } from "./Login";
+import { Login } from "../Login";
 
 const mockStore = configureStore([]);
 
@@ -32,5 +32,4 @@ describe("Login component", () => {
         expect(screen.getByLabelText("Password")).toBeInTheDocument();
         expect(screen.getByText("Submit")).toBeInTheDocument();
     });
-    test.todo("form handles input")
 })

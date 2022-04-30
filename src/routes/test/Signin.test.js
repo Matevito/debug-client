@@ -6,7 +6,7 @@ import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
-import { Signin } from "./Signin";
+import { Signin } from "../Signin";
 
 describe("Signin component", () =>  {
     test("component renders correct form", () => {

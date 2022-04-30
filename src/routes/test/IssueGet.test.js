@@ -6,10 +6,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
-import { IssueEdit } from "./IssueEdit";
+import { IssueGet } from "../IssueGet";
 
-// mock functions;
-import { getData } from "../features/mockedUserStores";
+// mock functions
+import { getData } from "../../features/mockedUserStores";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
@@ -29,13 +29,12 @@ const issueResponse = {
         v__: 0
     }}
 }
+
 const server = setupServer(
-    rest.get(`${rootAPI}/issue/issueTestId`,
-    (req,res, ctx) => {
+    rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(issueResponse))
     })
 );
-
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -48,26 +47,28 @@ const renderComponent = (url, store) => {
             <MemoryRouter initialEntries={[url]}>
                 <Routes>
                     <Route 
-                    path="/issue/:id/edit"
-                    element={<IssueEdit/>}
+                        path="/issue/:id"
+                        element={<IssueGet/>}
                     />
                 </Routes>
             </MemoryRouter>
         </Provider>
     )
-};
-
-describe("IssueEdit component", () => {
+} 
+describe("IssueGet component", () => {
+    // test requirements!
     let noLoggedUser;
     let devStore;
     let adminStore;
-    let componentURL = "/issue/issueTestId/edit"
+    let userNotPartOfIssue;
+    const componentURL = "/issue/issueTestId";
 
     beforeEach(() => {
         const usersData = getData();
         noLoggedUser = usersData[0];
         devStore = usersData[1];
         adminStore = usersData[3];
+        userNotPartOfIssue = usersData[2];
     })
     // required to mock rest-api server
     beforeAll(() => server.listen())
@@ -77,23 +78,23 @@ describe("IssueEdit component", () => {
         jest.clearAllMocks();
     })
 
-    // auth tests
-    test("handles if user is not set-up", () => {
+    //auth tests
+    test("handles no user set-up", () => {
         renderComponent(componentURL, noLoggedUser);
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/")
-    })
-    test("user in not part of the project-issue(401)", async() => {
+    });
+    test("handles if a user does not have access to the page", async() => {
         server.use(
             rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
                 return res(ctx.status(401))
             })
         );
-        renderComponent(componentURL, devStore);
+        renderComponent(componentURL, userNotPartOfIssue);
         await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
 
     });
-    test("issue does not exist on db(400)", async() => {
+    test("the issue called does not exist", async() => {
         server.use(
             rest.get(`${rootAPI}/issue/issueTestId`, (req, res, ctx) => {
                 return res(ctx.status(400))
@@ -104,16 +105,6 @@ describe("IssueEdit component", () => {
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/404")
     });
 
-    // funct tests
-    test("renders route if api-res is successfull", async() => {
-        renderComponent(componentURL, devStore);
-        await screen.findByText("Edit Issue-Ticket")
-        expect(screen.getByTestId("EditIcon")).toBeInTheDocument()
-    })
-    test("renders form-component", async() => {
-        renderComponent(componentURL, adminStore);
-        await screen.findByText("Edit Issue-Ticket")
-        expect(screen.getByText("Edit ticket!")).toBeInTheDocument()
-    })
-
+    //render tests
+    test.todo("render component tests")
 })

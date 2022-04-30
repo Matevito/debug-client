@@ -7,10 +7,10 @@ import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test component
-import { IssueCreate } from "./IssueCreate";
+import { IssueCreate } from "../IssueCreate";
 
 // mock functs
-import { getData } from "../features/mockedUserStores";
+import { getData } from "../../features/mockedUserStores";
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({

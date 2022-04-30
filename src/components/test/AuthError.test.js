@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 //tested comp
-import { AuthError } from "./AuthError";
+import { AuthError } from "../AuthError";
 
 describe("AuthError component", () => {
     test("handles no prop errors", () => {

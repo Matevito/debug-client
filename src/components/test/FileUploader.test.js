@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 // test component
-import { FileUploader } from "./FileUploader";
+import { FileUploader } from "../FileUploader";
 
 describe("FileUploader component", () => {
     

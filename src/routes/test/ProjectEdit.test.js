@@ -6,10 +6,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
-import { ProjectEdit } from "./ProjectEdit";
+import { ProjectEdit } from "../ProjectEdit";
 
 // mock functions;
-import { getData } from "../features/mockedUserStores";
+import { getData } from "../../features/mockedUserStores";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 

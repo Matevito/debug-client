@@ -6,7 +6,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test component
-import { IssuesTable } from "./IssuesTable"
+import { IssuesTable } from "../IssuesTable"
 
 
 describe("IssuesTable component", () => {
