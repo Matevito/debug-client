@@ -2,20 +2,21 @@ import React, { useState } from 'react'
 
 // mui components
 import {
+    Box,
     Card,
     CardContent,
     Typography,
     Grid,
+    Link,
+    Stack,
+    Button,
 } from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
 
 // app components
 import { simpleDate } from "../features/dateFormatter";
 
-export const IssueInfo = ({ issue }) => {
-
-    
-    const [team, setTeam] = useState([]);
-
+export const IssueInfo = ({ issue, handlingTake, handlingLeave }) => {
     return (
         <Card
             xs={{ 
@@ -47,7 +48,28 @@ export const IssueInfo = ({ issue }) => {
                         
                         <Typography variant="h7"><b>Date of creation</b></Typography>
                         <Typography>{simpleDate(issue.date)}</Typography>
-
+                        
+                        {issue.screenshots.length ?
+                            <Typography variant="h7">
+                            <b>Screenshots</b>
+                            </Typography>
+                            :
+                            <Typography variant="h7">
+                                <b>No screenshots</b>
+                            </Typography>
+                        }
+                        <Box sx={{ display: "flex", flexDirection:"row"}}>
+                        {issue.screenshots.map((urlLink, index) => {
+                            return(
+                                <Link ket={index} style={{ color: "inherit"}} underline="hover">
+                                    <Button >
+                                        Screenshot {index + 1}
+                                    </Button>
+                                </Link>
+                                
+                            )
+                        })}
+                        </Box>
                     </Grid>
                     
                     <Grid item xs={6}
@@ -66,17 +88,20 @@ export const IssueInfo = ({ issue }) => {
                         <Typography>{issue.status}</Typography>
 
                         <Typography variant="h7"><b>Team</b></Typography>
+                    
+                        {issue.handlingTeam.map((user) => {
+                            return(
+                                <Typography key={user._id}>
+                                    <Stack direction="row" alignItems="center" gap={1}>
+                                        <PersonIcon color="success"/>
+                                        {user.username}
+                                    </Stack>
+                                </Typography>
+                            )
+                        })}
+                        
                     </Grid>
                 </Grid>
-                {issue.screenshots.length ? 
-                    <>
-                    <Typography variant="h7">
-                    <b>Screenshots</b>
-                    </Typography>
-                    
-                    </>
-                    : <></>
-                }
             </CardContent>
         </Card>
     )
