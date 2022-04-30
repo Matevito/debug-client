@@ -61,7 +61,13 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave }) => {
                         <Box sx={{ display: "flex", flexDirection:"row"}}>
                         {issue.screenshots.map((urlLink, index) => {
                             return(
-                                <Link ket={index} style={{ color: "inherit"}} underline="hover">
+                                <Link 
+                                    key={index}
+                                    href={urlLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ color: "inherit"}} underline="hover"
+                                >
                                     <Button >
                                         Screenshot {index + 1}
                                     </Button>
