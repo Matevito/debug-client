@@ -103,7 +103,7 @@ export const IssueGet = () => {
                 }}
             >
                 <Grid container spacing={2}>
-                    <Grid item xs={7}>
+                    <Grid item xs={6}>
                         <Box sx={{m:2}}>
                             <IssueInfo 
                                 issue={issueInfo.issue}
@@ -114,7 +114,7 @@ export const IssueGet = () => {
                             <ChangeLog changeLog={issueInfo.changeLog}/>
                         </Box>
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={6}>
                         <IssueComments comments={issueInfo.comments}/>
                     </Grid>
                 </Grid>
