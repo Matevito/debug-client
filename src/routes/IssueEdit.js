@@ -56,10 +56,8 @@ export const IssueEdit = () => {
         const config = {
             headers: { "auth-token" : user.token }
         };
-
         try {
             await api.put(url, form, config);
-            
             const userData = await get_userInfo(user.token);
             dispatch(login(userData))
             navigate(`/issue/${issueId}`)

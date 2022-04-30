@@ -6,9 +6,16 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 
 // mui components
+import {
+    Box,
+    Grid
+} from "@mui/material";
 
 // app components
 import { LoadingPage } from "../components/LoadingPage";
+import { IssueInfo } from "../components/IssueInfo";
+import { ChangeLog } from "../components/ChangeLog";
+import { IssueComments } from "../components/IssueComments";
 
 // api comp
 import  api from "../features/api";
@@ -55,9 +62,29 @@ export const IssueGet = () => {
         )
     } else if (authorized === true) {
         return (
-            <div>
-                issue get!!!
-            </div>
+            <Box
+                sx={{
+                    marginTop: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100vh",
+                }}
+            >
+                <Grid container spacing={2}>
+                    <Grid item xs={7} 
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                        }}
+                >
+                        <IssueInfo issue={issueInfo.issue}/>
+                        <ChangeLog changeLog={issueInfo.changeLog}/>
+                    </Grid>
+                    <Grid item xs={5} sx={{ backgroundColor: "orange"}}>
+                        <IssueComments comments={issueInfo.comments}/>
+                    </Grid>
+                </Grid>
+            </Box>
         )
     }
 }
