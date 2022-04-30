@@ -54,6 +54,39 @@ export const IssueGet = () => {
         }
     }, [user, issueId])
 
+    const handlingTake = async() => {
+        const url = `/issue/${issueId}/take-issue`;
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+        try {
+            // take issue
+            await api.put(url, {}, config);
+
+            // refresh issueInfo
+            const issueRes = await api.get(`/issue/${issueId}`, config);
+            setIssueInfo(issueRes.data.data);
+        } catch (err) {
+            console.log(err)
+        }
+    };
+
+    const handlingLeave = async() => {
+        const url = `/issue/${issueId}/leave-issue`
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+        try {
+            // leave issue
+            await api.put(url, {}, config);
+
+            // refresh issueInfo
+            const issueRes = await api.get(`/issue/${issueId}`, config);
+            setIssueInfo(issueRes.data.data);
+        } catch (err) {
+            console.log(err)
+        }
+    }
     if (!user) {
         navigate("/")
     } else if (authorized === null) {
@@ -72,7 +105,12 @@ export const IssueGet = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={7}>
                         <Box sx={{m:2}}>
-                            <IssueInfo issue={issueInfo.issue}/>
+                            <IssueInfo 
+                                issue={issueInfo.issue}
+                                handlingTake={handlingTake}
+                                handlingLeave={handlingLeave}
+                                userId={user.user.id}
+                            />
                             <ChangeLog changeLog={issueInfo.changeLog}/>
                         </Box>
                     </Grid>

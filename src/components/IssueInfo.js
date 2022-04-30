@@ -16,7 +16,8 @@ import PersonIcon from '@mui/icons-material/Person';
 // app components
 import { simpleDate } from "../features/dateFormatter";
 
-export const IssueInfo = ({ issue, handlingTake, handlingLeave }) => {
+export const IssueInfo = ({ issue, handlingTake, handlingLeave, userId }) => {
+    
     return (
         <Card
             xs={{ 
@@ -32,7 +33,21 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave }) => {
                     backgroundColor: "#dbd7cc"
                 }}
                 >
+                
                 <Typography variant="h6">Ticket information</Typography>
+                {issue.handlingTeam.map(user => user._id).includes(userId) ?
+                    <Button color="error"
+                        onClick={handlingLeave}
+                    >
+                        Leave ticket!
+                    </Button>
+                    :
+                    <Button
+                        onClick={handlingTake}
+                    >
+                        Take ticket!
+                    </Button>
+                }
                 <Grid container spacing={2}>
                     <Grid item xs={6}
                         sx={{
@@ -97,7 +112,7 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave }) => {
                     
                         {issue.handlingTeam.map((user) => {
                             return(
-                                <Typography key={user._id}>
+                                <Typography key={user._id} component={'span'}>
                                     <Stack direction="row" alignItems="center" gap={1}>
                                         <PersonIcon color="success"/>
                                         {user.username}
