@@ -4,6 +4,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 // redux state management
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
 // mui components
 import {
@@ -22,12 +24,14 @@ import { IssueComments } from "../components/IssueComments";
 
 // api comp
 import  api from "../features/api";
+import get_userInfo from '../features/get_userInfo';
 
 export const IssueGet = () => {
     const user = useSelector(selectUser);
     const issueId = useParams().id;
     let navigate = useNavigate()
-
+    const dispatch = useDispatch();
+    
     // state values;
     const [issueInfo, setIssueInfo] = useState(null);
     const [authorized, setAuthorized] = useState(null)
@@ -92,12 +96,23 @@ export const IssueGet = () => {
     };
 
     const handleDelete = async() => {
-        /*
         const url = `/issue/${issueId}`;
         const config = {
             headers: { "auth-token" : user.token }
         };
-        */
+        
+        try {
+            // delete issue
+            await api.delete(url, config);
+
+            // return to project route
+            const projectUrl = `/project/${issueInfo.issue.project}`;
+            const userData = await get_userInfo(user.token);
+            dispatch(login(userData))
+            navigate(projectUrl)
+        } catch (err) {
+            navigate("/protected-route")
+        }
     };
 
     if (!user) {
@@ -149,7 +164,14 @@ export const IssueGet = () => {
                             </Button>
 
                             {user.user.role === "Admin" ?
-                                <>delete</>
+                                <Button
+                                    variant="contained"
+                                    color="error"
+                                    size="small"
+                                    onClick={handleDelete}
+                                >
+                                    <DeleteIcon />
+                                </Button>
                                 :
                                 <></>
                             }
