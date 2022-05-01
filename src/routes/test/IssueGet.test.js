@@ -107,4 +107,7 @@ describe("IssueGet component", () => {
 
     //render tests
     test.todo("render component tests")
+
+    test.todo("test edit btn");
+    test.todo("test delete btn")
 })

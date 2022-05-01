@@ -158,7 +158,7 @@ export const IssueGet = () => {
                                 color="warning"
                                 size="small"
                                 component={Link}
-                                to={`/project/${issueInfo.issue.project}/edit`}
+                                to={`/issue/${issueInfo.issue._id}/edit`}
                             >
                                 <EditIcon />
                             </Button>
