@@ -1,9 +1,12 @@
 import React from 'react'
 
+import {
+    Card
+} from "@mui/material";
 export const IssueComments = ({ comments }) => {
     return (
-        <div>
-            comments
-        </div>
+        <Card>
+            memorieof comments
+        </Card>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 // redux state management
 import { useSelector } from "react-redux";
@@ -8,8 +8,11 @@ import { selectUser } from "../features/userSlice";
 // mui components
 import {
     Box,
-    Grid
+    Grid,
+    Button
 } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 // app components
 import { LoadingPage } from "../components/LoadingPage";
@@ -86,7 +89,17 @@ export const IssueGet = () => {
         } catch (err) {
             console.log(err)
         }
-    }
+    };
+
+    const handleDelete = async() => {
+        /*
+        const url = `/issue/${issueId}`;
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+        */
+    };
+
     if (!user) {
         navigate("/")
     } else if (authorized === null) {
@@ -96,6 +109,7 @@ export const IssueGet = () => {
     } else if (authorized === true) {
         return (
             <Box
+                fullWidth
                 sx={{
                     display: "flex",
                     flexDirection: "column",
@@ -114,7 +128,32 @@ export const IssueGet = () => {
                             <ChangeLog changeLog={issueInfo.changeLog}/>
                         </Box>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} >
+                        <Box
+                            justifyContent="flex-end"
+                            sx={{
+                                marginTop: "3px",
+                                marginRight: "3px",
+                                display: "flex",
+                                flexDirection: "row"
+                            }}
+                        >
+                            <Button
+                                variant="contained"
+                                color="warning"
+                                size="small"
+                                component={Link}
+                                to={`/project/${issueInfo.issue.project}/edit`}
+                            >
+                                <EditIcon />
+                            </Button>
+
+                            {user.user.role === "Admin" ?
+                                <>delete</>
+                                :
+                                <></>
+                            }
+                        </Box>
                         <IssueComments comments={issueInfo.comments}/>
                     </Grid>
                 </Grid>
