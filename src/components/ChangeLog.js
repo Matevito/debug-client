@@ -2,7 +2,6 @@ import React from 'react'
 
 // mui comp
 import { 
-    Card,
     Paper,
     TableContainer,
     Table,
@@ -10,7 +9,6 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    Box,
     Typography,
 } from '@mui/material'
 
@@ -69,36 +67,67 @@ const Row = ({ log }) => {
 }
 
 export const ChangeLog = ({ changeLog }) => {
-    return (
+    if(!changeLog.length) {
+        return (
+            <TableContainer 
+                component={Paper}
+                sx={{ 
+                    marginTop: "10px"
+                    ,height: 400,
+                    width: '100%'
+                }}
+            >
+                <Table>
+                    <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
+                        <TableRow>
+                            <TableCell align="center" colSpan={5}>
+                                TICKET CHANGELOG!
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
 
-        <TableContainer 
-            
-            component={Paper}
-            sx={{ 
-                marginTop: "10px"
-                ,height: 400,
-                width: '100%'}}>
-            <Table>
-                <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
-                    <TableRow>
-                        <TableCell align="center" colSpan={5}>
-                            TICKET CHANGELOG!
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Property</TableCell>
-                        <TableCell>User</TableCell>
-                        <TableCell>Old value</TableCell>
-                        <TableCell>New value</TableCell>
-                        <TableCell>Date</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody sx={{ backgroundColor:"#c4c1c1" }}>
-                    {changeLog.slice(0).reverse().map((log, index) => {
-                        return <Row key={index} log={log} />
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    )
+                    <TableBody sx={{ backgroundColor:"#c4c1c1" }}>
+                        <TableRow>
+                            <TableCell align="center" colSpan={5}>
+                                <Typography>No changes been made yet to the ticket!</Typography>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        )
+    } else {
+        return (
+            <TableContainer 
+                component={Paper}
+                sx={{ 
+                    marginTop: "10px"
+                    ,height: 400,
+                    width: '100%'
+                }}
+            >
+                <Table>
+                    <TableHead sx={{ backgroundColor:"#c4c1c1"}}>
+                        <TableRow>
+                            <TableCell align="center" colSpan={5}>
+                                TICKET CHANGELOG!
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Property</TableCell>
+                            <TableCell>User</TableCell>
+                            <TableCell>Old value</TableCell>
+                            <TableCell>New value</TableCell>
+                            <TableCell>Date</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody sx={{ backgroundColor:"#c4c1c1" }}>
+                        {changeLog.slice(0).reverse().map((log, index) => {
+                            return <Row key={index} log={log} />
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        )
+    }
 }
