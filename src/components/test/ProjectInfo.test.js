@@ -2,7 +2,7 @@ import React from "react"
 import { MemoryRouter } from "react-router-dom"
 
 // testing com
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render} from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp

@@ -61,7 +61,7 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave, userId }) => {
                         <Typography variant="h7"><b>Description</b></Typography>
                         <Typography>{issue.description}</Typography>
                         
-                        <Typography variant="h7"><b>Date of creation</b></Typography>
+                        <Typography variant="h7"><b>Created</b></Typography>
                         <Typography>{simpleDate(issue.date)}</Typography>
                         
                         {issue.screenshots.length ?
@@ -108,7 +108,11 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave, userId }) => {
                         <Typography variant="h7"><b>Status</b></Typography>
                         <Typography>{issue.status}</Typography>
 
-                        <Typography variant="h7"><b>Team</b></Typography>
+                        {issue.handlingTeam.length ? 
+                            <Typography variant="h7"><b>Team</b></Typography>
+                        : 
+                            <Typography variant="h7"><b>No users assigned yet!</b></Typography>
+                        }
                     
                         {issue.handlingTeam.map((user) => {
                             return(
