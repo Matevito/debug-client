@@ -42,7 +42,7 @@ const AdminButtons = ({ handleDelete, role, projectId}) => {
                     component={Link}
                     to={`/project/${projectId}/edit`}
                 >
-                        <EditIcon />
+                    <EditIcon />
                 </Button>
                 <Button
                     variant="contained"

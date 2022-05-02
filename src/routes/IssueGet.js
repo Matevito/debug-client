@@ -115,6 +115,29 @@ export const IssueGet = () => {
         }
     };
 
+    const handleSubmitComments = async(form) => {
+        const url = `/issue/${issueId}/comment`;
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+
+        try {
+            // save comment
+            const commentRes = await api.post(url, form, config);
+            const newCommentList = commentRes.data.data.commentList
+
+            // set-up comments value
+            let newIssueInfo = { ...issueInfo}
+            newIssueInfo.comments = newCommentList;
+            setIssueInfo(newIssueInfo)
+            
+            // send form render-handler
+            return true
+        } catch (err) {
+            // send form render-hanlder
+            return false
+        }
+    }
     if (!user) {
         navigate("/")
     } else if (authorized === null) {
@@ -176,7 +199,10 @@ export const IssueGet = () => {
                                 <></>
                             }
                         </Box>
-                        <IssueComments comments={issueInfo.comments}/>
+                        <IssueComments 
+                            comments={issueInfo.comments}
+                            handleSubmit={handleSubmitComments}
+                        />
                     </Grid>
                 </Grid>
             </Box>
