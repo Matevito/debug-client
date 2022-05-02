@@ -6,7 +6,8 @@ import {
     Card,
     TextField,
     Button,
-    Chip
+    Chip,
+    CircularProgress
 } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send';
 import UploadIcon from '@mui/icons-material/Upload'
@@ -14,14 +15,14 @@ import UploadIcon from '@mui/icons-material/Upload'
 // app components
 import { detailedDate } from "../features/dateFormatter";
 
-// api com
-import api from "../features/api";
-
 const CommentForm = ({ handleSubmit }) => {
     const [message, setMessage] = useState("")
     const [screenshots, setScreenshots] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [Error, setError] = useState(false)
 
     const handleForm = async(e) => {
+        setError(false);
         // make form data
         e.preventDefault()
         const formData = new FormData();
@@ -29,20 +30,21 @@ const CommentForm = ({ handleSubmit }) => {
         screenshots.forEach((image) => {
             formData.append("screenshots", image)
         });
-
-        //todo: set loading animation
+    
+        setLoading(true);
 
         // call the rest-api
         const ApiRes = await handleSubmit(formData);
 
         // shut down loading animation
-        
+        setLoading(false)
+
         // if false set-up error;
         if(ApiRes === true ){
             setMessage("")
             setScreenshots([]);
         } else {
-
+            setError(true)
         }; 
 
     };
@@ -57,6 +59,12 @@ const CommentForm = ({ handleSubmit }) => {
     }
     return (
         <>
+            {loading ? 
+                <Box sx={{display: "flex", flexDirection: "column", alignItems:"center"}} fullWidth>
+                    <CircularProgress color="success" />
+                </Box>
+                : <></>
+            }
             <Box
                 textAlign="center"
                 sx={{ m: 0.5 , diplay: "flex", flexDirection:"column"}}
@@ -73,8 +81,8 @@ const CommentForm = ({ handleSubmit }) => {
                         
                     )
                 })}
+                
             </Box>
-            
             <form action="#" onSubmit={handleForm}>
                     <Box
                         fullWidth
