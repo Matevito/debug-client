@@ -22,17 +22,25 @@ const CommentForm = ({ handleSubmit }) => {
     const [screenshots, setScreenshots] = useState([]);
 
     const handleForm = async(e) => {
+        // make form data
         e.preventDefault()
-        const sendForm = { message };
+        const formData = new FormData();
+        formData.append("message", message);
+        screenshots.forEach((image) => {
+            formData.append("screenshots", image)
+        });
 
         //todo: set loading animation
 
-        const ApiRes = await handleSubmit(sendForm);
+        // call the rest-api
+        const ApiRes = await handleSubmit(formData);
+
         // shut down loading animation
         
         // if false set-up error;
         if(ApiRes === true ){
             setMessage("")
+            setScreenshots([]);
         } else {
 
         }; 

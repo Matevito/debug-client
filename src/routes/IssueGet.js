@@ -118,7 +118,10 @@ export const IssueGet = () => {
     const handleSubmitComments = async(form) => {
         const url = `/issue/${issueId}/comment`;
         const config = {
-            headers: { "auth-token" : user.token }
+            headers: { 
+                "auth-token" : user.token,
+                'Content-Type': 'multipart/form-data',
+            }
         };
 
         try {
@@ -130,7 +133,7 @@ export const IssueGet = () => {
             let newIssueInfo = { ...issueInfo}
             newIssueInfo.comments = newCommentList;
             setIssueInfo(newIssueInfo)
-            
+
             // send form render-handler
             return true
         } catch (err) {
