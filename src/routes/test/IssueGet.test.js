@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 // testing comps
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
@@ -15,19 +15,22 @@ import { setupServer } from "msw/node";
 
 const rootAPI = "https://pure-falls-26749.herokuapp.com/apiv1";
 const issueResponse = {
-    data: { issue: {
-        _id: "issueTestId",
-        title:" issue ticket",
-        description: "here goes a long and detailed description...",
-        project: "projectTestId",
-        status: "open",
-        priority: "high",
-        type: "feature req",
-        handlingTeam: [],
-        date: "2022-04-23T22:56:09.627Z",
-        screenshots: [],
-        v__: 0
-    }}
+    data: {
+        issue: {
+            _id: "issueTestId",
+            title:"issue ticket",
+            description: "here goes a long and detailed description...",
+            project: "projectTestId",
+            status: "open",
+            priority: "high",
+            type: "feature req",
+            handlingTeam: [],
+            date: "2022-04-23T22:56:09.627Z",
+            screenshots: [],
+            v__: 0
+        },
+        comments: [], changeLog: []
+}
 }
 
 const server = setupServer(
@@ -106,8 +109,22 @@ describe("IssueGet component", () => {
     });
 
     //render tests
-    test.todo("render component tests")
+    test("render component tests", async() => {
+        renderComponent(componentURL, devStore);
+        await screen.findByText("Ticket information");
 
-    test.todo("test edit btn");
-    test.todo("test delete btn")
+        expect(screen.getByText("issue ticket")).toBeInTheDocument()
+        expect(screen.getByText("TICKET CHANGELOG!")).toBeInTheDocument()
+        expect(screen.getByText("Issue Comments")).toBeInTheDocument()
+        expect(screen.getByLabelText("Message")).toBeInTheDocument();
+
+    })
+
+    test("test issue btns", async() => {
+        renderComponent(componentURL, adminStore);
+        await waitFor(() => screen.findByText("here goes a long and detailed description..."))
+
+        expect(screen.getByTestId("EditIcon")).toBeInTheDocument()
+        expect(screen.getByTestId("DeleteIcon")).toBeInTheDocument()
+    });
 })

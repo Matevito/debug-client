@@ -59,7 +59,7 @@ export const IssueGet = () => {
         if (user) {
             getIssueInfo()
         }
-    }, [user, issueId])
+    }, [user, issueId, navigate])
 
     const handlingTake = async() => {
         const url = `/issue/${issueId}/take-issue`;
