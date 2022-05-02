@@ -1,4 +1,5 @@
 import React from "react";
+import { MemoryRouter } from "react-router-dom"
 
 // testing components
 import { render, screen } from "@testing-library/react";
@@ -45,12 +46,12 @@ describe("IssueInfo component", () => {
         expect(screen.getByText("No screenshots")).toBeInTheDocument();
     });
     test("handles screenshots conditional", () => {
-        issueInfo.screenshots = ["url1", "url2"]; 
+        issueInfo.screenshots = ["www.url1.com", "www.url2.com"]; 
         render(
             <IssueInfo 
                 issue={issueInfo}
                 userId={userId}
-            />
+            />, {wrapper: MemoryRouter}
         )
         expect(screen.getByText("Screenshots")).toBeInTheDocument();
         expect(screen.getByText("Screenshot 1")).toBeInTheDocument();
@@ -61,7 +62,7 @@ describe("IssueInfo component", () => {
             <IssueInfo 
                 issue={issueInfo}
                 userId={userId}
-            />
+            />, {wrapper: MemoryRouter}
         )
         expect(screen.getByText("No users assigned yet!")).toBeInTheDocument();
     });
@@ -73,14 +74,14 @@ describe("IssueInfo component", () => {
             <IssueInfo 
                 issue={issueInfo}
                 userId={userId}
-            />
+            />, {wrapper: MemoryRouter}
         )
         expect(screen.getByText("Team")).toBeInTheDocument();
         expect(screen.getByText("testUser1")).toBeInTheDocument();
         expect(screen.getByText("Leave ticket!")).toBeInTheDocument();
     });
     test("check snapshot", () => {
-        const { container } = render(<IssueInfo issue={issueInfo} userId={userId}/>)
+        const { container } = render(<IssueInfo issue={issueInfo} userId={userId}/>, {wrapper: MemoryRouter})
         expect(container).toMatchSnapshot();
     });
 })

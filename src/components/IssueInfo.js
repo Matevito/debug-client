@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom"
 
 // mui components
 import {
@@ -7,7 +8,6 @@ import {
     CardContent,
     Typography,
     Grid,
-    Link,
     Stack,
     Button,
 } from "@mui/material";
@@ -77,6 +77,7 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave, userId }) => {
                         {issue.screenshots.map((urlLink, index) => {
                             return(
                                 <Link 
+                                    to={urlLink}
                                     key={index}
                                     href={urlLink}
                                     target="_blank"
@@ -116,12 +117,15 @@ export const IssueInfo = ({ issue, handlingTake, handlingLeave, userId }) => {
                     
                         {issue.handlingTeam.map((user) => {
                             return(
-                                <Typography key={user._id} component={'span'}>
-                                    <Stack direction="row" alignItems="center" gap={1}>
-                                        <PersonIcon color="success"/>
-                                        {user.username}
-                                    </Stack>
-                                </Typography>
+                                <Link key={user._id} to={`/user/${user._id}`} style={{ color: "inherit", textDecoration: "inherit"}}>
+                                    <Typography  component={'span'}>
+                                        
+                                            <Stack direction="row" alignItems="center" gap={1}>
+                                                <PersonIcon color="success"/>
+                                                {user.username}
+                                            </Stack>
+                                    </Typography>
+                                </Link>
                             )
                         })}
                         
