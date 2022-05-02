@@ -7,7 +7,8 @@ import {
     TextField,
     Button,
     Chip,
-    CircularProgress
+    CircularProgress,
+    Alert,
 } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send';
 import UploadIcon from '@mui/icons-material/Upload'
@@ -19,7 +20,7 @@ const CommentForm = ({ handleSubmit }) => {
     const [message, setMessage] = useState("")
     const [screenshots, setScreenshots] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [Error, setError] = useState(false)
+    const [error, setError] = useState(false)
 
     const handleForm = async(e) => {
         setError(false);
@@ -59,12 +60,16 @@ const CommentForm = ({ handleSubmit }) => {
     }
     return (
         <>
-            {loading ? 
-                <Box sx={{display: "flex", flexDirection: "column", alignItems:"center"}} fullWidth>
+            <Box sx={{display: "flex", flexDirection: "column", alignItems:"center"}} fullWidth>
+                {loading ? 
                     <CircularProgress color="success" />
-                </Box>
-                : <></>
-            }
+                    : <></>
+                }
+                {error ? 
+                    <Alert severity="error">Error saving message. Try again later!</Alert>
+                    : <></>
+                }
+            </Box>
             <Box
                 textAlign="center"
                 sx={{ m: 0.5 , diplay: "flex", flexDirection:"column"}}
