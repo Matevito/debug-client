@@ -8,7 +8,6 @@ import '@testing-library/jest-dom'
 import { IssueComments } from "../IssueComments";
 
 describe("IssueComments component", () => {
-    const noComments = []
     let comments;
     beforeEach(() => {
         jest.resetAllMocks();
@@ -65,5 +64,10 @@ describe("IssueComments component", () => {
         expect(screen.getByText("1")).toBeInTheDocument()
         expect(screen.getByText("2")).toBeInTheDocument()
     });
-    test.todo("renders correct form");
+    test("renders correct form", () => {
+        const mockSubmit = jest.fn();
+        render(<IssueComments comments={comments} handleSubmit={mockSubmit}/>)
+        expect(screen.getByTestId("UploadIcon")).toBeInTheDocument()
+        expect(screen.getByTestId("SendIcon")).toBeInTheDocument()
+    });
 });
