@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 // mui comp
 import {
     Box,
     Card,
+    CardContent,
     TextField,
     Button,
     Chip,
@@ -94,7 +95,6 @@ const CommentForm = ({ handleSubmit }) => {
                         sx={{
                             display: "flex",
                             flexDirection: "row",
-                            marginBottom: "50px",
                             marginLeft: "30px",
                             marginRight: "30px",
                         }}
@@ -126,22 +126,36 @@ const CommentForm = ({ handleSubmit }) => {
 
 export const IssueComments = ({ comments, handleSubmit }) => {
     return (
-        <Card
+        <Box
             sx={{
                 marginTop: "30px",
             }}
+            
         >
-            <CommentForm handleSubmit={handleSubmit}/>
-
-            <div>
+            <Card raised={true} 
+                sx={{ 
+                    maxHeight: 415,
+                    backgroundColor:"#c4c1c1"
+                }}
+            >
                 {comments.slice(0).reverse().map((comment, index) => {
                     const msg = comment.message
                     return (
-                        <div key={index}>{msg}</div>
+                        <div key={index}>{msg} /{index+1}</div>
                     )
                 })}
+            </Card>
 
-            </div>
-        </Card>
+            <Card raised={true} sx={{marginTop: "30px"}}>
+                <CardContent
+                    sx={{
+                        backgroundColor: "#dbd7cc",
+                        
+                    }}
+                >
+                    <CommentForm handleSubmit={handleSubmit}/>
+                </CardContent>
+            </Card>
+        </Box>
     )
 }
