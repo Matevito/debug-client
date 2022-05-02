@@ -5,7 +5,9 @@ const simpleDate = (string) => {
 };
 
 const detailedDate = (string) => {
-    return DateTime.fromISO(string).toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS)
+    let date = DateTime.fromISO(string,{ zone: 'utc' })
+    date.setZone('local', { keepLocalTime: true })
+    return date.toLocaleString(DateTime.DATETIME_MED)
 }
 
 export {

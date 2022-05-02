@@ -55,7 +55,7 @@ describe("IssueComments component", () => {
         expect(screen.getByText("second one")).toBeInTheDocument()
         expect(screen.getAllByText("None").length).toBe(3)
         expect(screen.getAllByText("testUser1").length).toBe(2)
-        expect(screen.getAllByText("May 2, 2022, 2:37:35 PM GMT-5").length).toBe(3)
+        expect(screen.getAllByText("May 2, 2022, 7:37 PM").length).toBe(3)
     });
     test("comp handles comments with screenshots", () => {
         comments[0].screenshots = ["testUrl1", "testUrl2"];

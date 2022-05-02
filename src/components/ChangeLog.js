@@ -72,9 +72,10 @@ export const ChangeLog = ({ changeLog }) => {
             <TableContainer 
                 component={Paper}
                 sx={{ 
-                    marginTop: "10px"
-                    ,height: 400,
-                    width: '100%'
+                    marginTop: "10px",
+                    height: 400,
+                    width: '100%',
+                    backgroundColor:"#c4c1c1"
                 }}
             >
                 <Table>
@@ -103,7 +104,8 @@ export const ChangeLog = ({ changeLog }) => {
                 sx={{ 
                     marginTop: "10px"
                     ,height: 400,
-                    width: '100%'
+                    width: '100%',
+                    backgroundColor:"#c4c1c1"
                 }}
             >
                 <Table>
