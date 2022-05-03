@@ -60,9 +60,24 @@ describe("UserDetails component", () => {
     });
 
     // authentication tests
-    test.todo("handles no user set-up");
-    test.todo("handles if the api response is negative");
+    test("handles no user set-up", () => {
+        const testURL = "/user/testing"
+        renderComponent(testURL, noLoggedUser);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/")
+    });
+    test("handles if the api response is negative", async() => {
+        const testURL = "/user/rejectThis";
+        server.use(
+            rest.get(`${rootAPI}/user/rejectThis`, (req, res, ctx) => {
+                return res(ctx.status(400))
+            })
+        );
+        renderComponent(testURL, devStore);
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
+    });
 
+    test.todo("handles if the requested user is the one making the call")
     // functional tests;
     test.todo("renders admin page");
     test.todo("renders no admin page");
