@@ -36,7 +36,6 @@ export const UserDetails = () => {
             const config = {
                 headers: { "auth-token" : user.token }
             };
-
             try {
                 const userRes = await api.get(`/user/${userId}`, config)
                 setUserInfo(userRes.data.data);
@@ -47,7 +46,11 @@ export const UserDetails = () => {
             }
         } 
         if (user) {
-            getUserInfo()
+            if (user.user.id === userId) {
+                navigate("/user/info");
+            } else {
+                getUserInfo()
+            }
         }
     }, [user, userId, navigate]);
 

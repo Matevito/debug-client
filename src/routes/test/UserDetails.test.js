@@ -77,7 +77,12 @@ describe("UserDetails component", () => {
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/protected-route")
     });
 
-    test.todo("handles if the requested user is the one making the call")
+    test("handles if the requested user is the one making the call", async() => {
+        const testURL = "/user/1";
+        renderComponent(testURL, devStore)
+        await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/user/info")
+    })
     // functional tests;
     test.todo("renders admin page");
     test.todo("renders no admin page");
