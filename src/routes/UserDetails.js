@@ -64,7 +64,19 @@ export const UserDetails = () => {
     }, [user, userId, navigate]);
 
     // make user admin;
-
+    const makeAdmin = async() => {
+        const config = {
+            headers: { "auth-token" : user.token }
+        };
+        const url = `/user/${userId}/make-admin`
+        try {
+            await api.put(url, {},config);
+            const userRes = await api.get(`/user/${userId}`, config)
+            setUserInfo(userRes.data.data);
+        } catch(err) {
+            navigate("/protected-route")
+        }
+    }
     if (!user) {
         navigate("/");
     } else if (authorized === null) {
@@ -143,6 +155,7 @@ export const UserDetails = () => {
                                 size="large"
                                 variant="contained"
                                 startIcon={<EngineeringIcon />}
+                                onClick={makeAdmin}
                             >
                                 make admin
                             </Button>

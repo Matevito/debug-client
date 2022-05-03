@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 // testing comps
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
 // test comp
@@ -14,11 +14,36 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 const rootAPI = "https://pure-falls-26749.herokuapp.com/apiv1";
-const UserResponse = {}
+const UserResponse = {
+    data: {
+        user: {
+            username: "adminUser",
+            email: "admin@email.com",
+            id: "adminID",
+            role: "Admin"
+        },
+        projects: {list: [], number: 0},
+        issues: {list: [{_id: "issueId", title: "testTicket"}], number: 1},
+    }
+}
 
 const server = setupServer(
-    rest.get(`${rootAPI}/user/adminUserId`, (req, res, ctx) => {
-        return(ctx.status(200), ctx.json(UserResponse));
+    rest.get(`${rootAPI}/user/adminID`, (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(UserResponse));
+    }),
+    rest.get(`${rootAPI}/user/devID`, (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json({
+            data: {
+                user: {
+                    username: "developer",
+                    email: "developer@email.arg",
+                    id: "devID",
+                    role:"Developer"
+                },
+                projects: {list: [], number: 0},
+                issues: {list: [{_id: "issueId", title: "testTicket"}], number: 1},
+            }
+        }))
     })
 );
 const mockedUsedNavigate = jest.fn();
@@ -84,7 +109,23 @@ describe("UserDetails component", () => {
         expect(mockedUsedNavigate).toHaveBeenCalledWith("/user/info")
     })
     // functional tests;
-    test.todo("renders admin page");
-    test.todo("renders no admin page");
-    test.todo("handles makeAdmin btn")
+    test("renders admin page", async() => {
+        const testURL = "/user/adminID";
+        const { container } = renderComponent(testURL, devStore)
+        await screen.findByTestId("GroupsIcon");
+        expect(container).toMatchSnapshot();
+    });
+    test("renders no admin page", async() => {
+        const testURL = "/user/devID";
+        const { container } = renderComponent(testURL, adminStore)
+        await screen.findByTestId("GroupsIcon");
+        expect(container).toMatchSnapshot();
+    });
+    test("handles makeAdmin btn", async() => {
+        const testURL = "/user/devID";
+        renderComponent(testURL, adminStore)
+        await screen.findByTestId("GroupsIcon");
+        const adminBtn = screen.getByText("make admin")
+        expect(adminBtn).toBeInTheDocument()
+    })
 })
