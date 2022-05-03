@@ -25,6 +25,8 @@ import { IssueCreate } from "./routes/IssueCreate";
 import { IssueGet } from "./routes/IssueGet";
 import { IssueEdit } from "./routes/IssueEdit";
 
+import { UserDetails } from "./routes/UserDetails";
+
 export const Router = () => {
     const user = useSelector(selectUser);
     return (
@@ -35,6 +37,9 @@ export const Router = () => {
 
                 <Route path="/log-in" element={user ? <Navigate to="/" /> : <Login />} /> 
                 <Route path="/sign-in" element={user ? <Navigate to="/" /> : <Signin />}/>
+
+                <Route path="/user/info" element={<>display user information</>} />
+                <Route path="/user/:id" element={<UserDetails />} />
 
                 <Route path="/project/create" element={<ProjectCreate />}/>
                 <Route path="/project/:id" element={<ProjectGet />} />
