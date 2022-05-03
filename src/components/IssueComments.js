@@ -27,7 +27,7 @@ const Row = ({ comment }) => {
                 <Typography>{comment.user.username}</Typography>
             </TableCell>
             <TableCell align="left" colSpan={4}>
-                <Typography><div dangerouslySetInnerHTML={{__html: comment.message}} /></Typography>
+                <Typography component={'span'}><div dangerouslySetInnerHTML={{__html: comment.message}} /></Typography>
             </TableCell>
             <TableCell align="center">
                 <Typography>
@@ -50,7 +50,7 @@ const Row = ({ comment }) => {
                 </Typography>
             </TableCell>
             <TableCell align="left">
-                <Typography>{detailedDate(comment.date)}</Typography>
+                <Typography >{detailedDate(comment.date)}</Typography>
             </TableCell>
         </TableRow>
     )
