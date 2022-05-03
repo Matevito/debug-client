@@ -27,7 +27,7 @@ const Row = ({ comment }) => {
                 <Typography>{comment.user.username}</Typography>
             </TableCell>
             <TableCell align="left" colSpan={4}>
-                <Typography>{comment.message}</Typography>
+                <Typography><div dangerouslySetInnerHTML={{__html: comment.message}} /></Typography>
             </TableCell>
             <TableCell align="center">
                 <Typography>

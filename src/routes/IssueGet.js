@@ -121,6 +121,7 @@ export const IssueGet = () => {
             headers: { 
                 "auth-token" : user.token,
                 'Content-Type': 'multipart/form-data',
+                Accept: "application/json",
             }
         };
 
