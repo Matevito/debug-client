@@ -32,8 +32,26 @@ export const UserDetails = () => {
 
     // set-up user info
     useEffect(() => {
+        async function getUserInfo () {
+            const config = {
+                headers: { "auth-token" : user.token }
+            };
 
-    }, []);
+            try {
+                const userRes = await api.get(`/user/${userId}`, config)
+                setUserInfo(userRes.data.data);
+                setAuthorized(true)
+            } catch(err) {
+                setAuthorized(false);
+                navigate("/protected-route")
+            }
+        } 
+        if (user) {
+            getUserInfo()
+        }
+    }, [user, userId, navigate]);
+
+    // make user admin;
 
     if (!user) {
         navigate("/");
