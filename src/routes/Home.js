@@ -90,7 +90,7 @@ export const Home = () => {
                 <Card raised={true} sx={{width: "1200px", marginBottom: "20px"}}>
                     <CardContent
                         sx={{
-                            backgroundColor:"#778899"
+                            backgroundColor:"#C0C0C0"
                         }}
                     >
                         <Grid container spacing={2} sx={{m:2}}>
@@ -107,13 +107,13 @@ export const Home = () => {
                 <Card raised={true} sx={{width: "1200px", marginBottom: "20px"}}>
                     <CardContent
                         sx={{
-                            backgroundColor:"#778899"
+                            backgroundColor:"#C0C0C0"
                         }}
                     >
                         <Grid container spacing={2} sx={{m:2}}>
                             <Grid item xs={5}>
-                                <Typography variant="h4"> User Tickets: {user.issues.number}</Typography>
-                                ... graphic
+                                <Typography variant="h4">Assigned tickets: {user.issues.list.filter(i => i.status !== "solved").length}</Typography>
+                                ....graphic...
                             </Grid>
                             <Grid item xs={6} >
                                 <UserTicketsTable issues={user.issues.list} projects={user.projects.list}/>
