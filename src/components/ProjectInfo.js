@@ -5,6 +5,8 @@ import { VictoryPie, VictoryTheme } from "victory"
 // mui comp
 import {
     Box,
+    Card,
+    CardContent,
     Typography,
     Stack
 } from "@mui/material"
@@ -45,12 +47,11 @@ export const ProjectInfo = ({ projectData }) => {
             
             <>
             <Box
-            sx={{
-                marginLeft: "5px",
-                display: "flex",
-                flexDirection: "column",
-                
-            }}
+                sx={{
+                    m:2,
+                    display: "flex",
+                    flexDirection: "column",
+                }}
             >
                 <Typography variant="h4"><b>{project.title}</b></Typography>
                 <Typography variant="h6" ><b>Description</b></Typography>
@@ -58,7 +59,7 @@ export const ProjectInfo = ({ projectData }) => {
 
                 <Typography variant="h6"><b>Team Leader</b></Typography>
                 <Typography  component={'span'}>
-                    <Link to={`/user/${project.teamLeader._id}}`} style={{ color: "inherit"}} >
+                    <Link to={`/user/${project.teamLeader._id}}`} style={{ color: "inherit", textDecoration: "inherit"}} >
                         <Stack direction="row" alignItems="center" gap={1}>
                             <PersonIcon color="error"/>
                             {project.teamLeader.username}
@@ -67,10 +68,10 @@ export const ProjectInfo = ({ projectData }) => {
                 </Typography>
 
                 <Typography variant="h6"><b>Team members</b></Typography>
-                {project.team.map((user) => {
+                {project.team.filter(user => user._id !== project.teamLeader._id).map((user) => {
                     return(
                         <Typography key={user._id} component={'span'}>
-                            <Link to={`/user/${user._id}`} style={{ color: "inherit"}}>
+                            <Link to={`/user/${user._id}`} style={{ color: "inherit", textDecoration: "inherit" }}>
                                 <Stack direction="row" alignItems="center" gap={1}>
                                     <PersonIcon color="success"/>
                                     {user.username}

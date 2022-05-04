@@ -134,7 +134,7 @@ export const UserDetails = () => {
                             >
                                 <Stack direction="row" alignItems="center" gap={3}>
                                     <GroupsIcon size="large"/>
-                                    <Typography variant="h6"><b>Project user is part </b></Typography>
+                                    <Typography variant="h6"><b>Projects user is part </b></Typography>
                                     <Typography variant="h5">{userInfo.projects.number}</Typography>
                                 </Stack>
                                 

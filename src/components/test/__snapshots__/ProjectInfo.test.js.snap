@@ -5,7 +5,7 @@ exports[`ProjectInfo component handles no props 1`] = `<div />`;
 exports[`ProjectInfo component renders basic proj components 1`] = `
 <div>
   <div
-    class="MuiBox-root css-1hug7b0"
+    class="MuiBox-root css-1nn3c3o"
   >
     <h4
       class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
@@ -38,6 +38,7 @@ exports[`ProjectInfo component renders basic proj components 1`] = `
     >
       <a
         href="/user/one}"
+        style="text-decoration: inherit;"
       >
         <div
           class="css-1rlitzi-MuiStack-root"
@@ -68,31 +69,8 @@ exports[`ProjectInfo component renders basic proj components 1`] = `
       class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     >
       <a
-        href="/user/one"
-      >
-        <div
-          class="css-1rlitzi-MuiStack-root"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-colorSuccess MuiSvgIcon-fontSizeMedium css-4b67si-MuiSvgIcon-root"
-            data-testid="PersonIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-            />
-          </svg>
-          user1
-        </div>
-      </a>
-    </span>
-    <span
-      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-    >
-      <a
         href="/user/two"
+        style="text-decoration: inherit;"
       >
         <div
           class="css-1rlitzi-MuiStack-root"
