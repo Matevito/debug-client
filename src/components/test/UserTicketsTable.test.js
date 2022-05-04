@@ -7,10 +7,7 @@ import '@testing-library/jest-dom'
 import { UserTicketsTable } from "../UserTicketsTable";
 
 describe("UserTicketsTable component", () => {
-    test("handles no issues in props", () => {
-        render(<UserTicketsTable issues={[]} projects={[]}/>)
-        expect(screen.getByText("No issues assigned yet!")).toBeInTheDocument();
-    });
+    
     test("renders a correct table", () => {
         const testIssues = [
             {

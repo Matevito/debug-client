@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Link } from "react-router-dom";
 import {
-    Box,
     Table,
     TableContainer,
     TableHead,
@@ -60,47 +59,33 @@ const Row = ({ issue, project}) => {
 }
 
 export const UserTicketsTable = ({ issues, projects}) => {
-    if(!issues.length) {
-        return (
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}
-            >
-                <Typography variant="h5"> No issues assigned yet!</Typography>
-            </Box>
-        )
-    } else {
-        return (
-            <TableContainer sx={{height: 350, backgroundColor: "#FFE4B5"}}>
-                <Table sx={{ backgroundColor: "#FFE4B5"}}>
-                    <TableHead sx={{backgroundColor: "#F4A460"}}>
-                        <TableRow>
-                            <TableCell align="center" colSpan={5}>
-                                USER TICKETS
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell align="left">TITLE</TableCell>
-                            <TableCell align="left">PRIORITY</TableCell>
-                            <TableCell align="left">TYPE</TableCell>
-                            <TableCell align="left">PROJECT</TableCell>
-                            <TableCell align="left">LINK</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody sx={{ backgroundColor: "#FFE4B5"}}>
-                        {issues.filter(i => i.status !== "solved").map((issue, index) => {
-                            const issueProject = projects.find(project => project._id === issue.project);
-                            return (
-                                <Row key={index} issue={issue} project={issueProject} />
-                            )
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        )
-    }
+    return (
+        <TableContainer sx={{height: 350, backgroundColor: "#FFE4B5"}}>
+            <Table sx={{ backgroundColor: "#FFE4B5"}}>
+                <TableHead sx={{backgroundColor: "#F4A460"}}>
+                    <TableRow>
+                        <TableCell align="center" colSpan={5}>
+                            USER TICKETS
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell align="left">TITLE</TableCell>
+                        <TableCell align="left">PRIORITY</TableCell>
+                        <TableCell align="left">TYPE</TableCell>
+                        <TableCell align="left">PROJECT</TableCell>
+                        <TableCell align="left">LINK</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody sx={{ backgroundColor: "#FFE4B5"}}>
+                    {issues.filter(i => i.status !== "solved").map((issue, index) => {
+                        const issueProject = projects.find(project => project._id === issue.project);
+                        return (
+                            <Row key={index} issue={issue} project={issueProject} />
+                        )
+                    })}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
+    
 }

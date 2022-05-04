@@ -96,7 +96,14 @@ export const Home = () => {
                         }}
                     >
                         <Grid container spacing={2} sx={{m:2}}>
-                            <Grid item xs={6}>
+                            <Grid item xs={6} 
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                }}
+                            >
                                 <ProjectsTable  projects={user.projects.list}/>
                             </Grid>
                             <Grid item xs={6}>
