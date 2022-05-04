@@ -11,6 +11,7 @@ import {
     Card, 
     CardContent,
     Typography,
+    Grid,
     Button,
 
 } from "@mui/material";
@@ -18,6 +19,8 @@ import {
 // Home components
 import { Welcome } from "../components/Welcome";
 import { LoadingPage } from "../components/LoadingPage";
+import { ProjectsTable } from "../components/ProjectsTable";
+import { UserTicketsTable } from '../components/UserTicketsTable';
 
 // api comp
 import api from "../features/api";
@@ -79,11 +82,45 @@ export const Home = () => {
                     flexDirection: "column",
                     alignItems: "center",
                     hieght: "100vh",
-                    m: 3
+                    m: 2
                 }}
             >
                 {user.user.role === "Admin" ? <>only admin</> : <></>}
                 {user.user.role !== "Developer" ? <>team leader and admin</> : <></>}
+                <Card raised={true} sx={{width: "1200px", marginBottom: "20px"}}>
+                    <CardContent
+                        sx={{
+                            backgroundColor:"#778899"
+                        }}
+                    >
+                        <Grid container spacing={2} sx={{m:2}}>
+                            <Grid item xs={6}>
+                                <ProjectsTable  projects={user.projects.list}/>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography variant="h4"> User projects: {user.projects.number}</Typography>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
+
+                <Card raised={true} sx={{width: "1200px", marginBottom: "20px"}}>
+                    <CardContent
+                        sx={{
+                            backgroundColor:"#778899"
+                        }}
+                    >
+                        <Grid container spacing={2} sx={{m:2}}>
+                            <Grid item xs={5}>
+                                <Typography variant="h4"> User Tickets: {user.issues.number}</Typography>
+                                ... graphic
+                            </Grid>
+                            <Grid item xs={6} >
+                                <UserTicketsTable issues={user.issues.list} projects={user.projects.list}/>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
             </Box>
             </>
         )
