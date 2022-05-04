@@ -7,7 +7,12 @@ import { selectUser } from "../features/userSlice";
 
 // mui comp
 import {
-    Box
+    Box,
+    Card, 
+    CardContent,
+    Typography,
+    Button,
+
 } from "@mui/material";
 
 // Home components
@@ -34,6 +39,7 @@ export const Home = () => {
             try {
                 const listRes = await api.get(url, config);
                 setProjectList(listRes.data.data);
+                setAuthorized(true);
             } catch(err) {
                 setAuthorized(false);
                 navigate("/protected-route");
@@ -61,11 +67,24 @@ export const Home = () => {
     } else if (authorized === true) {
         return (
             <>
-            {user.user.role === "Admin" ? <>only admin</> : <></>}
-            {user.user.role !== "Developer" ? <>team leader and admin</> : <></>}
-    
-            <span>user projects</span>
-            <span>user info</span>u
+            <Card sx={{ width: "100%"}}>
+                    <CardContent sx={{ backgroundColor: "#A9A9A9"}}>
+                        <Typography variant="h6">Logged as {user.user.role}</Typography>
+                    </CardContent>
+            </Card>
+            <Box
+                fullWidth
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    hieght: "100vh",
+                    m: 3
+                }}
+            >
+                {user.user.role === "Admin" ? <>only admin</> : <></>}
+                {user.user.role !== "Developer" ? <>team leader and admin</> : <></>}
+            </Box>
             </>
         )
     }
