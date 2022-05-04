@@ -109,7 +109,7 @@ exports[`UserDetails component renders admin page 1`] = `
                 class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
               >
                 <b>
-                  Project user is part 
+                  Projects user is part 
                 </b>
               </h6>
               <h5
@@ -262,7 +262,7 @@ exports[`UserDetails component renders no admin page 1`] = `
                 class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
               >
                 <b>
-                  Project user is part 
+                  Projects user is part 
                 </b>
               </h6>
               <h5
