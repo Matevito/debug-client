@@ -104,7 +104,7 @@ export const Home = () => {
                                     justifyContent: "center"
                                 }}
                             >
-                                <ProjectsTable  projects={user.projects.list}/>
+                                <ProjectsTable  projects={user.projects.list} title={"USER PROJECTS"}/>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography variant="h4"> User projects: {user.projects.number}</Typography>
