@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { VictoryPie } from 'victory';
 
 // redux state management
 import { useSelector } from "react-redux";
@@ -12,8 +13,6 @@ import {
     CardContent,
     Typography,
     Grid,
-    Button,
-
 } from "@mui/material";
 
 // Home components
@@ -21,6 +20,8 @@ import { Welcome } from "../components/Welcome";
 import { LoadingPage } from "../components/LoadingPage";
 import { ProjectsTable } from "../components/ProjectsTable";
 import { UserTicketsTable } from '../components/UserTicketsTable';
+
+import setUpIssueTable from "../features/setUpIssueTable";
 
 // api comp
 import api from "../features/api";
@@ -50,6 +51,7 @@ export const Home = () => {
         };
 
         if (user){
+            // set-up data;
             if (user.user.role !== "Admin"){
                 setAuthorized(true)
             } else {
@@ -113,7 +115,20 @@ export const Home = () => {
                         <Grid container spacing={2} sx={{m:2}}>
                             <Grid item xs={5}>
                                 <Typography variant="h4">Assigned tickets: {user.issues.list.filter(i => i.status !== "solved").length}</Typography>
-                                ....graphic...
+                                <Typography variant="h4">Solved tickets: {user.issues.list.filter(i => i.status === "solved").length}</Typography>
+                                <Box sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    m: 2
+                                }}>
+                                    {user.issues.number > 0 ? 
+                                        <VictoryPie
+                                            innerRadius={50}
+                                            data={setUpIssueTable(user.issues.list)}
+                                        />
+                                    : <></>
+                                    }
+                                </Box>
                             </Grid>
                             <Grid item xs={6} >
                                 <UserTicketsTable issues={user.issues.list} projects={user.projects.list}/>
