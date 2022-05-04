@@ -130,8 +130,17 @@ export const Home = () => {
                                     }
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} >
-                                <UserTicketsTable issues={user.issues.list} projects={user.projects.list}/>
+                            <Grid item xs={6} sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                justifyContent: "center"
+                            }}>
+                                {user.issues.list.filter(i => i.status !== "solved").length > 0 ?
+                                    <UserTicketsTable issues={user.issues.list} projects={user.projects.list}/>
+                                    :
+                                    <Typography variant="h5">You don't have tickets assigned. Take one from one of the projects you're into</Typography>
+                                }
                             </Grid>
                         </Grid>
                     </CardContent>
