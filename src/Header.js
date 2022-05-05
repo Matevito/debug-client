@@ -47,6 +47,7 @@ export const Header = () => {
         // erase token & set to null redux user value
         localStorage.removeItem("deb-token");
         dispatch(logout());
+        navigate("/")
     };
     const handleUserInfo = (e) => {
         handleCloseMenu();
