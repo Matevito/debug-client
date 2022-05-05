@@ -29,7 +29,9 @@ import { UserInfo } from "./routes/UserInfo";
 export const Router = () => {
     const user = useSelector(selectUser);
     return (
-        <BrowserRouter>
+        <BrowserRouter
+            basename="/debug-client/"
+        >
             <Header />
             <Routes>
                 <Route exact path="/" element={<Home />}/>
