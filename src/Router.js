@@ -30,7 +30,7 @@ export const Router = () => {
     const user = useSelector(selectUser);
     return (
         <BrowserRouter
-            basename="/debug-client/"
+            basename="/debug-client"
         >
             <Header />
             <Routes>
