@@ -86,7 +86,6 @@ export const Home = () => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    hieght: "100vh",
                     m: 2
                 }}
             >
