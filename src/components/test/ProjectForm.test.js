@@ -48,8 +48,7 @@ describe("ProjectForm component", () => {
         expect(screen.getByText("Submit")).toBeInTheDocument();
         expect(screen.getByText("Team Leader")).toBeInTheDocument();
     });
-    //test.todo("renders form with a project value");
-    //test.todo("renders parsed errors");
+    
     test("component handles submit", () => {
         const mockSubmit = jest.fn();
         render(

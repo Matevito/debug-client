@@ -17,7 +17,7 @@ exports[`Home component handles developer 1`] = `
     </div>
   </div>
   <div
-    class="MuiBox-root css-1u3twe0"
+    class="MuiBox-root css-ytygsf"
   >
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiCard-root css-k363oc-MuiPaper-root-MuiCard-root"
@@ -276,7 +276,7 @@ exports[`Home component render team leader table 1`] = `
     </div>
   </div>
   <div
-    class="MuiBox-root css-1u3twe0"
+    class="MuiBox-root css-ytygsf"
   >
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiCard-root css-k363oc-MuiPaper-root-MuiCard-root"
@@ -575,7 +575,7 @@ exports[`Home component renders admin user tables 1`] = `
     </div>
   </div>
   <div
-    class="MuiBox-root css-1u3twe0"
+    class="MuiBox-root css-ytygsf"
   >
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiCard-root css-k363oc-MuiPaper-root-MuiCard-root"

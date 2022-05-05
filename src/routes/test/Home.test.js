@@ -63,7 +63,11 @@ describe("Home component", () => {
     })
 
     // auth tests
-    test.todo("handles user not logged-in");
+    test("handles user not logged-in", () => {
+        renderComponent(noLoggedUser);
+        // renders welcome component
+        expect(screen.getByText("Tickets!")).toBeInTheDocument();
+    });
     test("handles error fetching admin user", async() => {
         renderComponent(adminStore);
         await waitFor(() => mockedUsedNavigate.mock.lastCall[0]);

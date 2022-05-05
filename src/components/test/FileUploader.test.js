@@ -39,5 +39,4 @@ describe("FileUploader component", () => {
         expect(screen.getByText("second_image.div")).toBeInTheDocument()
         expect(screen.getByText("third_image.png")).toBeInTheDocument()
     });
-    //test.todo comp handles deleteFile function
 })

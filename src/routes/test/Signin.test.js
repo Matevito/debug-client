@@ -22,16 +22,4 @@ describe("Signin component", () =>  {
         expect(screen.getByTestId("repPassword")).toBeInTheDocument();
         expect(screen.getByRole("button")).toBeInTheDocument();
     });
-    test.todo("form handles input"/*, () => {
-        render(<Signin />, {wrapper: MemoryRouter});
-        // get input fields
-        const username = screen.getByRole("textbox", {name: "Username"})
-        const password = screen.getByTestId("password");
-
-        // use input fields
-        userEvent.type(username, "test-user");
-        userEvent.type(password, "testPassword");
-        // check changes on input fields
-        screen.debug();
-    }*/);
 })
