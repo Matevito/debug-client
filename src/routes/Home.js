@@ -104,9 +104,21 @@ export const Home = () => {
                                     justifyContent: "center"
                                 }}
                             >
-                                <ProjectsTable  projects={user.projects.list} title={"USER PROJECTS"}/>
+                                {user.projects.number > 0 ? 
+                                    <ProjectsTable  projects={user.projects.list} title={"USER PROJECTS"}/>
+                                    : 
+                                    <Typography variant="h5">You are not currently assigned to a project. Comunicate with an admin to be assigned to a project!</Typography>
+                                }
+                                
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={6} 
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                }}
+                            >
                                 <Typography variant="h4"> User projects: {user.projects.number}</Typography>
                             </Grid>
                         </Grid>
@@ -146,7 +158,7 @@ export const Home = () => {
                                 {user.issues.list.filter(i => i.status !== "solved").length > 0 ?
                                     <UserTicketsTable issues={user.issues.list} projects={user.projects.list}/>
                                     :
-                                    <Typography variant="h5">You don't have tickets assigned. Take one from one of the projects you're into</Typography>
+                                    <Typography variant="h5">You don't have tickets assigned. Take one from one of the projects you're into.</Typography>
                                 }
                             </Grid>
                         </Grid>
