@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
+// mui comp
 import {
     Link as LinkMui,
     Box,
@@ -15,6 +16,8 @@ import LocalSeeIcon from '@mui/icons-material/LocalSee';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import SecurityIcon from '@mui/icons-material/Security';
 import GitHubIcon from '@mui/icons-material/GitHub';
+
+import WelcomeImage from "../images/welcomeImage.png";
 
 export const Welcome = () => {
     return (
@@ -45,7 +48,7 @@ export const Welcome = () => {
             </Box>
 
             <Grid container spacing={2} sx={{m:3}}>
-                <Grid item xs={6}
+                <Grid item xs={5}
                     sx={{
                         m:2,
                         marginLeft: "85px",
@@ -86,8 +89,17 @@ export const Welcome = () => {
                     </Stack>
                     
                 </Grid>
-                <Grid item xs={6}>
-                    
+                <Grid item xs={5}>
+                    <img 
+                        className="welcomeImage"
+                        src={WelcomeImage}
+                        alt="app component.."
+                        style={{
+                            height:"100%",
+                            width: "100%",
+                            objectFit: "contain"
+                        }}
+                    />
                 </Grid>
             </Grid>
             <LinkMui
