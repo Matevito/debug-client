@@ -1,7 +1,5 @@
-import { useEffect} from "react"
+import { useEffect, useRef } from "react"
 import { Router } from "./Router"
-
-import { Container } from "@mui/material";
 
 // redux comp
 import { useDispatch } from "react-redux";
@@ -12,7 +10,7 @@ import get_userInfo from "./features/get_userInfo";
 
 function App() {
   const dispatch = useDispatch();
-
+  const ref = useRef(null)
   useEffect(() => {
     async function fetchAPI() {
       const storedToken = localStorage.getItem("deb-token");
@@ -26,10 +24,16 @@ function App() {
           dispatch(login(userData));
         }
       }
-    };
-    
+    }
     fetchAPI();
-  })
+    ref.current = setInterval(fetchAPI, 3 * 60 * 1000)
+    return () => {
+      if (ref.current) {
+        clearInterval(ref.current)
+      }
+    }
+  }, [dispatch])
+
   return (
         <Router />
   );
