@@ -5,8 +5,6 @@ import { VictoryPie, VictoryTheme } from "victory"
 // mui comp
 import {
     Box,
-    Card,
-    CardContent,
     Typography,
     Stack
 } from "@mui/material"

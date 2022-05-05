@@ -8,8 +8,6 @@ import { selectUser } from "./features/userSlice";
 
 // routes components
 import { Header } from "./Header";
-import { Footer } from "./Footer";
-
 import { Protected } from "./routes/Protected";
 import { Code404 } from "./routes/Code404"
 
@@ -54,7 +52,6 @@ export const Router = () => {
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
                 <Route path="*" element={<Code404 />} />
             </Routes>
-            <Footer />
         </BrowserRouter>
     )
 }

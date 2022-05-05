@@ -31,17 +31,7 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
                 new Array(usersList.length).fill(false)
             )
         }
-    }, [usersList]);
-
-    useEffect(() => {
-        if (project) {
-            setTitle(project.title);
-            setDescription(project.setDescription);
-            setTeam(project.team);
-            setTeamLeader(project.teamLeader);
-            // set values of teamState and teamLState
-        }
-    },[])
+    }, [usersList, project]);
 
     const handleTeamBoxes = (position) => {
         // change checkbox state
@@ -69,11 +59,7 @@ export const ProjectForm = ({ usersList, errors, handleSubmit,  project }) => {
                 
             } else {
                 // remove team members from project
-                const newTeam = team.filter((id) => {
-                    if (id !== selectedUser.user.id){
-                        return id
-                    }
-                });
+                const newTeam = team.filter(id =>  id !== selectedUser.user.id );
                 // check if user is in the array
                 // remove user from the array
                 setTeam(newTeam);
