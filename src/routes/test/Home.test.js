@@ -49,6 +49,7 @@ describe("Home component", () => {
     beforeEach(() => {
         const usersData = getData();
         noLoggedUser = usersData[0];
+        devStore = usersData[1];
         adminStore = usersData[3];
     })
     // required to mock rest-api server
@@ -68,7 +69,11 @@ describe("Home component", () => {
     });
 
     // functional tests
-    test.todo("handles developer");
+    test("handles developer", async() => {
+        const { container } = renderComponent(devStore);
+        await screen.findByText("Logged as Developer");
+        expect(container).toMatchSnapshot()
+    });
     test.todo("render team leader table");
     test.todo("renders admin user tables");
 })
