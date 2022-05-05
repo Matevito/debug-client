@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter , Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Navigate } from "react-router-dom";
 
 // redux state management
@@ -29,8 +29,8 @@ import { UserInfo } from "./routes/UserInfo";
 export const Router = () => {
     const user = useSelector(selectUser);
     return (
-        <HashRouter 
-            basename="/debug-client/"
+        <BrowserRouter
+            basename="/Matevito/debug-client/"
         >
             <Header />
             <Routes>
@@ -54,6 +54,6 @@ export const Router = () => {
                 <Route path="/protected-route" element={user ? <Protected /> : <Navigate to="/" /> } />
                 <Route path="*" element={<Code404 />} />
             </Routes>
-        </HashRouter >
+        </BrowserRouter>
     )
 }

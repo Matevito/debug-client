@@ -27,7 +27,7 @@ export const Welcome = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                height: "100vh",
+                height: "100%",
                 backgroundColor: "#FFE4C4"
             }}
         >
