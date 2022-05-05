@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { VictoryPie } from 'victory';
 
 // redux state management
@@ -13,15 +13,16 @@ import {
     CardContent,
     Typography,
     Grid,
-    Button,
 } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
 
 // Home components
 import { Welcome } from "../components/Welcome";
 import { LoadingPage } from "../components/LoadingPage";
 import { ProjectsTable } from "../components/ProjectsTable";
 import { UserTicketsTable } from '../components/UserTicketsTable';
+
+import { AdminCard } from "../components/AdminCard";
+import { TeamLeaderCard } from '../components/TeamLeaderCard';
 
 import setUpIssueTable from "../features/setUpIssueTable";
 
@@ -179,111 +180,3 @@ export const Home = () => {
         )
     }
 };
-
-const AdminCard = ({ projects }) => {
-    return(
-        <Card raised={true} sx={{width: "1200px", marginBottom: "20px"}}>
-            <CardContent sx={{ backgroundColor:"#C0C0C0" }}
-            >
-                <Grid container spacing={2} sx={{m:2}}>
-                    <Grid item xs={5} 
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <Typography variant="h5">There are currently {projects.length} projects on db.</Typography>
-                        <Typography variant="h6" align="center">
-                            Users have solved a total of {projects.reduce((total, proj) => {
-                                return total + proj.solvedIssues
-                            }, 0)} tickets in all projects.
-                            There are currently {projects.reduce((total, proj) => {
-                                const projLeftIssues = proj.issues - proj.solvedIssues;
-                                return total + projLeftIssues
-                            }, 0)} That need to be handled!
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6} 
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}
-                    >
-                        {projects.length > 0 ? 
-                            <ProjectsTable title="PROJECTS ON APP" projects={projects} />
-                            :
-                            <Typography variant="h5">There are no projects currently on db. Why not create one?</Typography>
-                        }
-                            <Button 
-                                align="center"
-                                color="warning"
-                                variant="contained"
-                                size="large"
-                                sx={{marginTop: "10px"}}
-                                component={Link}
-                                to={"/project/create"}
-                                startIcon={<AddIcon />}
-                            >
-                                create a project
-                            </Button>
-                    </Grid>
-                </Grid>
-            </CardContent>
-        </Card>
-    )
-};
-
-const TeamLeaderCard = ({ projects }) => {
-    return(
-        <Card raised={true} sx={{width: "1200px", marginBottom: "20px"}}>
-            <CardContent sx={{ backgroundColor:"#C0C0C0" }}
-            >
-                <Grid container spacing={2} sx={{m:2}}>
-                    <Grid item xs={5} 
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <Typography variant="h4">
-                            Projects you are leading: {projects.length}
-                        </Typography>
-                        <Typography variant="h6" align="center">
-                            Your teams have solved {projects.reduce((total, proj) => {
-                                return total + proj.solvedIssues
-                            }, 0)} tickets.
-                            There are currently {projects.reduce((total, proj) => {
-                                const projLeftIssues = proj.issues - proj.solvedIssues;
-                                return total + projLeftIssues
-                            }, 0)} left to solve. Good luck!
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6} 
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            
-                        }}
-                    >
-                        {projects.length > 0 ? 
-                            <ProjectsTable 
-                                title={"PROJECTS YOU'RE LEADING!"}
-                                projects={projects}
-                            />
-                            :
-                            <Typography variant="h5">You're not leading currently any proyects. Communicate with an admin to take the lead of a project.</Typography>
-                        }
-                    </Grid>
-                </Grid>
-            </CardContent>
-        </Card>
-    )
-}

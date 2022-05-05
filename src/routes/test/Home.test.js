@@ -20,6 +20,7 @@ const server = setupServer(
         return res(ctx.status(400), ctx.json({ error: "error fetching data"}))
     })
 );
+
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -50,6 +51,7 @@ describe("Home component", () => {
         const usersData = getData();
         noLoggedUser = usersData[0];
         devStore = usersData[1];
+        teamLeaderStore = usersData[2];
         adminStore = usersData[3];
     })
     // required to mock rest-api server
@@ -74,6 +76,21 @@ describe("Home component", () => {
         await screen.findByText("Logged as Developer");
         expect(container).toMatchSnapshot()
     });
-    test.todo("render team leader table");
-    test.todo("renders admin user tables");
+    test("render team leader table", async() => {
+        const { container } = renderComponent(teamLeaderStore);
+        await screen.findByText("Logged as Team leader");
+        expect(container).toMatchSnapshot()
+    });
+    test("renders admin user tables", async() => {
+        server.use(
+            rest.get(`*`, (req, res, ctx) => {
+                return res(ctx.status(200), ctx.json({
+                    data: []
+                }))
+            })
+        )
+        const { container } = renderComponent(adminStore);
+        await screen.findByText("Logged as Admin");
+        expect(container).toMatchSnapshot()
+    });
 })
