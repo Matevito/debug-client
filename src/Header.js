@@ -26,7 +26,7 @@ import { logout } from "./features/userSlice";
 
 // Using Inline Styling
 
-const title = "Issue tracker"
+const title = "Tickets!"
 
 export const Header = () => {
     const user = useSelector(selectUser);
