@@ -2,12 +2,19 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 import {
+    Link as LinkMui,
     Box,
-    Card,
-    CardContent,
+    Stack,
     Grid,
     Typography
 } from "@mui/material";
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import LocalSeeIcon from '@mui/icons-material/LocalSee';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import SecurityIcon from '@mui/icons-material/Security';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export const Welcome = () => {
     return (
@@ -22,7 +29,7 @@ export const Welcome = () => {
             }}
         >
             <Typography variant="h3"
-                sx={{ marginBottom: "20px", marginTop: "10px"}}
+                sx={{ marginBottom: "20px", marginTop: "20px"}}
             >
                 Wellcome to<Typography variant="i" sx={{color: "green"}}>Tickets!</Typography>
             </Typography>
@@ -36,20 +43,62 @@ export const Welcome = () => {
                     <Link to="/log-in" style={{ color: "orange", textDecoration: 'none' }}> demo access!</Link>
                 </Typography>
             </Box>
-            <Grid container spacing={2} sx={{m:2}}>
+
+            <Grid container spacing={2} sx={{m:3}}>
                 <Grid item xs={6}
                     sx={{
+                        m:2,
+                        marginLeft: "85px",
                         display: "flex",
                         flexDirection: "column",
-                        alignItems: "center",
+                        alignItems: "left",
                         justifyContent: "center"
                     }}
                 >
+                    <Stack direction="row" alignItems="center" gap={1}>
+                        <KeyboardVoiceIcon color="success"/>
+                        <Typography>...Create place to communicate with a team.</Typography>
+                    </Stack>
+                    
+                    <Stack direction="row" alignItems="center" gap={1}>
+                        <ListAltIcon color="warning"/>
+                        <Typography>...Keep a clear track of the developing of a task.</Typography>
+                    </Stack>
+
+                    <Stack direction="row" alignItems="center" gap={1}>
+                        <ChatBubbleIcon color="primary"/>
+                        <Typography>...Use the chat option on the tickets to communicate with your teamates.</Typography>
+                    </Stack>
+
+                    <Stack direction="row" alignItems="center" gap={1}>
+                        <LocalSeeIcon color="secondary"/>
+                        <Typography>...Or send images on the chat to have an enriched communication experience.</Typography>
+                    </Stack>
+
+                    <Stack direction="row" alignItems="center" gap={1}>
+                        <LiveHelpIcon color="success"/>
+                        <Typography>...Maybe ask for better instructions or clarification on a task?</Typography>
+                    </Stack>
+                    
+                    <Stack direction="row" alignItems="center" gap={1}>
+                        <SecurityIcon color="warning"/>
+                        <Typography>...All of this and  more by keeping some functionalities protected by roles!</Typography>
+                    </Stack>
+                    
                 </Grid>
                 <Grid item xs={6}>
                     
                 </Grid>
             </Grid>
+            <LinkMui
+                href={"https://github.com/Matevito/debug-client"}
+                target="_blank"
+                rel="nonreferrer"
+                style={{ color: "inherit"}} underline="hover"
+                sx={{ marginTop: "80px"}}
+            >
+                <GitHubIcon color="success" size="large"/>
+            </LinkMui>
         </Box>
     )
 }
