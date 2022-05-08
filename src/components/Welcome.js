@@ -36,7 +36,7 @@ export const Welcome = () => {
             >
                 Wellcome to<Typography variant="i" sx={{color: "green"}}>Tickets!</Typography>
             </Typography>
-            <Typography variant="h6">Tickets is an app where you and your team can keep track of the developing phases of your project and assign tasks to your team members.</Typography>
+            <Typography variant="h6" align="center">In Tickets you and your team can keep track of the developing phases of your project and assign tasks to your team members.</Typography>
             <Box>
                 <Typography variant="h6">
                     <Link to="/sign-in" style={{ color: "orange", textDecoration: 'none' }}>Create </Link>
