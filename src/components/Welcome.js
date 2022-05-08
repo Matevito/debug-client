@@ -36,7 +36,7 @@ export const Welcome = () => {
             >
                 Wellcome to<Typography variant="i" sx={{color: "green"}}>Tickets!</Typography>
             </Typography>
-            <Typography variant="h6">Tickets is an app where you and your team can keep track of the developing of your project and assign tasks to your team members.</Typography>
+            <Typography variant="h6">Tickets is an app where you and your team can keep track of the developing phases of your project and assign tasks to your team members.</Typography>
             <Box>
                 <Typography variant="h6">
                     <Link to="/sign-in" style={{ color: "orange", textDecoration: 'none' }}>Create </Link>
@@ -60,7 +60,7 @@ export const Welcome = () => {
                 >
                     <Stack direction="row" alignItems="center" gap={1}>
                         <KeyboardVoiceIcon color="success"/>
-                        <Typography>...Create place to communicate with a team.</Typography>
+                        <Typography>...Create a place to communicate with your team.</Typography>
                     </Stack>
                     
                     <Stack direction="row" alignItems="center" gap={1}>
@@ -70,12 +70,12 @@ export const Welcome = () => {
 
                     <Stack direction="row" alignItems="center" gap={1}>
                         <ChatBubbleIcon color="primary"/>
-                        <Typography>...Use the chat option on the tickets to communicate with your teamates.</Typography>
+                        <Typography>...Use the chat option on the issues page to communicate with your teammates.</Typography>
                     </Stack>
 
                     <Stack direction="row" alignItems="center" gap={1}>
                         <LocalSeeIcon color="secondary"/>
-                        <Typography>...Or send images on the chat to have an enriched communication experience.</Typography>
+                        <Typography>...Or send images on the chat to have an enriched communication experience!</Typography>
                     </Stack>
 
                     <Stack direction="row" alignItems="center" gap={1}>
@@ -85,7 +85,7 @@ export const Welcome = () => {
                     
                     <Stack direction="row" alignItems="center" gap={1}>
                         <SecurityIcon color="warning"/>
-                        <Typography>...All of this and  more by keeping some functionalities protected by roles!</Typography>
+                        <Typography>...All of this and more by keeping some functionalities protected by roles!</Typography>
                     </Stack>
                     
                 </Grid>
