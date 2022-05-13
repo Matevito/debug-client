@@ -1,5 +1,5 @@
 # Tickets!
-Web app that handles a basic ticket-system thinked to be used as a kind of cronogram for developer groups. You can find the rest-api used to feed this app [here](/https://github.com/Matevito/debug-api). It uses authentication with roles for protection and conditional rendering of different pages, and also let users according to it's role to edit or delete tickets or projects where these are stored.
+Web app that handles a basic ticket-system thinked to be used as a kind of cronogram for developer groups. You can find the rest-api used to feed this app [here](https://github.com/Matevito/debug-api). It uses authentication with roles for protection and conditional rendering of different pages, and also let users according to it's role to edit or delete tickets or projects where these are stored.
 Is built principally with React.js and with MUI. It has too muiltiple demo access with different roles to give it a look without the need to create an account.
 # Live demo
 Give it a look on this [link](https://matevito.github.io/debug-client/)
