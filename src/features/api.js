@@ -1,8 +1,8 @@
-const axios = require('axios');
+const axios = require("axios");
 
 const api = axios.create({
-    baseURL: "https://pure-falls-26749.herokuapp.com/apiv1/",
-    timeout: 12000
+  baseURL: "https://web-production-a016.up.railway.app/apiv1/",
+  timeout: 12000,
 });
 
 export default api;
